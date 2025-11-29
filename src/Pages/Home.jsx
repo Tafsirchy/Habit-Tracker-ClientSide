@@ -1,9 +1,13 @@
 import React from 'react';
+import HabitSlider from '../Components/HabitSlider';
+import WhyBuild from '../Components/WhyBuild';
+
 
 const Home = () => {
     return (
         <div>
-            Home
+            <HabitSlider></HabitSlider>
+            <WhyBuild></WhyBuild>
         </div>
     );
 };

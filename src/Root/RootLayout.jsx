@@ -5,13 +5,13 @@ import Footer from "../Component/Footer";
 
 const RootLayout = () => {
   return (
-    <div className="min-h-screen">
+    <div className="">
       <div>
         <Navbar></Navbar>
       </div>
 
       {/* Where all child routes render */}
-      <div className="min-h-screen ">
+      <div className=" ">
         <Outlet></Outlet>
       </div>
 
