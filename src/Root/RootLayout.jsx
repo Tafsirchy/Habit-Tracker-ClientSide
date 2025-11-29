@@ -1,29 +1,21 @@
 import React from "react";
-import { Outlet, useNavigation } from "react-router";
-import Navbar from "../Components/Navbar";
-import Footer from "../Components/Footer";
-import Loading from "../Components/Loading";
+import Navbar from "../Component/Navbar";
+import { Outlet } from "react-router"; 
+import Footer from "../Component/Footer";
 
 const RootLayout = () => {
-  const navigation = useNavigation();
-
-  const isLoading = navigation.state === "loading";
-
   return (
-    <div>
-      <div className="">
+    <div className="min-h-screen">
+      <div>
         <Navbar></Navbar>
       </div>
-      {isLoading ? (
-        <div className="min-h-screen flex justify-center items-center">
-          <Loading></Loading>
-        </div>
-      ) : (
-        <div className="">
-          <Outlet></Outlet>
-        </div>
-      )}
-      <div className="">
+
+      {/* Where all child routes render */}
+      <div className="min-h-screen ">
+        <Outlet></Outlet>
+      </div>
+
+      <div>
         <Footer></Footer>
       </div>
     </div>

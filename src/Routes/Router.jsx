@@ -1,65 +1,48 @@
 import { createBrowserRouter } from "react-router";
+import AddHabit from "../Pages/AddHabit";
+import MyHabit from "../Pages/MyHabit";
+import PublicHabit from "../Pages/PublicHabit";
 import RootLayout from "../Root/RootLayout";
-import Home from "../Pages/Home";
-import AuthLayout from "../Root/AuthLayout";
-import Login from "../Pages/Login";
-import Register from "../Pages/Register";
-import PlantDetails from "../Pages/PlantDetails";
-import Plants from "../Pages/Plants";
-import MyProfile from "../Pages/MyProfile";
-import ConsultationForm from "../Pages/ConsultationForm";
-import PrivateRoute from "../Provider/PrivateRoute";
-import ForgetPass from "../Pages/ForgetPass";
+import Home from "../Pages/Home"; // <-- MISSING IMPORT FIXED
+// import AuthLayout from "../Root/AuthLayout";
+// import Login from "../Pages/Login";
+// import Register from "../Pages/Register";
+
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <RootLayout></RootLayout>,
+    element: <RootLayout />,
     children: [
       {
         path: "/",
-        element: <Home></Home>,
+        element: <Home />,
       },
     ],
   },
+
   {
-    path: "/auth",
-    element: <AuthLayout></AuthLayout>,
-    children: [
-      {
-        path: "/auth/login",
-        element: <Login></Login>,
-      },
-      {
-        path: "/auth/register",
-        element: <Register></Register>,
-      },
-    ],
+    path: "/addHabit",
+    element: <AddHabit />,
   },
   {
-    path: "/plants",
-    element: <Plants></Plants>,
+    path: "/myHabit",
+    element: <MyHabit />,
   },
   {
-    path: "/profile",
-    element: <MyProfile></MyProfile>,
+    path: "/publicHabit",
+    element: <PublicHabit />,
   },
-  {
-    path: "/plantDetails/:id",
-    element: (
-      <PrivateRoute>
-        <PlantDetails></PlantDetails>
-      </PrivateRoute>
-    ),
-  },
-  {
-    path: "/consultation",
-    element: <ConsultationForm></ConsultationForm>,
-  },
-  {
-    path: "/forgetPass/:email?",
-    element: <ForgetPass></ForgetPass>,
-  },
+
+  // AUTH ROUTES (uncomment when needed)
+  // {
+  //   path: "/auth",
+  //   element: <AuthLayout />,
+  //   children: [
+  //     { path: "login", element: <Login /> },
+  //     { path: "register", element: <Register /> },
+  //   ],
+  // },
 ]);
 
 export default router;
