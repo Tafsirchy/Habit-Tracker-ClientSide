@@ -8,6 +8,7 @@ import AuthLayout from "../Root/AuthLayout";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import ForgetPass from "../Pages/ForgetPass";
+import PrivateRoute from "../Provider/PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -24,11 +25,19 @@ const router = createBrowserRouter([
   // 🔥 Habit routes
   {
     path: "/addHabit",
-    element: <AddHabit />,
+    element: (
+      <PrivateRoute>
+        <AddHabit />
+      </PrivateRoute>
+    ),
   },
   {
     path: "/myHabit",
-    element: <MyHabit />,
+    element: (
+      <PrivateRoute>
+        <MyHabit />
+      </PrivateRoute>
+    ),
   },
   {
     path: "/publicHabit",
