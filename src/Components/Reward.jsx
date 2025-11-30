@@ -2,14 +2,14 @@ import React from "react";
 import { motion } from "framer-motion";
 import { FaMedal, FaStar, FaGift } from "react-icons/fa";
 
-const rewardVariants = {
-  hidden: { opacity: 0, scale: 0.8 },
+const cardVariants = {
+  hidden: { opacity: 0, x: -50 },
   visible: (i) => ({
     opacity: 1,
-    scale: 1,
+    x: 0,
     transition: {
-      delay: i * 0.2,
-      duration: 0.5,
+      delay: i * 0.15,
+      duration: 0.6,
       type: "spring",
       stiffness: 60,
     },
@@ -18,84 +18,178 @@ const rewardVariants = {
 
 const Reward = () => {
   return (
-    <section className="w-11/12 mx-auto">
-      <div className="py-16 ">
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
-            Gamify Your Habits
-          </h2>
-          <p className="text-gray-600 sm:text-lg lg:text-xl max-w-2xl mx-auto">
-            Earn rewards, badges, and celebrate your streaks to stay motivated
-            every day.
-          </p>
-        </motion.div>
-
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {/* Reward Card 1 */}
+    <section className="w-11/12 mx-auto w-full bg-gray-50 py-12 sm:py-16 lg:py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          {/* Left Content Section */}
           <motion.div
-            custom={0}
-            variants={rewardVariants}
-            initial="hidden"
-            whileInView="visible"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-white p-6 sm:p-8 rounded-2xl shadow-xl flex flex-col items-start gap-4 hover:scale-105 transition-transform"
+            transition={{ duration: 0.7 }}
+            className="order-2 lg:order-1"
           >
-            <div className="flex items-center justify-center w-16 h-16 bg-yellow-100 rounded-full mb-3">
-              <FaMedal className="w-10 h-10 text-yellow-500" />
-            </div>
-            <h3 className="text-xl sm:text-2xl font-semibold text-gray-800">
-              Badges
-            </h3>
-            <p className="text-gray-600">
-              Earn badges as you complete milestones and streaks.
-            </p>
+            {/* Heading */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mb-8"
+            >
+              <motion.p 
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                className="text-purple-600 font-bold text-sm sm:text-base tracking-wider uppercase mb-3"
+              >
+                GAMIFICATION
+              </motion.p>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+                Gamify Your Habits
+              </h2>
+              <p className="text-gray-600 text-base sm:text-lg leading-relaxed mb-6">
+                Earn rewards, badges, and celebrate your streaks to stay motivated every day. Transform your daily routines into an exciting journey of personal growth.
+              </p>
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-8 py-3 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl"
+              >
+                Discover More
+              </motion.button>
+            </motion.div>
           </motion.div>
 
-          {/* Reward Card 2 */}
-          <motion.div
-            custom={1}
-            variants={rewardVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="bg-white p-6 sm:p-8 rounded-2xl shadow-xl flex flex-col items-start gap-4 hover:scale-105 transition-transform"
-          >
-            <div className="flex items-center justify-center w-16 h-16 bg-indigo-100 rounded-full mb-3">
-              <FaStar className="w-10 h-10 text-indigo-500" />
-            </div>
-            <h3 className="text-xl sm:text-2xl font-semibold text-gray-800">
-              Leaderboards
-            </h3>
-            <p className="text-gray-600">
-              Compete with friends and see who keeps their streak alive.
-            </p>
-          </motion.div>
+          {/* Right Cards Section */}
+          <div className="order-1 lg:order-2 grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-6">
+            {/* Card 1 - Badges */}
+            <motion.div
+              custom={0}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              whileHover={{ y: -10, transition: { duration: 0.3 } }}
+              className="relative group overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300"
+            >
+              <div className="relative h-80 sm:h-96">
+                <img
+                  src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=600&q=80"
+                  alt="Badges"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-yellow-900/90 via-yellow-900/50 to-transparent"></div>
+                
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.4 }}
+                  >
+                    <motion.div 
+                      className="inline-flex items-center justify-center w-14 h-14 bg-yellow-500/30 backdrop-blur-sm rounded-full mb-1"
+                      whileHover={{ rotate: 360, scale: 1.1 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <FaMedal className="w-7 h-7 text-yellow-300" />
+                    </motion.div>
+                    <div className="text-5xl sm:text-6xl font-bold text-yellow-400 mb-2">1.</div>
+                    <h3 className="text-xl sm:text-2xl font-bold mb-3">Badges</h3>
+                    <p className="text-sm sm:text-base text-gray-200 leading-relaxed">
+                      Earn badges as you complete milestones and streaks. Collect achievements to showcase your progress.
+                    </p>
+                  </motion.div>
+                </div>
+              </div>
+            </motion.div>
 
-          {/* Reward Card 3 */}
-          <motion.div
-            custom={2}
-            variants={rewardVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="bg-white p-6 sm:p-8 rounded-2xl shadow-xl flex flex-col items-start gap-4 hover:scale-105 transition-transform"
-          >
-            <div className="flex items-center justify-center w-16 h-16 bg-pink-100 rounded-full mb-3">
-              <FaGift className="w-10 h-10 text-pink-500" />
-            </div>
-            <h3 className="text-xl sm:text-2xl font-semibold text-gray-800">
-              Rewards
-            </h3>
-            <p className="text-gray-600">
-              Redeem points for goodies or perks as you progress.
-            </p>
-          </motion.div>
+            {/* Card 2 - Leaderboards */}
+            <motion.div
+              custom={1}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              whileHover={{ y: -10, transition: { duration: 0.3 } }}
+              className="relative group overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300"
+            >
+              <div className="relative h-80 sm:h-96">
+                <img
+                  src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80"
+                  alt="Leaderboards"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-indigo-900/90 via-indigo-900/50 to-transparent"></div>
+                
+                <div className="absolute bottom-0 left-0 right-0 px-5 py-6 text-white">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.5 }}
+                  >
+                    <motion.div 
+                      className="inline-flex items-center justify-center w-14 h-14 bg-indigo-500/30 backdrop-blur-sm rounded-full mb-1"
+                      whileHover={{ rotate: 360, scale: 1.1 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <FaStar className="w-7 h-7 text-indigo-500" />
+                    </motion.div>
+                    <div className="text-5xl sm:text-6xl font-bold text-indigo-400 mb-2">2.</div>
+                    <h3 className="text-xl sm:text-2xl font-bold mb-3">Leaderboards</h3>
+                    <p className="text-sm sm:text-base text-gray-200 leading-relaxed">
+                      Compete with friends and see who keeps their streak alive. Stay motivated through friendly competition.
+                    </p>
+                  </motion.div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Card 3 - Rewards */}
+            <motion.div
+              custom={2}
+              variants={cardVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              whileHover={{ y: -10, transition: { duration: 0.3 } }}
+              className="relative group overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300"
+            >
+              <div className="relative h-80 sm:h-96">
+                <img
+                  src="https://images.unsplash.com/photo-1513201099705-a9746e1e201f?w=600&q=80"
+                  alt="Rewards"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-pink-900/90 via-pink-900/50 to-transparent"></div>
+                
+                <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.6 }}
+                  >
+                    <motion.div 
+                      className="inline-flex items-center justify-center w-14 h-14 bg-pink-500/30 backdrop-blur-sm rounded-full mb-1"
+                      whileHover={{ rotate: 360, scale: 1.1 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <FaGift className="w-7 h-7 text-pink-200 " />
+                    </motion.div>
+                    <div className="text-5xl sm:text-6xl font-bold text-pink-400 mb-2">3.</div>
+                    <h3 className="text-xl sm:text-2xl font-bold mb-3">Rewards</h3>
+                    <p className="text-sm sm:text-base text-gray-200 leading-relaxed">
+                      Redeem points for goodies or perks as you progress. Celebrate your achievements with real rewards.
+                    </p>
+                  </motion.div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>

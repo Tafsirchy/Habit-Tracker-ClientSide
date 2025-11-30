@@ -1,172 +1,238 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FaChartLine, FaClock, FaCheckCircle } from "react-icons/fa";
+import {
+  FaChartLine,
+  FaClock,
+  FaCheckCircle,
+  FaTrophy,
+  FaFire,
+  FaCalendarCheck,
+} from "react-icons/fa";
 
 const HabitStats = () => {
-  // Animation variants
   const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, scale: 0.9 },
     visible: (i) => ({
       opacity: 1,
-      y: 0,
+      scale: 1,
       transition: {
-        delay: i * 0.2,
-        duration: 0.6,
+        delay: i * 0.15,
+        duration: 0.5,
         type: "spring",
         stiffness: 60,
       },
     }),
   };
 
-  const progressVariants = {
-    hidden: { width: 0 },
-    visible: (value) => ({
-      width: `${value}%`,
-      transition: { duration: 1, ease: "easeInOut" },
-    }),
-  };
-
   return (
-    <section className="w-11/12 mx-auto">
-      <div className="py-16">
+    <section className="relative w-full min-h-screen flex items-center justify-center overflow-hidden py-16 sm:py-20 lg:py-24 w-11/12 mx-auto">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <img
+          src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=1920&q=80"
+          alt="Background"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900/70 via-gray-800/60 to-gray-900/70"></div>
+      </div>
+
+      {/* Content */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         {/* Heading */}
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
+          initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          transition={{ duration: 0.7 }}
+          className="text-center mb-12 lg:mb-16"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-800 mb-4">
-            Track Your Progress
-          </h2>
-          <p className="text-gray-600 sm:text-lg lg:text-xl max-w-3xl mx-auto">
-            Monitor your streaks, completion rate, and time saved with
-            interactive visual feedback. Stay motivated and see your growth
-            every day.
-          </p>
+          <motion.h2
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-3xl sm:text-4xl lg:text-6xl font-bold text-white mb-4 leading-tight"
+          >
+            Making lives easier
+            <br />
+            than before
+          </motion.h2>
         </motion.div>
 
         {/* Cards Grid */}
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {/* Card 1 */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+          {/* Card 1 - Streaks */}
           <motion.div
             custom={0}
             variants={cardVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            className="bg-white p-6 sm:p-8 rounded-3xl shadow-xl flex flex-col justify-between hover:scale-105 transition-transform duration-300"
+            viewport={{ once: true, amount: 0.2 }}
+            whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+            className="relative group overflow-hidden rounded-2xl border-2 border-white/30 backdrop-blur-sm bg-white/10 hover:bg-white/20 transition-all duration-300 p-6 sm:p-8"
           >
-            <div className="flex items-center gap-4 mb-4">
-              <div className="flex items-center justify-center w-16 h-16 bg-indigo-50 rounded-full">
-                <FaChartLine className="w-10 h-10 text-indigo-500" />
-              </div>
-              <h3 className="text-xl sm:text-2xl font-semibold text-gray-800">
+            <div className="relative z-10">
+              <motion.div
+                whileHover={{ scale: 1.1, rotate: 360 }}
+                transition={{ duration: 0.6 }}
+                className="w-16 h-16 sm:w-20 sm:h-20 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center mb-6"
+              >
+                <FaFire className="w-8 h-8 sm:w-10 sm:h-10 text-orange-400" />
+              </motion.div>
+
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">
                 Streaks
               </h3>
+              <p className="text-white/80 text-sm sm:text-base leading-relaxed">
+                Maintain consistency and never miss a day. Build momentum with
+                daily habit tracking.
+              </p>
             </div>
-            <p className="text-gray-600 mb-6">
-              Maintain consistency and never miss a day.
-            </p>
-            <div className="w-full bg-gray-200 h-3 rounded-full overflow-hidden">
-              <motion.div
-                custom={75}
-                variants={progressVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="h-3 rounded-full bg-gradient-to-r from-indigo-500 to-indigo-400"
-              ></motion.div>
-            </div>
-            <motion.span
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.8 }}
-              className="text-sm text-gray-500 mt-2"
-            >
-              75% completed
-            </motion.span>
           </motion.div>
 
-          {/* Card 2 */}
+          {/* Card 2 - Time Saved */}
           <motion.div
             custom={1}
             variants={cardVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            className="bg-white p-6 sm:p-8 rounded-3xl shadow-xl flex flex-col justify-between hover:scale-105 transition-transform duration-300"
+            viewport={{ once: true, amount: 0.2 }}
+            whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+            className="relative group overflow-hidden rounded-2xl border-2 border-white/30 backdrop-blur-sm bg-white/10 hover:bg-white/20 transition-all duration-300 p-6 sm:p-8"
           >
-            <div className="flex items-center gap-4 mb-4">
-              <div className="flex items-center justify-center w-16 h-16 bg-green-50 rounded-full">
-                <FaClock className="w-10 h-10 text-green-500" />
-              </div>
-              <h3 className="text-xl sm:text-2xl font-semibold text-gray-800">
+            <div className="relative z-10">
+              <motion.div
+                whileHover={{ scale: 1.1, rotate: 360 }}
+                transition={{ duration: 0.6 }}
+                className="w-16 h-16 sm:w-20 sm:h-20 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center mb-6"
+              >
+                <FaClock className="w-8 h-8 sm:w-10 sm:h-10 text-blue-400" />
+              </motion.div>
+
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">
                 Time Saved
               </h3>
+              <p className="text-white/80 text-sm sm:text-base leading-relaxed">
+                Automate routines and focus on what matters most. Track
+                efficiency gains.
+              </p>
             </div>
-            <p className="text-gray-600 mb-6">
-              Automate routines and focus on what matters most.
-            </p>
-            <div className="w-full bg-gray-200 h-3 rounded-full overflow-hidden">
-              <motion.div
-                custom={60}
-                variants={progressVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="h-3 rounded-full bg-gradient-to-r from-green-500 to-green-400"
-              ></motion.div>
-            </div>
-            <motion.span
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.8 }}
-              className="text-sm text-gray-500 mt-2"
-            >
-              60% completed
-            </motion.span>
           </motion.div>
 
-          {/* Card 3 */}
+          {/* Card 3 - Completion Rate */}
           <motion.div
             custom={2}
             variants={cardVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            className="bg-white p-6 sm:p-8 rounded-3xl shadow-xl flex flex-col justify-between hover:scale-105 transition-transform duration-300"
+            viewport={{ once: true, amount: 0.2 }}
+            whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+            className="relative group overflow-hidden rounded-2xl border-2 border-white/30 backdrop-blur-sm bg-white/10 hover:bg-white/20 transition-all duration-300 p-6 sm:p-8"
           >
-            <div className="flex items-center gap-4 mb-4">
-              <div className="flex items-center justify-center w-16 h-16 bg-pink-50 rounded-full">
-                <FaCheckCircle className="w-10 h-10 text-pink-500" />
-              </div>
-              <h3 className="text-xl sm:text-2xl font-semibold text-gray-800">
+            <div className="relative z-10">
+              <motion.div
+                whileHover={{ scale: 1.1, rotate: 360 }}
+                transition={{ duration: 0.6 }}
+                className="w-16 h-16 sm:w-20 sm:h-20 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center mb-6"
+              >
+                <FaCheckCircle className="w-8 h-8 sm:w-10 sm:h-10 text-green-400" />
+              </motion.div>
+
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">
                 Completion Rate
               </h3>
+              <p className="text-white/80 text-sm sm:text-base leading-relaxed">
+                Track your habits and celebrate your achievements. Monitor your
+                progress daily.
+              </p>
             </div>
-            <p className="text-gray-600 mb-6">
-              Track your habits and celebrate your achievements.
-            </p>
-            <div className="w-full bg-gray-200 h-3 rounded-full overflow-hidden">
+          </motion.div>
+
+          {/* Card 4 - Progress Tracking */}
+          <motion.div
+            custom={3}
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+            className="relative group overflow-hidden rounded-2xl border-2 border-white/30 backdrop-blur-sm bg-white/10 hover:bg-white/20 transition-all duration-300 p-6 sm:p-8"
+          >
+            <div className="relative z-10">
               <motion.div
-                custom={90}
-                variants={progressVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="h-3 rounded-full bg-gradient-to-r from-pink-500 to-pink-400"
-              ></motion.div>
+                whileHover={{ scale: 1.1, rotate: 360 }}
+                transition={{ duration: 0.6 }}
+                className="w-16 h-16 sm:w-20 sm:h-20 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center mb-6"
+              >
+                <FaChartLine className="w-8 h-8 sm:w-10 sm:h-10 text-purple-400" />
+              </motion.div>
+
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">
+                Progress Tracking
+              </h3>
+              <p className="text-white/80 text-sm sm:text-base leading-relaxed">
+                Visualize your growth with detailed analytics and insights over
+                time.
+              </p>
             </div>
-            <motion.span
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.8 }}
-              className="text-sm text-gray-500 mt-2"
-            >
-              90% completed
-            </motion.span>
+          </motion.div>
+
+          {/* Card 5 - Achievement System */}
+          <motion.div
+            custom={4}
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+            className="relative group overflow-hidden rounded-2xl border-2 border-white/30 backdrop-blur-sm bg-white/10 hover:bg-white/20 transition-all duration-300 p-6 sm:p-8"
+          >
+            <div className="relative z-10">
+              <motion.div
+                whileHover={{ scale: 1.1, rotate: 360 }}
+                transition={{ duration: 0.6 }}
+                className="w-16 h-16 sm:w-20 sm:h-20 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center mb-6"
+              >
+                <FaTrophy className="w-8 h-8 sm:w-10 sm:h-10 text-yellow-400" />
+              </motion.div>
+
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">
+                Achievement System
+              </h3>
+              <p className="text-white/80 text-sm sm:text-base leading-relaxed">
+                Unlock badges and rewards as you reach milestones and complete
+                challenges.
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Card 6 - Calendar View */}
+          <motion.div
+            custom={5}
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
+            className="relative group overflow-hidden rounded-2xl border-2 border-white/30 backdrop-blur-sm bg-white/10 hover:bg-white/20 transition-all duration-300 p-6 sm:p-8"
+          >
+            <div className="relative z-10">
+              <motion.div
+                whileHover={{ scale: 1.1, rotate: 360 }}
+                transition={{ duration: 0.6 }}
+                className="w-16 h-16 sm:w-20 sm:h-20 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center mb-6"
+              >
+                <FaCalendarCheck className="w-8 h-8 sm:w-10 sm:h-10 text-pink-400" />
+              </motion.div>
+
+              <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">
+                Calendar View
+              </h3>
+              <p className="text-white/80 text-sm sm:text-base leading-relaxed">
+                View your habits at a glance with an intuitive calendar
+                interface.
+              </p>
+            </div>
           </motion.div>
         </div>
       </div>
