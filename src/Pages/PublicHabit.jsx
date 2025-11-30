@@ -1,6 +1,6 @@
 import React from 'react';
-import Navbar from '../Component/Navbar';
-import Footer from '../Component/Footer';
+import Navbar from '../Components/Navbar';
+import Footer from '../Components/Footer';
 
 const PublicHabit = () => {
     return (

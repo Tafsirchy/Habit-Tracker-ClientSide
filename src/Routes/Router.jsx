@@ -1,13 +1,13 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter } from "react-router"; // FIXED
 import AddHabit from "../Pages/AddHabit";
 import MyHabit from "../Pages/MyHabit";
 import PublicHabit from "../Pages/PublicHabit";
 import RootLayout from "../Root/RootLayout";
-import Home from "../Pages/Home"; // <-- MISSING IMPORT FIXED
-// import AuthLayout from "../Root/AuthLayout";
-// import Login from "../Pages/Login";
-// import Register from "../Pages/Register";
-
+import Home from "../Pages/Home";
+import AuthLayout from "../Root/AuthLayout";
+import Login from "../Pages/Login";
+import Register from "../Pages/Register";
+import ForgetPass from "../Pages/ForgetPass";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +21,7 @@ const router = createBrowserRouter([
     ],
   },
 
+  // 🔥 Habit routes
   {
     path: "/addHabit",
     element: <AddHabit />,
@@ -34,15 +35,27 @@ const router = createBrowserRouter([
     element: <PublicHabit />,
   },
 
-  // AUTH ROUTES (uncomment when needed)
-  // {
-  //   path: "/auth",
-  //   element: <AuthLayout />,
-  //   children: [
-  //     { path: "login", element: <Login /> },
-  //     { path: "register", element: <Register /> },
-  //   ],
-  // },
+  // 🔥 Authentication (login / register)
+  {
+    path: "/auth",
+    element: <AuthLayout />,
+    children: [
+      {
+        path: "login", // FIXED
+        element: <Login />,
+      },
+      {
+        path: "register", // FIXED
+        element: <Register />,
+      },
+    ],
+  },
+
+  // 🔥 Forget password should NOT be inside /auth
+  {
+    path: "/forgetPass/:email?",
+    element: <ForgetPass />,
+  },
 ]);
 
 export default router;
