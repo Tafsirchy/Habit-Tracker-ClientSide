@@ -1,7 +1,3 @@
-// import React, { useContext, useState } from "react";
-// import { AuthContext } from "../Provider/AuthProvider";
-// import { toast } from "react-toastify";
-// import axios from "axios";
 import { Upload, Clock, FileText, Layers } from "lucide-react";
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
@@ -95,7 +91,7 @@ const AddHabit = () => {
 
     console.log(habitData);
 
-    axios.post("http://localhost:3000/addHabit", habitData)
+    axios.post("http://localhost:3000/habits", habitData)
     .then((res) => {
       console.log(res);
     })
