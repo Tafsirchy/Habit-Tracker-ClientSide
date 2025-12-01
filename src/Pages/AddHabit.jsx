@@ -1,108 +1,56 @@
 import { Upload, Clock, FileText, Layers } from "lucide-react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import axios from "axios";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 
 const AddHabit = () => {
-  // const { user } = useContext(AuthContext);
-
-  // const [imageFile, setImageFile] = useState(null);
-  // const [loading, setLoading] = useState(false);
-
-  // // 1. Upload to ImgBB
-  // const uploadImageToImgBB = async () => {
-  //   if (!imageFile) return "";
-
-  //   const formData = new FormData();
-  //   formData.append("image", imageFile);
-
-  //   const url = `https://api.imgbb.com/1/upload?key=YOUR_IMGBB_API_KEY`;
-
-  //   const res = await axios.post(url, formData);
-  //   return res.data.data.display_url;
-  // };
-
-  // // 2. Submit Habit
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   setLoading(true);
-
-  //   const form = e.target;
-  //   const title = form.title.value;
-  //   const description = form.description.value;
-  //   const category = form.category.value;
-  //   const reminderTime = form.reminderTime.value;
-
-  //   // Upload Image if exists
-  //   let imageUrl = "";
-  //   if (imageFile) {
-  //     imageUrl = await uploadImageToImgBB();
-  //   }
-
-  //   const habitData = {
-  //     title,
-  //     description,
-  //     category,
-  //     reminderTime,
-  //     image: imageUrl,
-  //     userName: user.displayName,
-  //     userEmail: user.email,
-  //   };
-
-  //   axios
-  //     .post("http://localhost:5000/habits", habitData)
-  //     .then(() => {
-  //       toast.success("Habit Added Successfully!");
-  //       form.reset();
-  //       setImageFile(null);
-  //     })
-  //     .catch(() => toast.error("Failed to add habit"))
-  //     .finally(() => setLoading(false));
-  // };
-
   const { user } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // setLoading(true);
+    setLoading(true);
 
     const form = e.target;
-
     const title = form.title.value;
     const description = form.description.value;
     const category = form.category.value;
     const reminderTime = form.reminderTime.value;
-    const img = form.img.value;
     const email = form.email.value;
     const name = form.name.value;
-
+    const imageUrl = form.imgUrl.value; // <-- NEW (text input)
 
     const habitData = {
       title,
       description,
       category,
       reminderTime,
-      img,
+      img: imageUrl, // <-- save URL directly
       email,
       name,
-    }
+    };
 
-    console.log(habitData);
-
-    axios.post("http://localhost:3000/habits", habitData)
-    .then((res) => {
-      console.log(res);
-    })
-
+    axios
+      .post("http://localhost:3000/habits", habitData)
+      .then((res) => {
+        alert("Habit Added Successfully!");
+        form.reset();
+      })
+      .catch((error) => {
+        console.error("Failed to add habit:", error);
+        alert("Failed to add habit");
+      })
+      .finally(() => setLoading(false));
   };
 
   return (
     <div>
       <header>
-        <Navbar></Navbar>
+        <Navbar />
       </header>
+
       <main>
         <div className="min-h-screen bg-[#f3faef] py-10">
           <div className="bg-white p-8 rounded-2xl shadow-xl w-full max-w-2xl mx-auto">
@@ -169,16 +117,16 @@ const AddHabit = () => {
                 />
               </div>
 
-              {/* Upload Image */}
+              {/* Image URL INPUT */}
               <div className="form-control">
                 <label className="label font-semibold flex items-center gap-2">
-                  <Upload size={18} /> Upload Image (optional)
+                  <Upload size={18} /> Image URL (optional)
                 </label>
                 <input
-                  name="img"
-                  type="file"
-                  className="file-input file-input-bordered w-full rounded-lg"
-                  // onChange={(e) => setImageFile(e.target.files[0])}
+                  type="text"
+                  name="imgUrl"
+                  placeholder="Paste a valid image URL"
+                  className="input input-bordered rounded-lg"
                 />
               </div>
 
@@ -210,18 +158,16 @@ const AddHabit = () => {
               <button
                 type="submit"
                 className="btn bg-[#043915] text-white w-full rounded-lg hover:bg-[#046b21]"
-                // disabled={loading}
+                disabled={loading}
               >
-                okkk
-                {/* {loading ? "Adding Habit..." : "Add Habit"} */}
+                {loading ? "Adding Habit..." : "Add Habit"}
               </button>
             </form>
           </div>
         </div>
       </main>
-      <div>
-        <Footer></Footer>
-      </div>
+
+      <Footer />
     </div>
   );
 };

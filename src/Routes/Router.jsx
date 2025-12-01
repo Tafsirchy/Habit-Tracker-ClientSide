@@ -9,6 +9,7 @@ import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import ForgetPass from "../Pages/ForgetPass";
 import PrivateRoute from "../Provider/PrivateRoute";
+import HabitDetails from "../Pages/HabitDetails";
 
 const router = createBrowserRouter([
   {
@@ -65,6 +66,18 @@ const router = createBrowserRouter([
     path: "/forgetPass/:email?",
     element: <ForgetPass />,
   },
+  {
+    path: "/details/:id",
+    element: (
+      <PrivateRoute>
+        <HabitDetails></HabitDetails>
+      </PrivateRoute>
+    ),
+  },
+  // {
+  //   path: "*",
+  //   element: <NotFound />,
+  // }
 ]);
 
 export default router;

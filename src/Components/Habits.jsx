@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { FaDumbbell } from "react-icons/fa";
 import Loading from "./Loading";
+import { Link } from "react-router";
 
 const Habits = () => {
   const [habits, setHabits] = useState([]);
@@ -82,6 +83,7 @@ const Habits = () => {
   return (
     <section className="w-full bg-gradient-to-br from-gray-50 to-gray-100 py-12 sm:py-16 lg:py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -193,14 +195,16 @@ const Habits = () => {
                     </div>
 
                     {/* View Details Button */}
-                    <motion.button
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="w-full bg-gradient-to-r from-green-600 to-emerald-500 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 shadow-md hover:shadow-lg"
-                    >
-                      View Details
-                      <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                    </motion.button>
+                    <Link to={`/details/${habit._id}`}>
+                      <motion.button
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="w-full bg-gradient-to-r from-green-600 to-emerald-500 text-white font-semibold py-3 px-4 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 shadow-md hover:shadow-lg"
+                      >
+                        View Details
+                        <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                      </motion.button>
+                    </Link>
                   </div>
                 </motion.div>
               );
