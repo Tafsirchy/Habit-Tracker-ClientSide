@@ -18,6 +18,19 @@ const Habits = () => {
   const [habits, setHabits] = useState([]);
   const [loading, setLoading] = useState(true);
 
+   const categoryColors = {
+     Fitness: "bg-green-100 text-green-700",
+     Morning: "bg-blue-100 text-blue-700",
+     Study: "bg-purple-100 text-purple-700",
+     Evening: "bg-orange-100 text-orange-700",
+     Work: "bg-yellow-100 text-yellow-700",
+
+     // fallback
+     Default: "bg-gray-100 text-gray-700",
+   };
+
+
+
   // Fetch latest habits sorted by createdAt
   useEffect(() => {
     fetch("http://localhost:3000/habits")
@@ -54,6 +67,8 @@ const Habits = () => {
     return DEFAULT_PLACEHOLDER;
   };
 
+ 
+
   // Time format
   const formatTime = (time) => {
     if (!time) return "Not set";
@@ -82,7 +97,7 @@ const Habits = () => {
 
   return (
     <section className="w-full bg-gradient-to-br from-gray-50 to-gray-100 py-12 sm:py-16 lg:py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
         
         {/* Header */}
         <motion.div
@@ -136,8 +151,13 @@ const Habits = () => {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
 
                     {/* Category Badge */}
-                    <div className="absolute top-4 left-4 px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full">
-                      <span className="text-xs font-semibold text-gray-700">
+                    <div className="absolute top-4 left-4 ">
+                      <span
+                        className={`inline-block mt-2 px-5 py-2 text-sm rounded-full ${
+                          categoryColors[habit.category] ||
+                          categoryColors.Default
+                        }`}
+                      >
                         {habit.category}
                       </span>
                     </div>

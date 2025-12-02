@@ -17,6 +17,19 @@ const HabitDetails = () => {
   const [buttonLoading, setButtonLoading] = useState(false);
   const [showCelebration, setShowCelebration] = useState(false);
 
+
+   const categoryColors = {
+     Fitness: "bg-green-100 text-green-700",
+     Morning: "bg-blue-100 text-blue-700",
+     Study: "bg-purple-100 text-purple-700",
+     Evening: "bg-orange-100 text-orange-700",
+     Work: "bg-yellow-100 text-yellow-700",
+
+     // fallback
+     Default: "bg-gray-100 text-gray-700",
+   };
+
+
   // -------------------------------
   // Fetch Habit
   // -------------------------------
@@ -77,6 +90,7 @@ const HabitDetails = () => {
         daysCompleted: updatedHistory.length,
         currentStreak: streak,
       });
+     
 
       // Hit server (sync)
       const res = await fetch(`http://localhost:3000/habits/${id}/complete`, {
@@ -117,9 +131,18 @@ const HabitDetails = () => {
               </div>
 
               <div className="p-8">
+                <span
+                  className={`inline-block mb-2 px-3 py-1 text-sm rounded-full ${
+                    categoryColors[habit.category] || categoryColors.Default
+                  }`}
+                >
+                  {habit.category}
+                </span>
+
                 <h1 className="text-4xl font-bold text-green-900">
                   {habit.title}
                 </h1>
+
                 <p className="text-gray-700 mt-4">{habit.description}</p>
 
                 {/* Progress & Streak */}

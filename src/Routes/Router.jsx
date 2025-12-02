@@ -14,11 +14,11 @@ import HabitDetails from "../Pages/HabitDetails";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <RootLayout />,
+    element: <RootLayout></RootLayout>,
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: <Home></Home>,
       },
     ],
   },
@@ -28,7 +28,7 @@ const router = createBrowserRouter([
     path: "/addHabit",
     element: (
       <PrivateRoute>
-        <AddHabit />
+        <AddHabit></AddHabit>
       </PrivateRoute>
     ),
   },
@@ -36,27 +36,27 @@ const router = createBrowserRouter([
     path: "/myHabit",
     element: (
       <PrivateRoute>
-        <MyHabit />
+        <MyHabit></MyHabit>
       </PrivateRoute>
     ),
   },
   {
     path: "/publicHabit",
-    element: <PublicHabit />,
+    element: <PublicHabit></PublicHabit>,
   },
 
   // 🔥 Authentication (login / register)
   {
     path: "/auth",
-    element: <AuthLayout />,
+    element: <AuthLayout></AuthLayout>,
     children: [
       {
         path: "login", // FIXED
-        element: <Login />,
+        element: <Login></Login>
       },
       {
         path: "register", // FIXED
-        element: <Register />,
+        element: <Register></Register>
       },
     ],
   },
@@ -64,7 +64,7 @@ const router = createBrowserRouter([
   // 🔥 Forget password should NOT be inside /auth
   {
     path: "/forgetPass/:email?",
-    element: <ForgetPass />,
+    element: <ForgetPass></ForgetPass>
   },
   {
     path: "/details/:id",
