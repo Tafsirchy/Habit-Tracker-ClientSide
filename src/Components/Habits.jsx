@@ -96,7 +96,7 @@ const Habits = () => {
   if (loading) return <Loading />;
 
   return (
-    <section className="w-full bg-gradient-to-br from-gray-50 to-gray-100 py-12 sm:py-16 lg:py-20">
+    <section className="w-11/12 mx-auto bg-gradient-to-br from-gray-50 to-gray-100 py-12 sm:py-16 lg:py-20">
       <div className="max-w-7xl mx-auto">
         
         {/* Header */}

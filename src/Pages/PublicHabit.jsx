@@ -21,12 +21,13 @@ const PublicHabit = () => {
   const [loading, setLoading] = useState(true);
 
    const categoryColors = {
-     Health: "bg-red-100 text-red-700",
      Fitness: "bg-green-100 text-green-700",
-     Productivity: "bg-blue-100 text-blue-700",
-     Learning: "bg-purple-100 text-purple-700",
-     Mindfulness: "bg-orange-100 text-orange-700",
-     Finance: "bg-yellow-100 text-yellow-700",
+     Morning: "bg-blue-100 text-blue-700",
+     Study: "bg-purple-100 text-purple-700",
+     Evening: "bg-orange-100 text-orange-700",
+     Work: "bg-yellow-100 text-yellow-700",
+
+     // fallback
      Default: "bg-gray-100 text-gray-700",
    };
 
