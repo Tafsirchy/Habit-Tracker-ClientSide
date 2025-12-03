@@ -86,123 +86,150 @@ const Register = () => {
   }
 
   return (
-    <div>
-      <div className="hero bg-base-200 min-h-screen bg-gradient-to-br from-[#f3faef] to-[#d3e6dd] p-10">
-        <div className="card max-w-sm shrink-0 border w-full backdrop-blur-lg bg-white/10 border-white/20 shadow-2xl rounded-2xl">
-          <div className="card-body">
-            <div>
-              <h1 className="text-2xl font-bold text-center border-b-1 border-base-300">
-                Sign Up
-              </h1>
-            </div>
-            <form onSubmit={handleRegister}>
-              <fieldset className="fieldset">
-                <label className="label text-black font-semibold text-sm">
-                  Name
-                </label>
-                <input
-                  name="name"
-                  type="text"
-                  className="input w-full"
-                  placeholder="Name"
-                  required
-                />
-                <label className="label text-black font-semibold mt-1 text-sm">
-                  Email
-                </label>
-                <input
-                  name="email"
-                  type="email"
-                  className="input w-full"
-                  placeholder="Email"
-                  required
-                />
-                <label className="label text-black font-semibold mt-1 text-sm">
-                  Photo URL
-                </label>
-                <input
-                  name="photo"
-                  type="text"
-                  className="input w-full"
-                  placeholder="Photo URL"
-                  required
-                />
-                <div className="flex flex-col pt-2 relative pt-0">
-                  <label className="label text-black font-semibold mb-1 text-sm">
-                    Password
-                  </label>
-                  <input
-                    name="password"
-                    type={showPassword ? "text" : "password"}
-                    className="input input-bordered w-full"
-                    placeholder="Password"
-                    onChange={() => setError("")}
-                    required
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-10 text-sm text-gray-600"
-                  >
-                    {showPassword ? <Eye /> : <EyeOff />}
-                  </button>
-                </div>
-
-                {error && <p className="text-red-500 text-sm">{error}</p>}
-
-                <button
-                  type="submit"
-                  className="btn mt-4 bg-[#043915] hover:bg-[#046b21] text-white"
-                >
-                  Sign Up
-                </button>
-                <button
-                  onClick={googleSignUp}
-                  className="my-1 btn bg-white text-black border-[#e5e5e5]"
-                >
-                  <svg
-                    aria-label="Google logo"
-                    width="16"
-                    height="16"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512"
-                  >
-                    <g>
-                      <path d="m0 0H512V512H0" fill="#fff"></path>
-                      <path
-                        fill="#34a853"
-                        d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"
-                      ></path>
-                      <path
-                        fill="#4285f4"
-                        d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"
-                      ></path>
-                      <path
-                        fill="#fbbc02"
-                        d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"
-                      ></path>
-                      <path
-                        fill="#ea4335"
-                        d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"
-                      ></path>
-                    </g>
-                  </svg>
-                  Continue with Google
-                </button>
-                <div className="text-center text-sm pt-2">
-                  <p className="text-black">
-                    Already Have an Account?{" "}
-                    <Link
-                      to="/auth/login"
-                      className="text-[#043915] font-bold hover:underline"
-                    >
-                      Login
-                    </Link>
-                  </p>
-                </div>
-              </fieldset>
-            </form>
+    <div className="min-h-screen flex">
+      {/* Left Side - Image Section */}
+      <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-purple-400 via-pink-400 to-pink-500">
+          <img
+            src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&q=80"
+            alt="Habit Tracker"
+            className="w-full h-full object-cover opacity-60 mix-blend-overlay"
+          />
+        </div>
+        <div className="absolute inset-0 flex items-center justify-center p-12">
+          <div className="text-white text-center">
+            <h1 className="text-5xl font-bold mb-4">Build Better Habits</h1>
+            <p className="text-xl opacity-90">Track your progress, achieve your goals</p>
           </div>
+        </div>
+      </div>
+
+      {/* Right Side - Form Section */}
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-white">
+        <div className="w-full max-w-md">
+          <div className="mb-8">
+            <h2 className="text-4xl font-bold text-gray-800 mb-2">Sign Up</h2>
+          </div>
+
+          <form onSubmit={handleRegister} className="space-y-5">
+            <div>
+              <label className="block text-sm font-medium text-gray-600 mb-2">
+                Full Name
+              </label>
+              <input
+                name="name"
+                type="text"
+                className="w-full px-4 py-3 border-b-2 border-gray-200 focus:border-purple-500 outline-none transition-colors bg-transparent"
+                placeholder="Name..."
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-600 mb-2">
+                Email
+              </label>
+              <input
+                name="email"
+                type="email"
+                className="w-full px-4 py-3 border-b-2 border-gray-200 focus:border-purple-500 outline-none transition-colors bg-transparent"
+                placeholder="Email address..."
+                required
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-600 mb-2">
+                Photo URL
+              </label>
+              <input
+                name="photo"
+                type="text"
+                className="w-full px-4 py-3 border-b-2 border-gray-200 focus:border-purple-500 outline-none transition-colors bg-transparent"
+                placeholder="Photo URL..."
+                required
+              />
+            </div>
+
+            <div className="relative">
+              <label className="block text-sm font-medium text-gray-600 mb-2">
+                Password
+              </label>
+              <input
+                name="password"
+                type={showPassword ? "text" : "password"}
+                className="w-full px-4 py-3 pr-12 border-b-2 border-gray-200 focus:border-purple-500 outline-none transition-colors bg-transparent"
+                placeholder="************"
+                onChange={() => setError("")}
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-11 text-gray-500 hover:text-gray-700"
+              >
+                {showPassword ? <Eye size={20} /> : <EyeOff size={20} />}
+              </button>
+            </div>
+
+            {error && (
+              <p className="text-red-500 text-sm mt-1">{error}</p>
+            )}
+
+            <button
+              type="submit"
+              className="w-full py-3 px-6 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold hover:from-purple-600 hover:to-pink-600 transition-all shadow-lg mt-6"
+            >
+              Sign Up
+            </button>
+
+            <button
+              type="button"
+              onClick={googleSignUp}
+              className="w-full py-3 px-6 rounded-full bg-white border-2 border-gray-200 text-gray-700 font-semibold hover:bg-gray-50 transition-all flex items-center justify-center gap-2"
+            >
+              <svg
+                aria-label="Google logo"
+                width="20"
+                height="20"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+              >
+                <g>
+                  <path d="m0 0H512V512H0" fill="#fff"></path>
+                  <path
+                    fill="#34a853"
+                    d="M153 292c30 82 118 95 171 60h62v48A192 192 0 0190 341"
+                  ></path>
+                  <path
+                    fill="#4285f4"
+                    d="m386 400a140 175 0 0053-179H260v74h102q-7 37-38 57"
+                  ></path>
+                  <path
+                    fill="#fbbc02"
+                    d="m90 341a208 200 0 010-171l63 49q-12 37 0 73"
+                  ></path>
+                  <path
+                    fill="#ea4335"
+                    d="m153 219c22-69 116-109 179-50l55-54c-78-75-230-72-297 55"
+                  ></path>
+                </g>
+              </svg>
+              Continue with Google
+            </button>
+
+            <div className="text-center mt-6">
+              <p className="text-gray-600 text-sm">
+                Already Have an Account?{" "}
+                <Link
+                  to="/auth/login"
+                  className="text-purple-600 font-semibold hover:underline"
+                >
+                  Sign in →
+                </Link>
+              </p>
+            </div>
+          </form>
         </div>
       </div>
     </div>
