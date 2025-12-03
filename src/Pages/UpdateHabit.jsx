@@ -17,18 +17,19 @@ import { motion, AnimatePresence } from "framer-motion";
 import { AuthContext } from "../Provider/AuthProvider";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import Loading from "../Components/Loading";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const UpdateHabit = () => {
   const { id } = useParams();
   const { user } = useContext(AuthContext);
   const [habits, setHabits] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
   const [category, setCategory] = useState(habits?.category);
   const [time, setTime] = useState(habits?.reminderTime);
+  const navigation = useNavigate();
 
   const categoryOptions = [
     { value: "Fitness", color: "from-green-400 to-emerald-500" },
@@ -45,6 +46,7 @@ const UpdateHabit = () => {
         setHabits(res.data);
         setCategory(res.data.category);
         setTime(res.data.reminderTime);
+        setLoading(false);
       })
       .catch((err) => console.log(err));
   }, [id]);
@@ -70,41 +72,30 @@ const UpdateHabit = () => {
       img: imageUrl,
       email,
       name,
+      createdAt: habits?.createdAt,
     };
 
-    console.log(habitData);
+    axios
+      .put(`http://localhost:3000/update/${id}`, habitData)
+      .then((res) => {
+        toast.success("Habit Updated Successfully!");
 
-    setTimeout(() => {
-      setShowSuccess(true);
-      setLoading(false);
-      setTimeout(() => setShowSuccess(false), 3000);
-    }, 1200);
+        form.reset();
+        navigation("/myHabit");
+      })
+      .catch((err) => {
+        toast.error("Update Failed!");
+        console.log(err);
+      })
+
+      .finally(() => setLoading(false));
   };
-
   return (
     <div>
       <Navbar />
 
       <main>
         <div className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-stone-50 py-12 px-4">
-          {/* Success Popup */}
-          <AnimatePresence>
-            {showSuccess && (
-              <motion.div
-                initial={{ opacity: 0, y: -50 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -50 }}
-                className="fixed top-20 left-1/2 transform -translate-x-1/2 z-50"
-              >
-                <div className="bg-emerald-600 text-white px-6 py-4 rounded-xl shadow-2xl flex items-center gap-3">
-                  <CheckCircle size={24} />
-                  <span className="font-semibold text-lg">
-                    Habit Updated Successfully! 🎉
-                  </span>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
 
           <div className="max-w-5xl mx-auto">
             {/* Header */}

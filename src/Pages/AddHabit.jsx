@@ -16,11 +16,11 @@ import { AuthContext } from "../Provider/AuthProvider";
 import axios from "axios";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
+import { toast } from "react-toastify";
 
 const AddHabit = () => {
   const { user } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
   const [focusedField, setFocusedField] = useState(null);
 
   const categoryOptions = [
@@ -57,13 +57,12 @@ const AddHabit = () => {
     axios
       .post("http://localhost:3000/habits", habitData)
       .then((res) => {
-        setShowSuccess(true);
+        toast.success("Habit added successfully! 🎉");
         form.reset();
-        setTimeout(() => setShowSuccess(false), 3000);
       })
       .catch((error) => {
         console.error("Failed to add habit:", error);
-        alert("Failed to add habit");
+        toast.error("Failed to add habit 😞");
       })
       .finally(() => setLoading(false));
   };
@@ -76,25 +75,6 @@ const AddHabit = () => {
 
       <main>
         <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 py-12 px-4">
-          {/* Success Message */}
-          <AnimatePresence>
-            {showSuccess && (
-              <motion.div
-                initial={{ opacity: 0, y: -50 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -50 }}
-                className="fixed top-20 left-1/2 transform -translate-x-1/2 z-50"
-              >
-                <div className="bg-green-500 text-white px-6 py-4 rounded-xl shadow-2xl flex items-center gap-3">
-                  <CheckCircle size={24} />
-                  <span className="font-semibold text-lg">
-                    Habit Added Successfully! 🎉
-                  </span>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
           <div className="max-w-5xl mx-auto">
             {/* Header Section */}
             <motion.div
