@@ -2,21 +2,12 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import { Typewriter } from "react-simple-typewriter";
-
-// Placeholder images
-const p1 =
-  "https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=500&h=600&fit=crop";
-const p2 =
-  "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=500&h=600&fit=crop";
-const p3 =
-  "https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=400&h=500&fit=crop";
-const p4 =
-  "https://images.unsplash.com/photo-1519834785169-98be25ec3f84?w=400&h=500&fit=crop";
-const p5 =
-  "https://images.unsplash.com/photo-1516796181074-bf453fbfa3e6?w=500&h=600&fit=crop";
-const p6 =
-  "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=500&h=600&fit=crop";
-
+import p1 from "../assets/p1.jpeg";
+import p2 from "../assets/p2.jpeg";
+import p3 from "../assets/p3.jpg";
+import p4 from "../assets/p4.jpg";
+import p5 from "../assets/p5.jpeg";
+import p6 from "../assets/p6.jpeg";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -116,17 +107,45 @@ const HabitSlider = () => {
 
               {/* RIGHT IMAGES */}
               <div className="relative h-[250px] sm:h-[300px] md:h-full p-4 sm:p-6 flex items-center justify-center order-1 md:order-2">
-                <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full flex items-center justify-center">
-                  <div className="absolute top-[10%] sm:top-[15%] right-[5%] sm:right-[10%] w-[120px] sm:w-40 md:w-52 lg:w-80 h-[150px] sm:h-52 md:h-60 lg:h-96 rounded-2xl shadow-2xl rotate-6 hover:rotate-3 transition overflow-hidden">
+                {/* WRAPPER — center aligned on mobile, absolute only on md+ */}
+                <div className="w-full h-full flex items-center justify-center md:absolute md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2">
+                  {/* IMAGE 1 */}
+                  <div
+                    className="
+      w-[150px] sm:w-40 md:w-52 lg:w-80 
+      h-[150px] sm:h-52 md:h-60 lg:h-96 
+      rounded-2xl shadow-2xl rotate-15 hover:rotate-3 transition overflow-hidden
+
+      /* centered for small screens */
+      mx-auto
+
+      /* positioned only for md+ */
+      md:absolute md:top-[10%] md:right-[5%] lg:right-[10%]
+    "
+                  >
                     <img
-                      src={p1}
+                      src={p4}
                       alt=""
                       className="w-full h-full object-cover"
                     />
                   </div>
-                  <div className="absolute bottom-[10%] sm:bottom-[15%] right-[15%] sm:right-[20%] w-[140px] sm:w-48 md:w-56 lg:w-80 h-[140px] sm:h-48 md:h-56 lg:h-80 rounded-2xl shadow-2xl -rotate-3 hover:rotate-0 transition overflow-hidden">
+
+                  {/* IMAGE 2 */}
+                  <div
+                    className="
+      w-[140px] sm:w-48 md:w-56 lg:w-80 
+      h-[140px] sm:h-48 md:h-56 lg:h-80 
+      rounded-2xl shadow-2xl hover:rotate-15 transition overflow-hidden
+
+      /* centered for small screens */
+      mx-auto mt-4 sm:mt-6
+
+      /* positioned only for md+ */
+      md:absolute md:bottom-[10%] md:right-[15%] lg:right-[20%]
+    "
+                  >
                     <img
-                      src={p2}
+                      src={p3}
                       alt=""
                       className="w-full h-full object-cover"
                     />
@@ -146,14 +165,14 @@ const HabitSlider = () => {
                 <div className="absolute inset-0 grid grid-cols-2 gap-4 p-6">
                   <div className="rounded-2xl overflow-hidden shadow-lg">
                     <img
-                      src={p3}
+                      src={p5}
                       className="w-full h-full object-cover"
                       alt=""
                     />
                   </div>
                   <div className="rounded-2xl overflow-hidden shadow-lg mt-8">
                     <img
-                      src={p4}
+                      src={p6}
                       className="w-full h-full object-cover"
                       alt=""
                     />
@@ -169,11 +188,14 @@ const HabitSlider = () => {
                   </span>
                 </div>
 
-                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-4 sm:mb-4 min-h-[50px] sm:min-h-[80px] md:min-h-[100px]">
+                <h1
+                  className="text-3xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight 
+  mb-2 sm:mb-2 min-h-0"
+                >
                   <Typewriter
                     words={[
-                      "Your Personal Growth Companion",
-                      "Track Your Wellness Journey",
+                      "Guided Self Improvement",
+                      "Guide Inner Well-being",
                       "Unlock Your Full Potential",
                       "Achieve Daily Excellence",
                     ]}
@@ -186,7 +208,10 @@ const HabitSlider = () => {
                   />
                 </h1>
 
-                <p className="text-sm sm:text-base md:text-lg text-gray-600 mb-4 sm:mb-3 leading-relaxed">
+                <p
+                  className="text-sm sm:text-base md:text-lg text-gray-600 
+  mb-2 sm:mb-2 leading-relaxed"
+                >
                   Track every aspect of your wellness journey with beautiful
                   insights and personalized guidance.
                 </p>
@@ -195,14 +220,14 @@ const HabitSlider = () => {
                 <div className="grid grid-cols-2 gap-3 mb-4 sm:mb-3 md:hidden">
                   <div className="rounded-2xl overflow-hidden shadow-lg h-24 sm:h-28">
                     <img
-                      src={p3}
+                      src={p5}
                       className="w-full h-full object-cover"
                       alt=""
                     />
                   </div>
                   <div className="rounded-2xl overflow-hidden shadow-lg h-24 sm:h-28">
                     <img
-                      src={p4}
+                      src={p6}
                       className="w-full h-full object-cover"
                       alt=""
                     />
@@ -210,7 +235,7 @@ const HabitSlider = () => {
                 </div>
 
                 {/* Key Features */}
-                <div className="space-y-2 sm:space-y-2 mb-4 sm:mb-4">
+                <div className="space-y-4 sm:space-y-2 mb-4 sm:mb-4">
                   {[
                     "📈 Advanced analytics with weekly insights",
                     "⚡ Instant sync across all your devices",
@@ -354,14 +379,14 @@ const HabitSlider = () => {
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full flex items-center justify-center">
                   <div className="absolute top-[5%] sm:top-[10%] right-[5%] sm:right-[10%] w-[120px] sm:w-40 md:w-48 lg:w-56 h-[150px] sm:h-48 md:h-56 lg:h-72 rounded-2xl shadow-2xl rotate-6 overflow-hidden border-2 border-white/10">
                     <img
-                      src={p5}
+                      src={p1}
                       className="w-full h-full object-cover"
                       alt=""
                     />
                   </div>
                   <div className="absolute bottom-[5%] sm:bottom-[10%] right-[15%] sm:right-[20%] w-[140px] sm:w-48 md:w-60 lg:w-72 h-[180px] sm:h-52 md:h-64 lg:h-80 rounded-2xl shadow-2xl -rotate-6 overflow-hidden border-2 border-white/10">
                     <img
-                      src={p6}
+                      src={p2}
                       className="w-full h-full object-cover"
                       alt=""
                     />

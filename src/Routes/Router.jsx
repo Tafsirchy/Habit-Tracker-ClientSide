@@ -10,6 +10,7 @@ import Register from "../Pages/Register";
 import ForgetPass from "../Pages/ForgetPass";
 import PrivateRoute from "../Provider/PrivateRoute";
 import HabitDetails from "../Pages/HabitDetails";
+import UpdateHabit from "../Pages/UpdateHabit";
 
 const router = createBrowserRouter([
   {
@@ -52,11 +53,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "login", // FIXED
-        element: <Login></Login>
+        element: <Login></Login>,
       },
       {
         path: "register", // FIXED
-        element: <Register></Register>
+        element: <Register></Register>,
       },
     ],
   },
@@ -64,7 +65,7 @@ const router = createBrowserRouter([
   // 🔥 Forget password should NOT be inside /auth
   {
     path: "/forgetPass/:email?",
-    element: <ForgetPass></ForgetPass>
+    element: <ForgetPass></ForgetPass>,
   },
   {
     path: "/details/:id",
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
         <HabitDetails></HabitDetails>
       </PrivateRoute>
     ),
+  },
+  {
+    path: "/updateHabit/:id",
+    element: <UpdateHabit></UpdateHabit>
   },
   // {
   //   path: "*",

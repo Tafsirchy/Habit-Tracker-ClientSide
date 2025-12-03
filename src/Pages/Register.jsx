@@ -4,6 +4,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import { toast } from "react-toastify";
 import { Eye, EyeOff } from "lucide-react";
 import Loading from "../Components/Loading";
+import register from "../assets/register.jpg"
 
 const Register = () => {
   const { createUser, setUser, handleGoogleSignIn, updateUser } =
@@ -91,15 +92,16 @@ const Register = () => {
       <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-purple-400 via-pink-400 to-pink-500">
           <img
-            src="https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&q=80"
-            alt="Habit Tracker"
+            src={register}
             className="w-full h-full object-cover opacity-60 mix-blend-overlay"
           />
         </div>
         <div className="absolute inset-0 flex items-center justify-center p-12">
           <div className="text-white text-center">
             <h1 className="text-5xl font-bold mb-4">Build Better Habits</h1>
-            <p className="text-xl opacity-90">Track your progress, achieve your goals</p>
+            <p className="text-xl opacity-90">
+              Track your progress, achieve your goals
+            </p>
           </div>
         </div>
       </div>
@@ -172,9 +174,7 @@ const Register = () => {
               </button>
             </div>
 
-            {error && (
-              <p className="text-red-500 text-sm mt-1">{error}</p>
-            )}
+            {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
 
             <button
               type="submit"
