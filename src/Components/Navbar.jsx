@@ -123,16 +123,17 @@ const Navbar = () => {
 
               <ul
                 tabIndex={0}
-                className="dropdown-content menu p-2 shadow bg-white rounded-box w-52 text-[#043915] text-center items-center"
+                className="dropdown-content menu p-2 shadow bg-white rounded-box w-auto text-[#043915] text-center items-center"
               >
                 <li className="font-semibold pointer-events-none bg-gray-100 rounded-lg">
-                  <span className="font-bold text-lg">{user.displayName}</span>
+                  <span className="font-bold text-md">{user.displayName}</span>
+                  <span className="font-semibold text-[sm]">{user.email}</span>
                 </li>
 
                 <li>
                   <button
                     onClick={handleLogOut}
-                    className="font-semibold text-red-600 hover:bg-red-100 rounded-lg"
+                    className="font-bold text-red-600 hover:bg-red-100  rounded-lg"
                   >
                     Logout
                   </button>

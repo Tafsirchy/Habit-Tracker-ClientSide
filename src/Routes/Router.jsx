@@ -11,6 +11,7 @@ import ForgetPass from "../Pages/ForgetPass";
 import PrivateRoute from "../Provider/PrivateRoute";
 import HabitDetails from "../Pages/HabitDetails";
 import UpdateHabit from "../Pages/UpdateHabit";
+import Page404 from "../Pages/Page404";
 
 const router = createBrowserRouter([
   {
@@ -79,10 +80,10 @@ const router = createBrowserRouter([
     path: "/updateHabit/:id",
     element: <UpdateHabit></UpdateHabit>
   },
-  // {
-  //   path: "*",
-  //   element: <NotFound />,
-  // }
+  {
+    path: "*",
+    element: <Page404></Page404>
+  }
 ]);
 
 export default router;
