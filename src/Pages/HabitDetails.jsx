@@ -1,19 +1,12 @@
-import {
-  Award,
-  Calendar,
-  Flame,
-  User,
-  CheckCircle,
-  Clock,
-  TrendingUp,
-  Sparkles,
-} from "lucide-react";
+import { Award, Calendar, Flame, User, CheckCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import Loading from "../Components/Loading";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SmallSpinner = () => (
   <motion.div
@@ -28,7 +21,6 @@ const HabitDetails = () => {
   const [habit, setHabit] = useState(null);
   const [loading, setLoading] = useState(true);
   const [buttonLoading, setButtonLoading] = useState(false);
-  const [showCelebration, setShowCelebration] = useState(false);
 
   const categoryColors = {
     Fitness: "bg-green-100 text-green-700 border-green-200",
@@ -52,7 +44,7 @@ const HabitDetails = () => {
 
   if (!habit)
     return (
-      <div className="h-screen flex items-center justify-center">
+      <div className="h-screen flex items-center justify-center text-xl font-semibold">
         Habit Not Found
       </div>
     );
@@ -69,46 +61,38 @@ const HabitDetails = () => {
     try {
       setButtonLoading(true);
 
-      const updatedHistory = [...(habit.completionHistory || []), today];
-      updatedHistory.sort((a, b) => new Date(b) - new Date(a));
-
-      let streak = 1;
-      for (let i = 1; i < updatedHistory.length; i++) {
-        const prev = new Date(updatedHistory[i - 1]);
-        const curr = new Date(updatedHistory[i]);
-        const diff = (prev - curr) / (1000 * 60 * 60 * 24);
-        if (diff === 1) streak++;
-        else break;
-      }
-
-      setHabit({
-        ...habit,
-        completionHistory: updatedHistory,
-        daysCompleted: updatedHistory.length,
-        currentStreak: streak,
-      });
-
       const res = await fetch(`http://localhost:3000/habits/${id}/complete`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
       });
 
-      const freshHabit = await res.json();
-      setHabit(freshHabit);
+      const updatedHabit = await res.json();
 
-      setShowCelebration(true);
-      setTimeout(() => setShowCelebration(false), 2000);
+      setHabit(updatedHabit); // ← UPDATE ALL DATA IMMEDIATELY
+
+      toast.success("Habit marked as completed ✔", {
+        position: "top-center",
+        autoClose: 2000,
+        theme: "colored",
+      });
     } catch (err) {
       console.error("Error:", err);
+
+      toast.error("Something went wrong!", {
+        position: "top-center",
+        autoClose: 2000,
+        theme: "colored",
+      });
     } finally {
       setButtonLoading(false);
     }
   };
 
+
+
   return (
     <div>
       <Navbar />
-
       <main>
         <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 py-12 px-4">
           <div className="max-w-5xl mx-auto">
@@ -117,6 +101,7 @@ const HabitDetails = () => {
               animate={{ opacity: 1, y: 0 }}
               className="bg-white rounded-3xl shadow-2xl overflow-hidden"
             >
+              {/* IMAGE BANNER */}
               <div className="relative h-80 overflow-hidden">
                 <motion.img
                   initial={{ scale: 1.1 }}
@@ -164,9 +149,9 @@ const HabitDetails = () => {
                   {habit.description}
                 </motion.p>
 
-                {/* ----------- UPDATED GRID (now only 2 cards) ----------- */}
+                {/* PROGRESS & STREAK CARDS */}
                 <div className="grid md:grid-cols-2 gap-6 mb-8">
-                  {/* Progress Card */}
+                  {/* Progress */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -210,7 +195,7 @@ const HabitDetails = () => {
                     </div>
                   </motion.div>
 
-                  {/* Streak Card */}
+                  {/* Streak */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -242,8 +227,8 @@ const HabitDetails = () => {
                     </div>
                   </motion.div>
                 </div>
-                {/* ----------- END UPDATED GRID ----------- */}
 
+                {/* Creator Card */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -257,7 +242,6 @@ const HabitDetails = () => {
                     <div className="flex-1">
                       <h3 className="font-bold text-gray-800 mb-1 flex items-center gap-2">
                         Created by
-                        <Sparkles size={16} className="text-yellow-500" />
                       </h3>
                       <p className="font-semibold text-gray-700">
                         {habit.name}
@@ -267,6 +251,7 @@ const HabitDetails = () => {
                   </div>
                 </motion.div>
 
+                {/* MARK COMPLETE BUTTON */}
                 <motion.button
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -302,49 +287,6 @@ const HabitDetails = () => {
           </div>
         </div>
       </main>
-
-      <AnimatePresence>
-        {showCelebration && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 flex items-center justify-center bg-black/50 backdrop-blur-sm z-50"
-          >
-            <motion.div
-              initial={{ scale: 0, rotate: -180 }}
-              animate={{ scale: 1, rotate: 0 }}
-              exit={{ scale: 0, rotate: 180 }}
-              transition={{ type: "spring", duration: 0.6 }}
-              className="bg-white p-12 rounded-3xl text-center shadow-2xl border-4 border-green-500"
-            >
-              <motion.div
-                animate={{ scale: [1, 1.2, 1], rotate: [0, 10, -10, 0] }}
-                transition={{
-                  duration: 0.6,
-                  repeat: Infinity,
-                  repeatDelay: 0.3,
-                }}
-                className="text-8xl mb-4"
-              >
-                🎉
-              </motion.div>
-              <h2 className="text-4xl font-bold text-green-600 mb-2">
-                Awesome!
-              </h2>
-              <p className="text-xl text-gray-600">
-                Habit Completed Successfully
-              </p>
-              <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: "100%" }}
-                transition={{ duration: 2 }}
-                className="h-1 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full mt-4"
-              />
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       <Footer />
     </div>
