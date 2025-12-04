@@ -25,42 +25,35 @@ const PublicHabit = () => {
   const [initialLoad, setInitialLoad] = useState(true);
   const [categoryLoading, setCategoryLoading] = useState(false);
 
-
   const categoryColors = {
     Fitness: "bg-green-100 text-green-700",
     Morning: "bg-blue-100 text-blue-700",
     Study: "bg-purple-100 text-purple-700",
     Evening: "bg-orange-100 text-orange-700",
     Work: "bg-yellow-100 text-yellow-700",
-
-    // fallback
     Default: "bg-gray-100 text-gray-700",
   };
 
-  // Fetch ALL habits
- useEffect(() => {
-   // If user changes category (not search), show loader for grid only
-   if (!initialLoad && category) {
-     setCategoryLoading(true);
-   }
+  useEffect(() => {
+    if (!initialLoad && category) {
+      setCategoryLoading(true);
+    }
 
-   fetch(`http://localhost:3000/habits?category=${category}&search=${search}`)
-     .then((res) => res.json())
-     .then((habit) => {
-       setHabits(habit);
-       setLoading(false);
-       setCategoryLoading(false); // stop category loader
-       if (initialLoad) setInitialLoad(false);
-     })
-     .catch((err) => {
-       console.log(err);
-       setLoading(false);
-       setCategoryLoading(false);
-     });
- }, [category, search]);
+    fetch(`http://localhost:3000/habits?category=${category}&search=${search}`)
+      .then((res) => res.json())
+      .then((habit) => {
+        setHabits(habit);
+        setLoading(false);
+        setCategoryLoading(false);
+        if (initialLoad) setInitialLoad(false);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoading(false);
+        setCategoryLoading(false);
+      });
+  }, [category, search]);
 
-
-  // Category Icons
   const getCategoryIcon = (category) => {
     const c = category?.toLowerCase();
 
@@ -140,36 +133,98 @@ const PublicHabit = () => {
           </motion.div>
 
           {/* Search + Category */}
-          <div className="flex flex-col sm:flex-row items-center gap-4 mb-6">
-            <input
-              type="text"
-              placeholder="Search habits..."
-              className="input input-bordered w-full sm:w-1/2"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="flex flex-col sm:flex-row items-stretch gap-3 mb-10 max-w-3xl mx-auto"
+          >
+            {/* Search Input */}
+            <div className="relative flex-1">
+              <input
+                type="text"
+                placeholder="Search habits..."
+                className="w-full px-5 py-3.5 bg-white border border-gray-300 rounded-full focus:ring-2 focus:ring-green-400 focus:border-transparent outline-none transition-all duration-200 text-gray-700 placeholder:text-gray-400 shadow-sm"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              <BookOpen className="absolute right-5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
+            </div>
 
-            <select
-              onChange={(e) => setCategory(e.target.value)}
-              value={category}
-              className="select select-bordered"
-            >
-              <option value="">All Categories</option>
-              <option value="Morning">Morning</option>
-              <option value="Fitness">Fitness</option>
-              <option value="Work">Work</option>
-              <option value="Evening">Evening</option>
-              <option value="Study">Study</option>
-            </select>
-          </div>
+            {/* Category Pills */}
+            <div className="flex flex-wrap sm:flex-nowrap gap-2 justify-center">
+              <button
+                onClick={() => setCategory("")}
+                className={`px-5 py-2.5 rounded-full font-medium transition-all duration-200 ${
+                  category === ""
+                    ? "bg-gradient-to-r from-green-500 to-emerald-500 text-white shadow-md"
+                    : "bg-white text-gray-600 border border-gray-300 hover:border-green-400"
+                }`}
+              >
+                All
+              </button>
+              <button
+                onClick={() => setCategory("Morning")}
+                className={`px-5 py-2.5 rounded-full font-medium transition-all duration-200 ${
+                  category === "Morning"
+                    ? "bg-gradient-to-r from-blue-500 to-cyan-500 text-white shadow-md"
+                    : "bg-white text-gray-600 border border-gray-300 hover:border-blue-400"
+                }`}
+              >
+                Morning
+              </button>
+              <button
+                onClick={() => setCategory("Fitness")}
+                className={`px-5 py-2.5 rounded-full font-medium transition-all duration-200 ${
+                  category === "Fitness"
+                    ? "bg-gradient-to-r from-green-500 to-teal-500 text-white shadow-md"
+                    : "bg-white text-gray-600 border border-gray-300 hover:border-green-400"
+                }`}
+              >
+                Fitness
+              </button>
+              <button
+                onClick={() => setCategory("Work")}
+                className={`px-5 py-2.5 rounded-full font-medium transition-all duration-200 ${
+                  category === "Work"
+                    ? "bg-gradient-to-r from-yellow-500 to-orange-500 text-white shadow-md"
+                    : "bg-white text-gray-600 border border-gray-300 hover:border-yellow-400"
+                }`}
+              >
+                Work
+              </button>
+              <button
+                onClick={() => setCategory("Evening")}
+                className={`px-5 py-2.5 rounded-full font-medium transition-all duration-200 ${
+                  category === "Evening"
+                    ? "bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-md"
+                    : "bg-white text-gray-600 border border-gray-300 hover:border-orange-400"
+                }`}
+              >
+                Evening
+              </button>
+              <button
+                onClick={() => setCategory("Study")}
+                className={`px-5 py-2.5 rounded-full font-medium transition-all duration-200 ${
+                  category === "Study"
+                    ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-md"
+                    : "bg-white text-gray-600 border border-gray-300 hover:border-purple-400"
+                }`}
+              >
+                Study
+              </button>
+            </div>
+          </motion.div>
 
-          {/* Final merged logic */}
+          {/* Loading or Habits Grid */}
           {categoryLoading ? (
             <div className="flex justify-center items-center py-20">
               <Loading />
             </div>
           ) : habits.length === 0 ? (
-            <HabitsNotFound />
+            <div className="py-12">
+              <HabitsNotFound />
+            </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {habits.map((habit, index) => {
@@ -285,7 +340,6 @@ const PublicHabit = () => {
       </footer>
     </div>
   );
-
 };
 
 export default PublicHabit;
