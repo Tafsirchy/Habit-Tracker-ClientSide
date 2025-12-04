@@ -11,17 +11,16 @@ import {
   Highlighter,
 } from "lucide-react";
 import { useContext, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { AuthContext } from "../Provider/AuthProvider";
 import axios from "axios";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 const AddHabit = () => {
   const { user } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
-  const [focusedField, setFocusedField] = useState(null);
 
   const categoryOptions = [
     { value: "Fitness", color: "from-green-400 to-emerald-500" },
@@ -36,39 +35,29 @@ const AddHabit = () => {
     setLoading(true);
 
     const form = e.target;
-    const title = form.title.value;
-    const description = form.description.value;
-    const category = form.category.value;
-    const reminderTime = form.reminderTime.value;
-    const email = form.email.value;
-    const name = form.name.value;
-    const imageUrl = form.imgUrl.value;
-
     const habitData = {
-      title,
-      description,
-      category,
-      reminderTime,
-      img: imageUrl,
-      email,
-      name,
+      title: form.title.value,
+      description: form.description.value,
+      category: form.category.value,
+      reminderTime: form.reminderTime.value,
+      img: form.imgUrl.value,
+      email: user?.email,
+      name: user?.displayName,
     };
 
     axios
       .post("http://localhost:3000/habits", habitData)
-      .then((res) => {
+      .then(() => {
         toast.success("Habit added successfully! 🎉");
         form.reset();
       })
-      .catch((error) => {
-        console.error("Failed to add habit:", error);
-        toast.error("Failed to add habit 😞");
-      })
+      .catch(() => toast.error("Failed to add habit 😞"))
       .finally(() => setLoading(false));
   };
 
   return (
     <div>
+      <ToastContainer></ToastContainer>
       <header>
         <Navbar />
       </header>

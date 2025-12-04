@@ -84,6 +84,7 @@ const router = createBrowserRouter([
     path: "*",
     element: <Page404></Page404>
   }
+  
 ]);
 
 export default router;

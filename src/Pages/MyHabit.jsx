@@ -13,6 +13,10 @@ import {
   TrendingUp,
   Calendar,
   Tag,
+  Sparkles,
+  Target,
+  Flame,
+  Clock,
 } from "lucide-react";
 import { Link } from "react-router";
 import { toast, ToastContainer } from "react-toastify";
@@ -24,16 +28,30 @@ const MyHabit = () => {
   const [loading, setLoading] = useState(true);
   const { user } = useContext(AuthContext);
 
-  // track which habit ids are currently being updated
   const [loadingIds, setLoadingIds] = useState(new Set());
 
   const categoryColors = {
-    Fitness: "bg-green-100 text-green-700",
-    Morning: "bg-blue-100 text-blue-700",
-    Study: "bg-purple-100 text-purple-700",
-    Evening: "bg-orange-100 text-orange-700",
-    Work: "bg-yellow-100 text-yellow-700",
-    Default: "bg-gray-100 text-gray-700",
+    Fitness: "bg-gradient-to-r from-green-400 to-emerald-500 text-white",
+    Morning: "bg-gradient-to-r from-blue-400 to-indigo-500 text-white",
+    Study: "bg-gradient-to-r from-purple-400 to-violet-500 text-white",
+    Evening: "bg-gradient-to-r from-orange-400 to-pink-500 text-white",
+    Work: "bg-gradient-to-r from-yellow-400 to-amber-500 text-white",
+    Default: "bg-gradient-to-r from-gray-400 to-gray-500 text-white",
+  };
+
+  const getCategoryColor = (rawCategory) => {
+    if (!rawCategory) return categoryColors.Default;
+
+    const formatted = rawCategory.trim();
+    const key =
+      formatted.charAt(0).toUpperCase() + formatted.slice(1).toLowerCase();
+
+    return categoryColors[key] || categoryColors.Default;
+  };
+
+  const formatCategory = (value) => {
+    if (!value) return "";
+    return value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
   };
 
   useEffect(() => {
@@ -44,52 +62,44 @@ const MyHabit = () => {
     }
 
     setLoading(true);
-    fetch(
-      `http://localhost:3000/my-habits?email=${encodeURIComponent(user.email)}`
-    )
+
+    fetch(`http://localhost:3000/my-habits?email=${user.email}`)
       .then((res) => res.json())
       .then((habits) => {
         setMyHabits(habits || []);
         setLoading(false);
       })
       .catch((err) => {
-        console.error("Failed to load my habits:", err);
+        console.error("Failed to load habits:", err);
         setLoading(false);
         toast.error("Failed to load habits");
       });
   }, [user?.email]);
 
-  // ----- UTIL: FORMAT CREATED DATE -----
-  const formatDate = (dateValue) => {
+  const formatDate = (value) => {
     try {
-      // support different date shapes
-      const maybeDate = dateValue?.$date || dateValue;
-      const date = new Date(maybeDate);
-
-      const day = String(date.getDate()).padStart(2, "0");
-      const month = String(date.getMonth() + 1).padStart(2, "0");
-      const year = date.getFullYear();
-
-      return `${day}-${month}-${year}`;
+      const date = new Date(value?.$date || value);
+      const d = String(date.getDate()).padStart(2, "0");
+      const m = String(date.getMonth() + 1).padStart(2, "0");
+      const y = date.getFullYear();
+      return `${d}-${m}-${y}`;
     } catch {
       return "Invalid Date";
     }
   };
 
-  if (loading) {
-    return <Loading></Loading>;
-  }
+  if (loading)
+    return (
+      <div className="min-h-screen flex justify-center items-center">
+        <Loading />
+      </div>
+    );
 
-  // helper to check whether a habit has an entry for today
   const isCompletedToday = (habit) => {
     const today = new Date().toISOString().split("T")[0];
-    return (
-      Array.isArray(habit?.completionHistory) &&
-      habit.completionHistory.includes(today)
-    );
+    return habit?.completionHistory?.includes(today);
   };
 
-  // MARK COMPLETE handler (optimistic update using server response)
   const handleMarkComplete = (id) => {
     if (!id || loadingIds.has(id)) return;
 
@@ -106,13 +116,10 @@ const MyHabit = () => {
           )
         );
 
-        toast.success("Habit marked as completed ✔", {
-          position: "top-center",
-          autoClose: 2000,
-        });
+        toast.success("Habit marked as completed ✔");
       })
       .catch((err) => {
-        console.error("Axios ERROR →", err);
+        console.error(err);
         toast.error("Could not update. Try again.");
       })
       .finally(() => {
@@ -125,27 +132,17 @@ const MyHabit = () => {
   };
 
   const handleDelete = (id) => {
-    // Show confirmation dialog
-    const confirmed = window.confirm(
-      "Are you sure? This action cannot be undone."
-    );
-
-    if (!confirmed) return; // User canceled
+    if (!window.confirm("Are you sure? This action cannot be undone.")) return;
 
     axios
       .delete(`http://localhost:3000/delete/${id}`)
-      .then((res) => {
-        // Filter out the deleted habit
-        const filteredHabit = myHabits.filter(
-          (habit) => String(habit._id) !== String(id)
+      .then(() => {
+        setMyHabits((prev) =>
+          prev.filter((habit) => String(habit._id) !== String(id))
         );
-        setMyHabits(filteredHabit);
         toast.success("Habit deleted successfully ✔");
       })
-      .catch((err) => {
-        console.error(err);
-        toast.error("Could not delete. Try again.");
-      });
+      .catch(() => toast.error("Could not delete. Try again."));
   };
 
   return (
@@ -154,196 +151,304 @@ const MyHabit = () => {
       <header>
         <Navbar />
       </header>
+
       <main>
-        <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 p-8">
-          <div className="max-w-7xl mx-auto">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 py-12 px-4 relative overflow-hidden">
+          {/* Background Decorations */}
+          <motion.div
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.1, 0.2, 0.1],
+            }}
+            transition={{ duration: 8, repeat: Infinity }}
+            className="absolute top-20 left-20 w-96 h-96 bg-purple-400 rounded-full blur-3xl"
+          />
+          <motion.div
+            animate={{
+              scale: [1, 1.3, 1],
+              opacity: [0.1, 0.15, 0.1],
+            }}
+            transition={{ duration: 10, repeat: Infinity, delay: 1 }}
+            className="absolute bottom-20 right-20 w-96 h-96 bg-blue-400 rounded-full blur-3xl"
+          />
+
+          <div className="max-w-5xl mx-auto relative z-10">
+            {/* Header Section */}
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mb-8"
+              className="text-center mb-10"
             >
-              <h1 className="text-4xl font-bold text-gray-800 mb-2">
+              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-2 rounded-full mb-4 shadow-lg">
+                <Target size={20} />
+                <span className="font-semibold">Habit Tracker</span>
+              </div>
+              <h1 className="text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 mb-3">
                 My Habits
               </h1>
-              <p className="text-gray-600">
-                Track your daily habits and build consistency
+              <p className="text-gray-600 text-lg mb-6">
+                Track your daily habits and build lasting consistency
               </p>
+
+              {/* Add New Habit Button - Centered */}
+              <Link to="/addHabit">
+                <motion.button
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl font-bold shadow-xl hover:shadow-2xl transition-all text-lg"
+                >
+                  <Plus size={24} />
+                  Add New Habit
+                  <Sparkles size={20} />
+                </motion.button>
+              </Link>
             </motion.div>
 
-            <Link to="/addHabit" className="inline-block">
-              <motion.button
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="mb-6 px-6 py-3 bg-indigo-600 text-white rounded-lg font-medium shadow-lg hover:bg-indigo-700 transition-colors flex items-center gap-2"
-              >
-                <Plus size={20} /> Add New Habit
-              </motion.button>
-            </Link>
-
+            {/* Stats Cards */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-white rounded-xl shadow-xl overflow-hidden"
+              transition={{ delay: 0.2 }}
+              className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8"
             >
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white">
-                    <tr>
-                      <th className="px-6 py-4">Title</th>
-                      <th className="px-6 py-4">Category</th>
-                      <th className="px-6 py-4">Current Streak</th>
-                      <th className="px-6 py-4">Created Date</th>
-                      <th className="px-6 py-4 text-center">Actions</th>
-                    </tr>
-                  </thead>
-
-                  <tbody>
-                    <AnimatePresence>
-                      {myHabits.map((habit, index) => {
-                        const completedToday = isCompletedToday(habit);
-                        const isLoading = loadingIds.has(String(habit._id));
-
-                        return (
-                          <motion.tr
-                            key={habit._id}
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, x: 20 }}
-                            transition={{ delay: index * 0.05 }}
-                            className="border-b hover:bg-indigo-50"
-                          >
-                            <td className="px-6 py-4">
-                              <span className="font-medium text-gray-800">
-                                {habit.title}
-                              </span>
-                            </td>
-
-                            <td className="px-6 py-4">
-                              <span
-                                className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium ${
-                                  categoryColors[habit.category] ||
-                                  categoryColors.Default
-                                }`}
-                              >
-                                <Tag size={12} /> {habit.category}
-                              </span>
-                            </td>
-
-                            <td className="px-6 py-4">
-                              <div className="flex items-center gap-2">
-                                <TrendingUp
-                                  size={16}
-                                  className="text-indigo-600"
-                                />
-                                <span className="font-bold text-indigo-600 text-lg">
-                                  {habit.currentStreak || 0}
-                                </span>
-                                <span className="text-gray-500 text-sm">
-                                  days
-                                </span>
-                              </div>
-                            </td>
-
-                            <td className="px-6 py-4">
-                              <div className="flex items-center gap-2 text-gray-600">
-                                <Calendar size={14} />
-                                <span className="text-sm">
-                                  {formatDate(habit.createdAt)}
-                                </span>
-                              </div>
-                            </td>
-
-                            <td className="px-6 py-4 text-center">
-                              <div className="flex justify-center gap-2">
-                                {/* MARK COMPLETE BUTTON */}
-                                <button
-                                  onClick={() => handleMarkComplete(habit._id)}
-                                  disabled={completedToday || isLoading}
-                                  className={`p-2 rounded-lg transition ${
-                                    completedToday
-                                      ? "bg-green-100 text-green-600 cursor-not-allowed"
-                                      : "bg-green-50 text-green-600 hover:bg-green-100 hover:text-green-800"
-                                  } ${
-                                    isLoading ? "opacity-70 cursor-wait" : ""
-                                  }`}
-                                  title={
-                                    completedToday
-                                      ? "Already completed today"
-                                      : "Mark completed"
-                                  }
-                                >
-                                  {isLoading ? (
-                                    <svg
-                                      className="w-4 h-4 animate-spin"
-                                      viewBox="0 0 24 24"
-                                    >
-                                      <circle
-                                        cx="12"
-                                        cy="12"
-                                        r="10"
-                                        stroke="currentColor"
-                                        strokeWidth="4"
-                                        fill="none"
-                                      ></circle>
-                                    </svg>
-                                  ) : (
-                                    <CheckCircle size={18} />
-                                  )}
-                                </button>
-
-                                <Link
-                                  to={`/updateHabit/${habit?._id}`}
-                                  className="p-2 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200 hover:text-blue-800 transition hover:scale-105"
-                                >
-                                  <Edit2 size={18} />
-                                </Link>
-
-                                <button
-                                  onClick={() => handleDelete(habit?._id)}
-                                  className="p-2 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 hover:text-red-800 transition hover:scale-105"
-                                >
-                                  <Trash2 size={18} />
-                                </button>
-                              </div>
-
-                              {/* Completed Today text */}
-                              {completedToday && (
-                                <div className="mt-2 text-sm text-green-600 font-semibold">
-                                  ✓ Completed Today
-                                </div>
-                              )}
-                            </td>
-                          </motion.tr>
-                        );
-                      })}
-                    </AnimatePresence>
-                  </tbody>
-                </table>
+              <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-gray-500 text-sm font-medium mb-1">
+                      Total Habits
+                    </p>
+                    <p className="text-4xl font-bold text-indigo-600">
+                      {myHabits.length}
+                    </p>
+                  </div>
+                  <div className="w-16 h-16 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-2xl flex items-center justify-center">
+                    <Target className="text-indigo-600" size={32} />
+                  </div>
+                </div>
               </div>
 
-              {myHabits.length === 0 && (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="text-center py-12"
-                >
-                  <div className="text-gray-400 mb-4">
-                    <TrendingUp size={48} className="mx-auto" />
+              <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-gray-500 text-sm font-medium mb-1">
+                      Completed Today
+                    </p>
+                    <p className="text-4xl font-bold text-green-600">
+                      {myHabits.filter(isCompletedToday).length}
+                    </p>
                   </div>
-                  <p className="text-gray-500 text-lg">
-                    No habits yet. Start building your routine!
-                  </p>
-                </motion.div>
-              )}
+                  <div className="w-16 h-16 bg-gradient-to-br from-green-100 to-emerald-100 rounded-2xl flex items-center justify-center">
+                    <CheckCircle className="text-green-600" size={32} />
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-gray-500 text-sm font-medium mb-1">
+                      Total Streak
+                    </p>
+                    <p className="text-4xl font-bold text-orange-600">
+                      {myHabits.reduce(
+                        (sum, h) => sum + (h.currentStreak || 0),
+                        0
+                      )}
+                    </p>
+                  </div>
+                  <div className="w-16 h-16 bg-gradient-to-br from-orange-100 to-amber-100 rounded-2xl flex items-center justify-center">
+                    <Flame className="text-orange-600" size={32} />
+                  </div>
+                </div>
+              </div>
             </motion.div>
 
+            {/* Habits List */}
+            {myHabits.length > 0 ? (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="space-y-4"
+              >
+                <AnimatePresence>
+                  {myHabits.map((habit, index) => {
+                    const completedToday = isCompletedToday(habit);
+                    const isLoading = loadingIds.has(String(habit._id));
+
+                    return (
+                      <motion.div
+                        key={habit._id}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: 20 }}
+                        transition={{ delay: index * 0.05 }}
+                        whileHover={{ x: 4 }}
+                        className={`bg-white rounded-2xl shadow-lg border-2 overflow-hidden ${
+                          completedToday
+                            ? "border-green-300 bg-gradient-to-r from-white to-green-50"
+                            : "border-gray-100 hover:border-indigo-200"
+                        } transition-all`}
+                      >
+                        <div className="flex flex-col md:flex-row items-start md:items-center gap-4 p-6">
+                          {/* Left Section - Title & Category */}
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-start gap-3 mb-3">
+                              <h3 className="text-xl font-bold text-gray-800 flex-1">
+                                {habit.title}
+                              </h3>
+                              {completedToday && (
+                                <motion.div
+                                  initial={{ scale: 0, rotate: -180 }}
+                                  animate={{ scale: 1, rotate: 0 }}
+                                  className="flex-shrink-0"
+                                >
+                                  <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                                    <CheckCircle
+                                      className="text-white"
+                                      size={18}
+                                    />
+                                  </div>
+                                </motion.div>
+                              )}
+                            </div>
+
+                            <div className="flex flex-wrap items-center gap-3">
+                              {/* Category Badge */}
+                              <span
+                                className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold shadow-md ${getCategoryColor(
+                                  habit.category
+                                )}`}
+                              >
+                                <Tag size={12} />
+                                {formatCategory(habit.category)}
+                              </span>
+
+                              {/* Created Date */}
+                              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-medium">
+                                <Calendar size={12} />
+                                {formatDate(habit.createdAt)}
+                              </span>
+                            </div>
+                          </div>
+
+                          {/* Middle Section - Streak */}
+                          <div className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-orange-50 to-amber-50 rounded-xl border border-orange-200">
+                            <Flame className="text-orange-600" size={24} />
+                            <div>
+                              <p className="text-xs text-gray-600 font-medium">
+                                Streak
+                              </p>
+                              <p className="text-2xl font-black text-orange-600">
+                                {habit.currentStreak || 0}
+                              </p>
+                            </div>
+                          </div>
+
+                          {/* Right Section - Actions */}
+                          <div className="flex gap-2 md:flex-shrink-0">
+                            <motion.button
+                              whileHover={{ scale: 1.05 }}
+                              whileTap={{ scale: 0.95 }}
+                              onClick={() => handleMarkComplete(habit._id)}
+                              disabled={completedToday || isLoading}
+                              className={`px-5 py-3 rounded-xl font-semibold transition-all flex items-center gap-2 ${
+                                completedToday
+                                  ? "bg-green-100 text-green-700 cursor-not-allowed"
+                                  : "bg-green-500 text-white hover:bg-green-600 shadow-md hover:shadow-lg"
+                              } ${isLoading ? "opacity-70 cursor-wait" : ""}`}
+                            >
+                              {isLoading ? (
+                                <svg
+                                  className="w-5 h-5 animate-spin"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <circle
+                                    cx="12"
+                                    cy="12"
+                                    r="10"
+                                    stroke="currentColor"
+                                    strokeWidth="4"
+                                    fill="none"
+                                  />
+                                </svg>
+                              ) : (
+                                <>
+                                  <CheckCircle size={18} />
+                                  <span className="hidden sm:inline">
+                                    {completedToday ? "Done" : "Complete"}
+                                  </span>
+                                </>
+                              )}
+                            </motion.button>
+
+                            <Link to={`/updateHabit/${habit._id}`}>
+                              <motion.button
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.9 }}
+                                className="p-3 bg-blue-500 text-white rounded-xl hover:bg-blue-600 shadow-md transition-all"
+                              >
+                                <Edit2 size={18} />
+                              </motion.button>
+                            </Link>
+
+                            <motion.button
+                              whileHover={{ scale: 1.1 }}
+                              whileTap={{ scale: 0.9 }}
+                              onClick={() => handleDelete(habit._id)}
+                              className="p-3 bg-red-500 text-white rounded-xl hover:bg-red-600 shadow-md transition-all"
+                            >
+                              <Trash2 size={18} />
+                            </motion.button>
+                          </div>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
+                </AnimatePresence>
+              </motion.div>
+            ) : (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="bg-white rounded-2xl shadow-xl p-16 text-center"
+              >
+                <motion.div
+                  animate={{ y: [0, -10, 0] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="mb-6"
+                >
+                  <TrendingUp size={80} className="mx-auto text-gray-300" />
+                </motion.div>
+                <h3 className="text-2xl font-bold text-gray-700 mb-2">
+                  No habits yet
+                </h3>
+                <p className="text-gray-500 text-lg mb-6">
+                  Start building your routine and track your progress!
+                </p>
+                <Link to="/addHabit">
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl font-bold shadow-lg flex items-center gap-2 mx-auto"
+                  >
+                    <Plus size={20} />
+                    Create Your First Habit
+                  </motion.button>
+                </Link>
+              </motion.div>
+            )}
+
+            {/* Footer Message */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="mt-6 text-center text-sm text-gray-500"
+              transition={{ delay: 0.6 }}
+              className="mt-12 text-center"
             >
-              Total Habits: {myHabits.length} | Keep building your consistency!
-              🎯
+              <p className="text-gray-500">
+                💪 Keep building your consistency! Every day counts. 🎯
+              </p>
             </motion.div>
           </div>
         </div>

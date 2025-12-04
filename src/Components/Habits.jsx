@@ -18,6 +18,19 @@ const Habits = () => {
   const [habits, setHabits] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const normalizeCategory = (cat) => {
+    if (!cat || typeof cat !== "string") return "Default";
+
+    // Standardize: Capital first letter, rest lowercase
+    const formatted = cat.charAt(0).toUpperCase() + cat.slice(1).toLowerCase();
+
+    // Only allow your 5 categories
+    const allowed = ["Fitness", "Morning", "Study", "Evening", "Work"];
+
+    return allowed.includes(formatted) ? formatted : "Default";
+  };
+
+
    const categoryColors = {
      Fitness: "bg-green-100 text-green-700",
      Morning: "bg-blue-100 text-blue-700",
@@ -33,6 +46,7 @@ const Habits = () => {
 
   // Fetch latest habits sorted by createdAt
   useEffect(() => {
+    setLoading(true);
     fetch("http://localhost:3000/habits")
       .then((res) => res.json())
       .then((habit) => {
@@ -47,16 +61,22 @@ const Habits = () => {
 
   // Category Icons (ONLY your 5 categories)
   const getCategoryIcon = (category) => {
-    const c = category?.toLowerCase();
-
-    if (c === "morning") return Sun;
-    if (c === "work") return Coffee;
-    if (c === "fitness") return FaDumbbell;
-    if (c === "evening") return Moon;
-    if (c === "study") return BookOpen;
-
-    return Coffee; // fallback icon
+    switch (category) {
+      case "Morning":
+        return Sun;
+      case "Work":
+        return Coffee;
+      case "Fitness":
+        return FaDumbbell;
+      case "Evening":
+        return Moon;
+      case "Study":
+        return BookOpen;
+      default:
+        return Coffee;
+    }
   };
+
 
   // Placeholder Image
   const DEFAULT_PLACEHOLDER =
@@ -93,7 +113,12 @@ const Habits = () => {
     }),
   };
 
-  if (loading) return <Loading />;
+  if (loading)
+    return (
+      <div className="min-h-screen flex justify-center items-center">
+        <Loading></Loading>;
+      </div>
+    );
 
   return (
     <section className="w-11/12 mx-auto bg-gradient-to-br from-gray-50 to-gray-100 py-12 sm:py-16 lg:py-20">
@@ -154,11 +179,10 @@ const Habits = () => {
                     <div className="absolute top-4 left-4 ">
                       <span
                         className={`inline-block mt-2 px-5 py-2 text-sm rounded-full ${
-                          categoryColors[habit.category] ||
-                          categoryColors.Default
+                          categoryColors[normalizeCategory(habit.category)]
                         }`}
                       >
-                        {habit.category}
+                        {normalizeCategory(habit.category)}
                       </span>
                     </div>
 

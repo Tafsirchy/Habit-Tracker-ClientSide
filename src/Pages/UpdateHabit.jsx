@@ -20,14 +20,14 @@ import Footer from "../Components/Footer";
 import { useNavigate, useParams } from "react-router";
 import Loading from "../Components/Loading";
 import axios from "axios";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 const UpdateHabit = () => {
   const { id } = useParams();
   const { user } = useContext(AuthContext);
   const [habits, setHabits] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [category, setCategory] = useState(habits?.category);
+  const [category, setCategory] = useState("");
   const [time, setTime] = useState(habits?.reminderTime);
   const navigation = useNavigate();
 
@@ -51,15 +51,13 @@ const UpdateHabit = () => {
       .catch((err) => console.log(err));
   }, [id]);
 
-  const handleSubmit = async (e) => {
+  const handleUpdate = async (e) => {
     e.preventDefault();
     setLoading(true);
 
     const form = e.target;
     const title = form.title.value;
     const description = form.description.value;
-    const category = form.category.value;
-    const reminderTime = form.reminderTime.value;
     const email = form.email.value;
     const name = form.name.value;
     const imageUrl = form.imgUrl.value;
@@ -68,35 +66,37 @@ const UpdateHabit = () => {
       title,
       description,
       category,
-      reminderTime,
+      reminderTime: time,
       img: imageUrl,
       email,
       name,
       createdAt: habits?.createdAt,
     };
 
-    axios
-      .put(`http://localhost:3000/update/${id}`, habitData)
-      .then((res) => {
-        toast.success("Habit Updated Successfully!");
+    // console.log(habitData);
 
+    axios
+      .put(`http://localhost:3000/habits/${id}`, habitData)
+      .then((res) => {
+        // console.log(res.data);
         form.reset();
         navigation("/myHabit");
+
+        setTimeout(() => {
+          toast.success("Habit Updated Successfully ✔");
+        }, 200); // allow toast to show before navigating
       })
       .catch((err) => {
         toast.error("Update Failed!");
         console.log(err);
       })
-
       .finally(() => setLoading(false));
   };
   return (
     <div>
       <Navbar />
-
       <main>
         <div className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-stone-50 py-12 px-4">
-
           <div className="max-w-5xl mx-auto">
             {/* Header */}
             <motion.div
@@ -391,7 +391,7 @@ const UpdateHabit = () => {
 
                 {/* Right Side - FORM */}
                 <div className="md:col-span-3 p-8 md:p-10">
-                  <form onSubmit={handleSubmit} className="space-y-6">
+                  <form onSubmit={handleUpdate} className="space-y-6">
                     {/* Title */}
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -437,18 +437,16 @@ const UpdateHabit = () => {
                         </span>
                       </label>
                       <select
-                        value={category}
+                        value={category || ""}
                         onChange={(e) => setCategory(e.target.value)}
-                        name="category"
-                        required
                         className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg bg-white focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 outline-none transition"
                       >
                         <option value="">Select a category</option>
-                        {categoryOptions.map((category) => (
-                          <option key={category.value} value={category.value}>
-                            {category.value}
-                          </option>
-                        ))}
+                        <option value="Morning">Morning</option>
+                        <option value="Fitness">Fitness</option>
+                        <option value="Study">Study</option>
+                        <option value="Work">Work</option>
+                        <option value="Evening">Evening</option>
                       </select>
                     </div>
 

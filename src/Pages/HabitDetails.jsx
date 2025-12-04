@@ -1,4 +1,12 @@
-import { Award, Calendar, Flame, User, CheckCircle } from "lucide-react";
+import {
+  Award,
+  Calendar,
+  Flame,
+  User,
+  CheckCircle,
+  TrendingUp,
+  Target,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { motion } from "framer-motion";
@@ -23,13 +31,35 @@ const HabitDetails = () => {
   const [buttonLoading, setButtonLoading] = useState(false);
 
   const categoryColors = {
-    Fitness: "bg-green-100 text-green-700 border-green-200",
-    Morning: "bg-blue-100 text-blue-700 border-blue-200",
-    Study: "bg-purple-100 text-purple-700 border-purple-200",
-    Evening: "bg-orange-100 text-orange-700 border-orange-200",
-    Work: "bg-yellow-100 text-yellow-700 border-yellow-200",
-    Default: "bg-gray-100 text-gray-700 border-gray-200",
+    Fitness: "bg-emerald-500/10 text-emerald-700 border-emerald-500/20",
+    Morning: "bg-sky-500/10 text-sky-700 border-sky-500/20",
+    Study: "bg-purple-500/10 text-purple-700 border-purple-500/20",
+    Evening: "bg-amber-500/10 text-amber-700 border-amber-500/20",
+    Work: "bg-blue-500/10 text-blue-700 border-blue-500/20",
+    Default: "bg-slate-500/10 text-slate-700 border-slate-500/20",
   };
+
+  const categoryGradients = {
+    Fitness: "from-emerald-500 to-teal-500",
+    Morning: "from-sky-500 to-blue-500",
+    Study: "from-purple-500 to-indigo-500",
+    Evening: "from-amber-500 to-orange-500",
+    Work: "from-blue-500 to-cyan-500",
+    Default: "from-slate-500 to-gray-500",
+  };
+
+  const normalizeCategory = (cat) => {
+    if (!cat || typeof cat !== "string") return "Default";
+
+    // Capitalize nicely: Fitness, Morning, Study, Evening, Work
+    const formatted = cat.charAt(0).toUpperCase() + cat.slice(1).toLowerCase();
+
+    const allowed = ["Fitness", "Morning", "Study", "Evening", "Work"];
+
+    return allowed.includes(formatted) ? formatted : "Default";
+  };
+
+
 
   useEffect(() => {
     fetch(`http://localhost:3000/habits/${id}`)
@@ -40,7 +70,12 @@ const HabitDetails = () => {
       });
   }, [id]);
 
-  if (loading) return <Loading />;
+  if (loading)
+    return (
+      <div className="min-h-screen flex justify-center items-center">
+        <Loading></Loading>;
+      </div>
+    );
 
   if (!habit)
     return (
@@ -68,7 +103,7 @@ const HabitDetails = () => {
 
       const updatedHabit = await res.json();
 
-      setHabit(updatedHabit); // ← UPDATE ALL DATA IMMEDIATELY
+      setHabit(updatedHabit);
 
       toast.success("Habit marked as completed ✔", {
         position: "top-center",
@@ -88,182 +123,219 @@ const HabitDetails = () => {
     }
   };
 
-
-
   return (
     <div>
       <Navbar />
       <main>
-        <div className="min-h-screen bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 py-12 px-4">
-          <div className="max-w-5xl mx-auto">
+        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 py-8 px-4 sm:py-12">
+          <div className="max-w-6xl mx-auto">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-white rounded-3xl shadow-2xl overflow-hidden"
+              transition={{ duration: 0.5 }}
+              className="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-200/50"
             >
-              {/* IMAGE BANNER */}
-              <div className="relative h-80 overflow-hidden">
+              {/* IMAGE BANNER WITH OVERLAY */}
+              <div className="relative h-72 sm:h-80 overflow-hidden">
                 <motion.img
-                  initial={{ scale: 1.1 }}
+                  initial={{ scale: 1.15 }}
                   animate={{ scale: 1 }}
-                  transition={{ duration: 0.6 }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
                   src={habit.img}
                   className="w-full h-full object-cover"
                   alt={habit.title}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
 
+                {/* CATEGORY BADGE */}
                 <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3 }}
-                  className="absolute top-6 left-6"
+                  initial={{ opacity: 0, y: -20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3, duration: 0.5 }}
+                  className="absolute top-4 left-4 sm:top-6 sm:left-6"
                 >
                   <span
-                    className={`inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-full border-2 backdrop-blur-sm bg-white/90 ${
-                      categoryColors[habit.category] || categoryColors.Default
+                    className={`inline-flex items-center gap-2 px-4 py-2 text-xs sm:text-sm font-bold rounded-full border backdrop-blur-md bg-white/95 shadow-lg ${
+                      categoryColors[normalizeCategory(habit.category)]
                     }`}
                   >
                     <Award size={16} />
-                    {habit.category}
+                    {normalizeCategory(habit.category)}
                   </span>
+                </motion.div>
+
+                {/* TITLE OVERLAY */}
+                <motion.div
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.4, duration: 0.6 }}
+                  className="absolute bottom-0 left-0 right-0 p-6 sm:p-8"
+                >
+                  <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2 drop-shadow-lg">
+                    {habit.title}
+                  </h1>
+                  <p className="text-white/90 text-sm sm:text-base max-w-2xl line-clamp-2">
+                    {habit.description}
+                  </p>
                 </motion.div>
               </div>
 
-              <div className="p-8 md:p-10">
-                <motion.h1
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
-                  className="text-4xl md:text-5xl font-bold text-gray-800 mb-4"
-                >
-                  {habit.title}
-                </motion.h1>
-
-                <motion.p
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
-                  className="text-gray-600 text-lg leading-relaxed mb-8"
-                >
-                  {habit.description}
-                </motion.p>
-
-                {/* PROGRESS & STREAK CARDS */}
-                <div className="grid md:grid-cols-2 gap-6 mb-8">
-                  {/* Progress */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 }}
-                    whileHover={{ scale: 1.02, y: -5 }}
-                    className="bg-gradient-to-br from-green-50 to-emerald-100 rounded-2xl p-6 border-2 border-green-200 shadow-lg"
-                  >
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="p-3 bg-green-500 rounded-xl">
-                        <Calendar size={24} className="text-white" />
-                      </div>
-                      <h2 className="font-bold text-lg text-gray-800">
-                        Progress
-                      </h2>
-                    </div>
-
-                    <div className="space-y-3">
-                      <div className="flex justify-between items-center">
-                        <span className="text-sm text-gray-600">
-                          Last 30 Days
-                        </span>
-                        <span className="font-semibold text-gray-800">
-                          {last30Days.length}/30
-                        </span>
-                      </div>
-
-                      <div className="relative h-3 bg-green-200 rounded-full overflow-hidden">
-                        <motion.div
-                          initial={{ width: 0 }}
-                          animate={{ width: `${progressPercentage}%` }}
-                          transition={{ duration: 1, delay: 0.6 }}
-                          className="absolute h-full bg-gradient-to-r from-green-500 to-emerald-600 rounded-full"
-                        />
-                      </div>
-
-                      <div className="text-right">
-                        <span className="text-2xl font-bold text-green-600">
-                          {progressPercentage}%
-                        </span>
-                      </div>
-                    </div>
-                  </motion.div>
-
-                  {/* Streak */}
+              <div className="p-6 sm:p-8 md:p-10">
+                {/* STATS OVERVIEW CARDS */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                  {/* Progress Card - Refined */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5 }}
-                    whileHover={{ scale: 1.02, y: -5 }}
-                    className="bg-gradient-to-br from-orange-50 to-red-100 rounded-2xl p-6 border-2 border-orange-200 shadow-lg"
+                    whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                    className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-all"
                   >
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="p-3 bg-orange-500 rounded-xl">
-                        <Flame size={24} className="text-white" />
+                    <div className="flex items-center gap-3 mb-6">
+                      <div
+                        className={`p-2 bg-gradient-to-br ${
+                          categoryGradients[habit.category] ||
+                          categoryGradients.Default
+                        } rounded-lg`}
+                      >
+                        <Calendar size={18} className="text-white" />
                       </div>
-                      <h2 className="font-bold text-lg text-gray-800">
-                        Streak
-                      </h2>
+                      <h3 className="text-sm font-semibold text-slate-600 uppercase tracking-wide">
+                        30-Day Progress
+                      </h3>
                     </div>
 
-                    <div className="text-center">
+                    <div className="flex items-end justify-between mb-6">
+                      <div>
+                        <div className="text-4xl font-bold text-slate-800 mb-1">
+                          {progressPercentage}%
+                        </div>
+                        <div className="text-sm text-slate-500">
+                          {last30Days.length} of 30 days completed
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="relative h-2 bg-slate-100 rounded-full overflow-hidden">
                       <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ delay: 0.7, type: "spring" }}
-                        className="text-6xl font-bold text-orange-600 mb-2"
-                      >
-                        {habit.currentStreak || 0}
-                      </motion.div>
-                      <p className="text-sm text-gray-600 flex items-center justify-center gap-1">
-                        days in a row <span className="text-xl">🔥</span>
-                      </p>
+                        initial={{ width: 0 }}
+                        animate={{ width: `${progressPercentage}%` }}
+                        transition={{
+                          duration: 1.2,
+                          delay: 0.7,
+                          ease: "easeOut",
+                        }}
+                        className={`absolute h-full bg-gradient-to-r ${
+                          categoryGradients[habit.category] ||
+                          categoryGradients.Default
+                        } rounded-full`}
+                      />
+                    </div>
+                  </motion.div>
+
+                  {/* Streak Card - Refined */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6 }}
+                    whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                    className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-all"
+                  >
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="p-2 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg">
+                        <Flame size={18} className="text-white" />
+                      </div>
+                      <h3 className="text-sm font-semibold text-slate-600 uppercase tracking-wide">
+                        Current Streak
+                      </h3>
+                    </div>
+
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{
+                            delay: 0.8,
+                            type: "spring",
+                            stiffness: 200,
+                          }}
+                          className="text-4xl font-bold text-slate-800 mb-1"
+                        >
+                          {habit.currentStreak || 0} days
+                        </motion.div>
+                        <div className="text-sm text-slate-500">
+                          Consecutive completions
+                        </div>
+                      </div>
+
+                      <div className="text-right border-l border-slate-200 pl-6">
+                        <div className="text-2xl font-bold text-slate-800 mb-1">
+                          {habit.completionHistory?.length || 0}
+                        </div>
+                        <div className="text-xs text-slate-500">Total days</div>
+                      </div>
                     </div>
                   </motion.div>
                 </div>
 
-                {/* Creator Card */}
+                {/* DESCRIPTION SECTION */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.7 }}
-                  className="bg-gradient-to-r from-gray-50 to-gray-100 p-6 rounded-2xl border-2 border-gray-200 mb-6"
+                  transition={{ delay: 0.8 }}
+                  className="bg-slate-50 rounded-2xl p-6 mb-6 border border-slate-200/50"
                 >
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 bg-gray-600 rounded-xl">
-                      <User size={24} className="text-white" />
+                  <h2 className="text-lg font-bold text-slate-800 mb-3 flex items-center gap-2">
+                    <div className="w-1 h-6 bg-gradient-to-b from-emerald-500 to-teal-500 rounded-full"></div>
+                    About This Habit
+                  </h2>
+                  <p className="text-slate-700 leading-relaxed">
+                    {habit.description}
+                  </p>
+                </motion.div>
+
+                {/* CREATOR CARD */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.9 }}
+                  className="bg-gradient-to-r from-slate-50 to-slate-100 p-5 rounded-2xl border border-slate-200/70 mb-6"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="p-3 bg-gradient-to-br from-slate-600 to-slate-700 rounded-xl shadow-md">
+                      <User size={22} className="text-white" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="font-bold text-gray-800 mb-1 flex items-center gap-2">
-                        Created by
+                      <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">
+                        Created By
                       </h3>
-                      <p className="font-semibold text-gray-700">
+                      <p className="font-bold text-slate-800 text-lg">
                         {habit.name}
                       </p>
-                      <p className="text-sm text-gray-600">{habit.email}</p>
+                      <p className="text-sm text-slate-600">{habit.email}</p>
                     </div>
                   </div>
                 </motion.div>
 
-                {/* MARK COMPLETE BUTTON */}
+                {/* ACTION BUTTON */}
                 <motion.button
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.8 }}
-                  whileHover={!alreadyCompletedToday ? { scale: 1.02 } : {}}
-                  whileTap={!alreadyCompletedToday ? { scale: 0.98 } : {}}
+                  transition={{ delay: 1 }}
+                  whileHover={
+                    !alreadyCompletedToday ? { scale: 1.01, y: -2 } : {}
+                  }
+                  whileTap={!alreadyCompletedToday ? { scale: 0.99 } : {}}
                   disabled={alreadyCompletedToday || buttonLoading}
                   onClick={handleMarkComplete}
-                  className={`w-full py-5 rounded-2xl text-lg font-semibold flex justify-center items-center gap-3 transition-all shadow-lg ${
+                  className={`w-full py-5 rounded-2xl text-lg font-bold flex justify-center items-center gap-3 transition-all shadow-lg ${
                     alreadyCompletedToday
-                      ? "bg-gray-400 text-white cursor-not-allowed"
-                      : "bg-gradient-to-r from-green-600 to-emerald-600 text-white hover:shadow-xl"
+                      ? "bg-slate-300 text-slate-600 cursor-not-allowed"
+                      : `bg-gradient-to-r ${
+                          categoryGradients[habit.category] ||
+                          categoryGradients.Default
+                        } text-white hover:shadow-xl`
                   }`}
                 >
                   {buttonLoading ? <SmallSpinner /> : <CheckCircle size={24} />}
@@ -276,10 +348,10 @@ const HabitDetails = () => {
                   <motion.p
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    transition={{ delay: 1 }}
-                    className="text-center text-sm text-gray-500 mt-3"
+                    transition={{ delay: 1.2 }}
+                    className="text-center text-sm text-slate-500 mt-4 font-medium"
                   >
-                    💡 Complete your habit to maintain your streak!
+                    💡 Complete your habit today to keep your streak alive!
                   </motion.p>
                 )}
               </div>

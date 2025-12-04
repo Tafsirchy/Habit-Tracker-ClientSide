@@ -15,35 +15,50 @@ import { Link } from "react-router";
 import Loading from "../Components/Loading";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
+import HabitsNotFound from "./HabitsNotFound ";
 
 const PublicHabit = () => {
   const [habits, setHabits] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [category, setCategory] = useState("");
+  const [search, setSearch] = useState("");
+  const [initialLoad, setInitialLoad] = useState(true);
+  const [categoryLoading, setCategoryLoading] = useState(false);
 
-   const categoryColors = {
-     Fitness: "bg-green-100 text-green-700",
-     Morning: "bg-blue-100 text-blue-700",
-     Study: "bg-purple-100 text-purple-700",
-     Evening: "bg-orange-100 text-orange-700",
-     Work: "bg-yellow-100 text-yellow-700",
 
-     // fallback
-     Default: "bg-gray-100 text-gray-700",
-   };
+  const categoryColors = {
+    Fitness: "bg-green-100 text-green-700",
+    Morning: "bg-blue-100 text-blue-700",
+    Study: "bg-purple-100 text-purple-700",
+    Evening: "bg-orange-100 text-orange-700",
+    Work: "bg-yellow-100 text-yellow-700",
+
+    // fallback
+    Default: "bg-gray-100 text-gray-700",
+  };
 
   // Fetch ALL habits
-  useEffect(() => {
-    fetch("http://localhost:3000/habits")
-      .then((res) => res.json())
-      .then((habit) => {
-        setHabits(habit);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        setLoading(false);
-      });
-  }, []);
+ useEffect(() => {
+   // If user changes category (not search), show loader for grid only
+   if (!initialLoad && category) {
+     setCategoryLoading(true);
+   }
+
+   fetch(`http://localhost:3000/habits?category=${category}&search=${search}`)
+     .then((res) => res.json())
+     .then((habit) => {
+       setHabits(habit);
+       setLoading(false);
+       setCategoryLoading(false); // stop category loader
+       if (initialLoad) setInitialLoad(false);
+     })
+     .catch((err) => {
+       console.log(err);
+       setLoading(false);
+       setCategoryLoading(false);
+     });
+ }, [category, search]);
+
 
   // Category Icons
   const getCategoryIcon = (category) => {
@@ -55,7 +70,7 @@ const PublicHabit = () => {
     if (c === "evening") return Moon;
     if (c === "study") return BookOpen;
 
-    return Coffee; // fallback
+    return Coffee;
   };
 
   const DEFAULT_PLACEHOLDER =
@@ -75,6 +90,11 @@ const PublicHabit = () => {
     return `${displayHour}:${minutes} ${ampm}`;
   };
 
+  const normalizeCategory = (category) => {
+    if (!category) return "Unknown";
+    return category.charAt(0).toUpperCase() + category.slice(1).toLowerCase();
+  };
+
   const cardVariants = {
     hidden: { opacity: 0, y: 30 },
     visible: (i) => ({
@@ -89,13 +109,19 @@ const PublicHabit = () => {
     }),
   };
 
-  if (loading) return <Loading></Loading>;
+  if (initialLoad && loading)
+    return (
+      <div className="min-h-screen flex justify-center items-center">
+        <Loading />
+      </div>
+    );
 
   return (
     <div>
       <header>
-        <Navbar></Navbar>
+        <Navbar />
       </header>
+
       <main className="w-11/12 mx-auto bg-gradient-to-br from-gray-50 to-gray-100 py-12 sm:py-16 lg:py-20">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
@@ -113,11 +139,37 @@ const PublicHabit = () => {
             </p>
           </motion.div>
 
-          {/* Cards Grid */}
-          {habits.length === 0 ? (
-            <div className="text-center py-12">
-              <p className="text-gray-600 text-lg">No habits found.</p>
+          {/* Search + Category */}
+          <div className="flex flex-col sm:flex-row items-center gap-4 mb-6">
+            <input
+              type="text"
+              placeholder="Search habits..."
+              className="input input-bordered w-full sm:w-1/2"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+
+            <select
+              onChange={(e) => setCategory(e.target.value)}
+              value={category}
+              className="select select-bordered"
+            >
+              <option value="">All Categories</option>
+              <option value="Morning">Morning</option>
+              <option value="Fitness">Fitness</option>
+              <option value="Work">Work</option>
+              <option value="Evening">Evening</option>
+              <option value="Study">Study</option>
+            </select>
+          </div>
+
+          {/* Final merged logic */}
+          {categoryLoading ? (
+            <div className="flex justify-center items-center py-20">
+              <Loading />
             </div>
+          ) : habits.length === 0 ? (
+            <HabitsNotFound />
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {habits.map((habit, index) => {
@@ -143,17 +195,18 @@ const PublicHabit = () => {
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         onError={(e) => (e.target.src = DEFAULT_PLACEHOLDER)}
                       />
+
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
 
                       {/* Category badge */}
-                      <div className="absolute top-4 left-4 ">
+                      <div className="absolute top-4 left-4">
                         <span
                           className={`inline-block mt-2 px-5 py-2 text-sm rounded-full ${
-                            categoryColors[habit.category] ||
+                            categoryColors[normalizeCategory(habit.category)] ||
                             categoryColors.Default
                           }`}
                         >
-                          {habit.category}
+                          {normalizeCategory(habit.category)}
                         </span>
                       </div>
 
@@ -208,7 +261,6 @@ const PublicHabit = () => {
                         </div>
                       </div>
 
-                      {/* BUTTON */}
                       <Link to={`/details/${habit._id}`}>
                         <motion.button
                           whileHover={{ scale: 1.02 }}
@@ -227,11 +279,13 @@ const PublicHabit = () => {
           )}
         </div>
       </main>
+
       <footer>
-        <Footer></Footer>
+        <Footer />
       </footer>
     </div>
   );
+
 };
 
 export default PublicHabit;
