@@ -17,7 +17,7 @@ const cardVariants = {
     transition: {
       delay: i * 0.18,
       duration: 1.2,
-      ease: [0.16, 1, 0.3, 1], // Smooth ease-out curve
+      ease: [0.16, 1, 0.3, 1], 
     },
   }),
 };
@@ -26,7 +26,6 @@ const WhyBuild = () => {
   return (
     <section className="w-11/12 mx-auto w-full px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 bg-[#E3E3E3] hover:bg-white transition-color duration-1000">
       <div className="max-w-7xl mx-auto">
-        {/* Heading */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -58,9 +57,7 @@ const WhyBuild = () => {
           </motion.p>
         </motion.div>
 
-        {/* Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-          {/* CARD TEMPLATE */}
           {[
             {
               title: "Improve Focus",
@@ -114,7 +111,6 @@ const WhyBuild = () => {
               }}
             >
               <div className="flex flex-col sm:flex-row">
-                {/* IMAGE SIDE */}
                 <div className="relative w-full sm:w-2/5 h-64 sm:h-auto overflow-hidden">
                   <motion.img
                     whileHover={{ scale: 1.1 }}
@@ -124,14 +120,12 @@ const WhyBuild = () => {
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
 
-                  {/* Soft Overlay */}
                   <div
                     className={`absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r ${card.overlay} to-transparent`}
                     style={{ backgroundColor: "#45688230" }}
                   ></div>
                 </div>
 
-                {/* CONTENT SIDE */}
                 <div className="flex-1 p-6 sm:p-8 flex flex-col justify-between">
                   <div>
                     <motion.div
@@ -139,7 +133,6 @@ const WhyBuild = () => {
                       transition={{ duration: 0.6 }}
                       className={`inline-flex items-center justify-center w-14 h-14 rounded-full bg-gradient-to-br ${card.bgIcon} mb-4`}
                     >
-                      {/* ICON (UNCHANGED COLORS) */}
                       {card.icon}
                     </motion.div>
 
@@ -158,7 +151,6 @@ const WhyBuild = () => {
                     </p>
                   </div>
 
-                  {/* LEARN MORE BUTTON */}
                   <motion.button
                     whileHover={{ x: 4 }}
                     transition={{ duration: 0.2 }}

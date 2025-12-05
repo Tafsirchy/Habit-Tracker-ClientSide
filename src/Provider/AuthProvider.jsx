@@ -10,7 +10,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
-import Loading from "../Components/Loading"; // verify folder name
+import Loading from "../Components/Loading";
 
 export const AuthContext = createContext();
 

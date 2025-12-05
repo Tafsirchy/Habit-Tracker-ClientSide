@@ -48,7 +48,6 @@ const PublicHabit = () => {
         setHabits(habit);
         setLoading(false);
 
-        // hide loaders
         setCategoryLoading(false);
         if (initialLoad) setInitialLoad(false);
       })
@@ -123,7 +122,6 @@ const PublicHabit = () => {
       <main className="bg-[#E3E3E3] hover:bg-white transition-color duration-500">
         <div className="w-11/12 mx-auto py-12 sm:py-16 lg:py-20">
           <div className="max-w-7xl mx-auto">
-            {/* Header */}
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -138,14 +136,12 @@ const PublicHabit = () => {
               </p>
             </motion.div>
 
-            {/* Search + Category */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               className="flex flex-col sm:flex-row items-stretch gap-3 mb-10 max-w-3xl mx-auto"
             >
-              {/* Search Input */}
               <div className="relative flex-1">
                 <input
                   type="text"
@@ -157,7 +153,6 @@ const PublicHabit = () => {
                 <BookOpen className="absolute right-5 top-1/2 -translate-y-1/2 w-5 h-5 text-[#1B3C53] pointer-events-none" />
               </div>
 
-              {/* Category Pills */}
               <div className="flex flex-wrap sm:flex-nowrap gap-2 justify-center">
                 <button
                   onClick={() => setCategory("")}
@@ -222,7 +217,6 @@ const PublicHabit = () => {
               </div>
             </motion.div>
 
-            {/* Loading or Habits Grid */}
             {categoryLoading ? (
               <div className="flex justify-center items-center py-20">
                 <Loading />
@@ -259,7 +253,6 @@ const PublicHabit = () => {
 
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
 
-                        {/* Category badge */}
                         <div className="absolute top-4 left-4">
                           <span
                             className={`inline-block mt-2 px-5 py-2 text-sm rounded-full ${
@@ -272,7 +265,6 @@ const PublicHabit = () => {
                           </span>
                         </div>
 
-                        {/* Icon */}
                         <motion.div
                           whileHover={{ scale: 1.1, rotate: 360 }}
                           transition={{ duration: 0.6 }}
@@ -282,7 +274,6 @@ const PublicHabit = () => {
                         </motion.div>
                       </div>
 
-                      {/* Content */}
                       <div className="p-6">
                         <h3 className="text-xl font-bold text-[#1B3C53] mb-2">
                           {habit.title}

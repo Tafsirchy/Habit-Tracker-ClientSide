@@ -22,7 +22,6 @@ const Reward = () => {
       <div className="w-11/12 mx-auto w-full py-12 sm:py-16 lg:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            {/* Left Content Section */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -30,7 +29,6 @@ const Reward = () => {
               transition={{ duration: 0.7 }}
               className="order-2 lg:order-1"
             >
-              {/* Heading */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -72,9 +70,7 @@ const Reward = () => {
               </motion.div>
             </motion.div>
 
-            {/* Right Cards Section */}
             <div className="order-1 lg:order-2 grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-6">
-              {/* Card 1 - Badges */}
               <motion.div
                 custom={0}
                 variants={cardVariants}
@@ -121,7 +117,6 @@ const Reward = () => {
                 </div>
               </motion.div>
 
-              {/* Card 2 - Leaderboards */}
               <motion.div
                 custom={1}
                 variants={cardVariants}
@@ -168,7 +163,6 @@ const Reward = () => {
                 </div>
               </motion.div>
 
-              {/* Card 3 - Rewards */}
               <motion.div
                 custom={2}
                 variants={cardVariants}

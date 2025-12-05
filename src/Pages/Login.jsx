@@ -19,7 +19,7 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    const form = e.target; // form reference
+    const form = e.target; 
     const email = form.email.value;
     const password = form.password.value;
 
@@ -71,9 +71,8 @@ const Login = () => {
 
   return (
     <div className="min-h-screen flex">
-      {/* Left Side Image Section */}
       <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-green-700 via-teal-500 to-emerald-700">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-gray-900 to-blue-900]">
           <img
             src={login}
             alt="Productivity and Habits"
@@ -108,26 +107,20 @@ const Login = () => {
         </div>
       </div>
 
-      {/* Right Side - Login Form */}
       <div className="w-full lg:w-1/2 flex items-center justify-center bg-gray-50 p-8">
         <div className="w-full max-w-md">
-          {/* Welcome Header */}
           <div className="text-center mb-8">
             <div className="inline-flex items-center gap-2 mb-4">
-              <CheckCircle className="w-8 h-8 text-emerald-500" />
-              <div className="w-16 h-0.5 border-t-2 border-dotted border-emerald-300"></div>
+              <CheckCircle className="w-8 h-8 text-[#1B3C53]" />
+              <div className="w-16 h-0.5 border-t-2 border-dotted border-[#1B3C53]"></div>
             </div>
-            <h1 className="text-5xl font-bold text-emerald-500 mb-2">
-              Welcome
-            </h1>
+            <h1 className="text-5xl font-bold text-[#A3B18A]  mb-2">Welcome</h1>
             <p className="text-gray-500 text-sm">Login with Email</p>
           </div>
 
-          {/* FORM STARTS HERE */}
           <form onSubmit={handleLogin} className="space-y-6">
-            {/* Email */}
             <div>
-              <label className="block text-xs font-semibold text-emerald-500 mb-2 uppercase tracking-wider">
+              <label className="block text-xs font-semibold text-[#1B3C53] mb-2 uppercase tracking-wider">
                 Email Id
               </label>
               <div className="relative">
@@ -141,16 +134,15 @@ const Login = () => {
                   }}
                   name="email"
                   type="email"
-                  className="w-full pl-12 pr-4 py-3 rounded-lg border-2 border-gray-200 focus:border-emerald-500 focus:outline-none transition-colors"
+                  className="w-full pl-12 pr-4 py-3 rounded-lg border-2 border-gray-200 focus:border-[#1B3C53] focus:outline-none transition-colors"
                   placeholder="John@mail.com"
                   required
                 />
               </div>
             </div>
 
-            {/* Password */}
             <div>
-              <label className="block text-xs font-semibold text-emerald-500 mb-2 uppercase tracking-wider">
+              <label className="block text-xs font-semibold text-[#1B3C53] mb-2 uppercase tracking-wider">
                 Password
               </label>
               <div className="relative">
@@ -160,7 +152,7 @@ const Login = () => {
                 <input
                   name="password"
                   type={showPassword ? "text" : "password"}
-                  className="w-full pl-12 pr-12 py-3 rounded-lg border-2 border-gray-200 focus:border-emerald-500 focus:outline-none transition-colors"
+                  className="w-full pl-12 pr-12 py-3 rounded-lg border-2 border-gray-200 focus:border-[#1B3C53] focus:outline-none transition-colors"
                   placeholder="****************"
                   onChange={() => setError("")}
                   required
@@ -179,7 +171,6 @@ const Login = () => {
               </div>
             </div>
 
-            {/* Forgot Password */}
             <div className="text-right">
               <button
                 type="button"
@@ -190,24 +181,20 @@ const Login = () => {
               </button>
             </div>
 
-            {/* Error Message */}
             {error && (
               <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg text-sm">
                 {error}
               </div>
             )}
 
-            {/* SUBMIT */}
             <button
               type="submit"
-              className="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-3 rounded-lg transition-colors shadow-lg shadow-emerald-200"
+              className="w-full bg-gradient-to-r from-[#234C6A] to-[#1B3C53] text-white font-semibold py-3 rounded-lg transition-colors shadow-md hover:shadow-lg hover:from-[#A3B18A] hover:to-[#234C6A]"
             >
               LOGIN
             </button>
           </form>
-          {/* FORM ENDS HERE */}
 
-          {/* Divider */}
           <div className="relative py-4">
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-gray-300"></div>
@@ -217,7 +204,6 @@ const Login = () => {
             </div>
           </div>
 
-          {/* GOOGLE SIGN-IN */}
           <button
             type="button"
             onClick={googleSignIn}
@@ -253,24 +239,22 @@ const Login = () => {
             </span>
           </button>
 
-          {/* Register Link */}
           <div className="text-center mt-8">
             <p className="text-gray-600">
               Don't have an account?{" "}
               <Link
                 to="/auth/register"
-                className="text-emerald-500 hover:text-emerald-600 font-semibold hover:underline"
+                className="text-[#1B3C53] hover:text-[#1B3C5390] font-semibold hover:underline"
               >
                 Register Now
               </Link>
             </p>
           </div>
 
-          {/* Decorative mobile icons */}
           <div className="lg:hidden mt-8 flex justify-center gap-4 opacity-10">
-            <CheckCircle className="w-8 h-8 text-emerald-500" />
-            <CheckCircle className="w-10 h-10 text-emerald-500" />
-            <CheckCircle className="w-8 h-8 text-emerald-500" />
+            <CheckCircle className="w-8 h-8 text-[#1B3C53]" />
+            <CheckCircle className="w-10 h-10 text-[#1B3C53]" />
+            <CheckCircle className="w-8 h-8 text-[#1B3C53]" />
           </div>
         </div>
       </div>

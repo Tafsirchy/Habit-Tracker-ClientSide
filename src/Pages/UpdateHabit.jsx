@@ -84,7 +84,7 @@ const UpdateHabit = () => {
 
         setTimeout(() => {
           toast.success("Habit Updated Successfully ✔");
-        }, 200); // allow toast to show before navigating
+        }, 200);
       })
       .catch((err) => {
         toast.error("Update Failed!");
@@ -98,7 +98,6 @@ const UpdateHabit = () => {
       <main>
         <div className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-stone-50 py-12 px-4">
           <div className="max-w-5xl mx-auto">
-            {/* Header */}
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -125,9 +124,7 @@ const UpdateHabit = () => {
               className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100"
             >
               <div className="grid md:grid-cols-5">
-                {/* Left Side - Enhanced Visual Section */}
                 <div className="md:col-span-2 bg-gradient-to-br from-slate-900 via-gray-900 to-slate-800 p-8 border-r border-gray-700 relative overflow-hidden">
-                  {/* Animated Background Orbs */}
                   <motion.div
                     animate={{
                       scale: [1, 1.2, 1],
@@ -146,7 +143,6 @@ const UpdateHabit = () => {
                   />
 
                   <div className="relative z-10 h-full flex flex-col">
-                    {/* Animated Icon Grid */}
                     <div className="mb-8">
                       <motion.div
                         initial={{ opacity: 0, scale: 0.8 }}
@@ -216,7 +212,6 @@ const UpdateHabit = () => {
                       </motion.div>
                     </div>
 
-                    {/* Flowing Text Cards */}
                     <div className="space-y-4 flex-1">
                       <motion.div
                         initial={{ x: -100, opacity: 0 }}
@@ -352,7 +347,6 @@ const UpdateHabit = () => {
                       </motion.div>
                     </div>
 
-                    {/* Bottom Accent */}
                     <motion.div
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
@@ -394,7 +388,6 @@ const UpdateHabit = () => {
                 {/* Right Side - FORM */}
                 <div className="md:col-span-3 p-8 md:p-10">
                   <form onSubmit={handleUpdate} className="space-y-6">
-                    {/* Title */}
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-2">
                         <span className="flex items-center gap-2">
@@ -412,7 +405,6 @@ const UpdateHabit = () => {
                       />
                     </div>
 
-                    {/* Description */}
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-2">
                         <span className="flex items-center gap-2">
@@ -430,7 +422,6 @@ const UpdateHabit = () => {
                       ></textarea>
                     </div>
 
-                    {/* Category */}
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-2">
                         <span className="flex items-center gap-2">
@@ -452,7 +443,6 @@ const UpdateHabit = () => {
                       </select>
                     </div>
 
-                    {/* Reminder Time */}
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-2">
                         <span className="flex items-center gap-2">
@@ -470,7 +460,6 @@ const UpdateHabit = () => {
                       />
                     </div>
 
-                    {/* Image URL */}
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-2">
                         <span className="flex items-center gap-2">
@@ -487,7 +476,6 @@ const UpdateHabit = () => {
                       />
                     </div>
 
-                    {/* Email + Name (Read Only) */}
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -517,7 +505,6 @@ const UpdateHabit = () => {
                       </div>
                     </div>
 
-                    {/* Submit Button */}
                     <motion.button
                       type="submit"
                       disabled={loading}
@@ -540,7 +527,6 @@ const UpdateHabit = () => {
               </div>
             </motion.div>
 
-            {/* Bottom Tip */}
             <p className="mt-8 text-center text-gray-500 text-sm">
               💡 Consistency leads to long-term success — keep improving!
             </p>

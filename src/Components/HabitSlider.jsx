@@ -59,7 +59,6 @@ const HabitSlider = () => {
                     and master your daily habits with our intuitive platform.
                   </p>
 
-                  {/* Key Features List */}
                   <div className="space-y-1 sm:space-y-3 mb-4 sm:mb-6">
                     {[
                       "📊 Real-time progress tracking & analytics",
@@ -108,7 +107,6 @@ const HabitSlider = () => {
 
                 {/* RIGHT IMAGES */}
                 <div className="relative h-[250px] sm:h-[300px] md:h-full p-4 sm:p-6 flex items-center justify-center order-1 md:order-2">
-                  {/* WRAPPER — center aligned on mobile, absolute only on md+ */}
                   <div className="w-full h-full flex items-center justify-center md:absolute md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2">
                     {/* IMAGE 1 */}
                     <div
@@ -161,7 +159,6 @@ const HabitSlider = () => {
           <SwiperSlide>
             <div className="bg-white rounded-3xl overflow-hidden shadow-2xl md:min-h-[550px] lg:min-h-[650px] min-h-fit">
               <div className="grid grid-cols-1 md:grid-cols-5 min-h-full">
-                {/* IMAGES LEFT - Hidden on mobile, shown on md+ */}
                 <div className="hidden md:block md:col-span-2 relative h-full">
                   <div className="absolute inset-0 grid grid-cols-2 gap-4 p-6">
                     <div className="rounded-2xl overflow-hidden shadow-lg">
@@ -181,7 +178,6 @@ const HabitSlider = () => {
                   </div>
                 </div>
 
-                {/* CONTENT RIGHT */}
                 <div className="md:col-span-3 px-4 py-6 sm:py-8 sm:px-8 md:p-12 flex flex-col justify-center">
                   <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full mb-4 sm:mb-4 w-fit">
                     <span className="font-semibold text-xs sm:text-sm">
@@ -235,7 +231,6 @@ const HabitSlider = () => {
                     </div>
                   </div>
 
-                  {/* Key Features */}
                   <div className="space-y-4 sm:space-y-2 mb-4 sm:mb-4">
                     {[
                       "📈 Advanced analytics with weekly insights",
@@ -252,7 +247,6 @@ const HabitSlider = () => {
                     ))}
                   </div>
 
-                  {/* Bullet List */}
                   <div className="space-y-3 sm:space-y-3 mb-5 sm:mb-5">
                     {[
                       ["Smart Reminders", "AI-powered notifications"],
@@ -277,7 +271,6 @@ const HabitSlider = () => {
                     ))}
                   </div>
 
-                  {/* Buttons */}
                   <div className="flex flex-wrap gap-2 sm:gap-4 pb-0">
                     <button className="bg-gradient-to-r from-[#234C6A] to-[#1B3C53] text-white px-4 sm:px-8 py-2 sm:py-3 rounded-xl font-semibold text-xs sm:text-sm hover:scale-105 transition">
                       Get Started Free
@@ -295,7 +288,6 @@ const HabitSlider = () => {
           <SwiperSlide>
             <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl overflow-hidden shadow-2xl md:min-h-[550px] lg:min-h-[650px] min-h-fit">
               <div className="grid grid-cols-1 md:grid-cols-2 h-full px-4 py-4 sm:p-8 md:p-12">
-                {/* CONTENT */}
                 <div className="flex flex-col justify-center text-white space-y-3 sm:space-y-6 order-2 md:order-1">
                   <div className="inline-flex bg-emerald-500/20 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full w-fit">
                     <span className="text-emerald-400 font-semibold text-xs sm:text-sm">
@@ -324,7 +316,6 @@ const HabitSlider = () => {
                     Science-backed habit tracking with personalized insights.
                   </p>
 
-                  {/* Stats */}
                   <div className="grid grid-cols-2 gap-3 sm:gap-4 py-3 sm:pt-4">
                     <div className="p-3 sm:p-4 bg-white/5 rounded-xl border border-white/10 backdrop-blur-sm">
                       <div className="text-xl sm:text-3xl font-bold text-blue-300">
@@ -344,7 +335,6 @@ const HabitSlider = () => {
                     </div>
                   </div>
 
-                  {/* Buttons */}
                   <div className="flex flex-wrap gap-2 sm:gap-4 pt-2 sm:pt-4">
                     <button className="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white px-4 sm:px-8 py-2 sm:py-3 rounded-full font-semibold text-xs sm:text-sm hover:scale-105 transition">
                       Start Your Journey
@@ -354,7 +344,6 @@ const HabitSlider = () => {
                     </button>
                   </div>
 
-                  {/* User Avatars */}
                   <div className="flex items-center gap-4 pt-4">
                     <div className="flex -space-x-2">
                       <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-gradient-to-r from-blue-400 to-cyan-400 border-2 border-slate-900"></div>
@@ -394,7 +383,6 @@ const HabitSlider = () => {
                     </div>
                   </div>
 
-                  {/* Floating Achievement Card */}
                   <div className="absolute bottom-2 left-2 sm:bottom-4 sm:left-4 md:bottom-8 md:left-8 bg-white/10 backdrop-blur-lg rounded-xl p-3 sm:p-4 border border-white/20 shadow-2xl max-w-[160px] sm:max-w-none">
                     <div className="flex items-center gap-2 sm:gap-3">
                       <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-r from-yellow-400 to-orange-400 flex items-center justify-center">

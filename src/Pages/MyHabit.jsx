@@ -154,7 +154,6 @@ const MyHabit = () => {
 
       <main>
         <div className="min-h-screen bg-gradient-to-br from-[#E3E3E3] via-slate-100 to-gray-100 py-12 px-4 relative overflow-hidden">
-          {/* Background Decorations */}
           <motion.div
             animate={{
               scale: [1, 1.2, 1],
@@ -173,7 +172,6 @@ const MyHabit = () => {
           />
 
           <div className="max-w-5xl mx-auto relative z-10">
-            {/* Header Section */}
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -190,7 +188,6 @@ const MyHabit = () => {
                 Track your daily habits and build lasting consistency
               </p>
 
-              {/* Add New Habit Button - Centered */}
               <Link to="/addHabit">
                 <motion.button
                   whileHover={{ scale: 1.05, y: -2 }}
@@ -204,7 +201,6 @@ const MyHabit = () => {
               </Link>
             </motion.div>
 
-            {/* Stats Cards */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -263,7 +259,6 @@ const MyHabit = () => {
               </div>
             </motion.div>
 
-            {/* Habits List */}
             {myHabits.length > 0 ? (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -291,7 +286,6 @@ const MyHabit = () => {
                         } transition-all`}
                       >
                         <div className="flex flex-col md:flex-row items-start md:items-center gap-4 p-6">
-                          {/* Left Section - Title & Category */}
                           <div className="flex-1 min-w-0">
                             <div className="flex items-start gap-3 mb-3">
                               <h3 className="text-xl font-bold text-gray-800 flex-1">
@@ -314,7 +308,6 @@ const MyHabit = () => {
                             </div>
 
                             <div className="flex flex-wrap items-center gap-3">
-                              {/* Category Badge */}
                               <span
                                 className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold shadow-md ${getCategoryColor(
                                   habit.category
@@ -324,7 +317,6 @@ const MyHabit = () => {
                                 {formatCategory(habit.category)}
                               </span>
 
-                              {/* Created Date */}
                               <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#E3E3E3] text-gray-700 rounded-full text-xs font-medium">
                                 <Calendar size={12} />
                                 {formatDate(habit.createdAt)}
@@ -332,7 +324,6 @@ const MyHabit = () => {
                             </div>
                           </div>
 
-                          {/* Middle Section - Streak */}
                           <div className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-[#E3E3E3] to-gray-100 rounded-xl border border-gray-300">
                             <Flame className="text-[#456882]" size={24} />
                             <div>
@@ -345,7 +336,6 @@ const MyHabit = () => {
                             </div>
                           </div>
 
-                          {/* Right Section - Actions */}
                           <div className="flex gap-2 md:flex-shrink-0">
                             <motion.button
                               whileHover={{ scale: 1.05 }}
@@ -439,7 +429,6 @@ const MyHabit = () => {
               </motion.div>
             )}
 
-            {/* Footer Message */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}

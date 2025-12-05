@@ -51,7 +51,6 @@ const HabitDetails = () => {
   const normalizeCategory = (cat) => {
     if (!cat || typeof cat !== "string") return "Default";
 
-    // Capitalize nicely: Fitness, Morning, Study, Evening, Work
     const formatted = cat.charAt(0).toUpperCase() + cat.slice(1).toLowerCase();
 
     const allowed = ["Fitness", "Morning", "Study", "Evening", "Work"];
@@ -135,7 +134,6 @@ const HabitDetails = () => {
               transition={{ duration: 0.5 }}
               className="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-200/50"
             >
-              {/* IMAGE BANNER WITH OVERLAY */}
               <div className="relative h-72 sm:h-80 overflow-hidden">
                 <motion.img
                   initial={{ scale: 1.15 }}
@@ -147,7 +145,6 @@ const HabitDetails = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
 
-                {/* CATEGORY BADGE */}
                 <motion.div
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -164,7 +161,6 @@ const HabitDetails = () => {
                   </span>
                 </motion.div>
 
-                {/* TITLE OVERLAY */}
                 <motion.div
                   initial={{ opacity: 0, x: -30 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -181,9 +177,7 @@ const HabitDetails = () => {
               </div>
 
               <div className="p-6 sm:p-8 md:p-10">
-                {/* STATS OVERVIEW CARDS */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                  {/* Progress Card - Refined */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -233,7 +227,6 @@ const HabitDetails = () => {
                     </div>
                   </motion.div>
 
-                  {/* Streak Card - Refined */}
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -279,7 +272,6 @@ const HabitDetails = () => {
                   </motion.div>
                 </div>
 
-                {/* DESCRIPTION SECTION */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -295,7 +287,6 @@ const HabitDetails = () => {
                   </p>
                 </motion.div>
 
-                {/* CREATOR CARD */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -318,7 +309,6 @@ const HabitDetails = () => {
                   </div>
                 </motion.div>
 
-                {/* ACTION BUTTON */}
                 <motion.button
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -359,7 +349,6 @@ const HabitDetails = () => {
           </div>
         </div>
       </main>
-
       <Footer />
     </div>
   );

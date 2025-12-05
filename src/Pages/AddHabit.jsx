@@ -91,7 +91,7 @@ const AddHabit = () => {
               className="bg-white rounded-3xl shadow-2xl overflow-hidden"
             >
               <div className="grid md:grid-cols-5 gap-0">
-                {/* Left Sidebar - Animated Illustration */}
+                {/* Left Sidebar */}
                 <div className="md:col-span-2 bg-gradient-to-br from-[#1B3C53] to-[#234C6A] p-8 flex flex-col justify-center items-center relative overflow-hidden">
                   <div className="absolute top-0 left-0 w-full h-full opacity-10">
                     <div className="absolute top-10 left-10 w-32 h-32 bg-white rounded-full blur-3xl"></div>
@@ -121,10 +121,8 @@ const AddHabit = () => {
                       </p>
                     </div>
 
-                    {/* Animated Illustration */}
                     <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border-2 border-white/20 mb-6">
                       <div className="relative h-64 flex items-center justify-center">
-                        {/* Central Circle */}
                         <motion.div
                           animate={{
                             scale: [1, 1.05, 1],
@@ -138,7 +136,6 @@ const AddHabit = () => {
                           className="absolute w-32 h-32 bg-white/20 rounded-full"
                         />
 
-                        {/* Orbiting Icons */}
                         <motion.div
                           animate={{ rotate: 360 }}
                           transition={{
@@ -184,7 +181,6 @@ const AddHabit = () => {
                           </div>
                         </motion.div>
 
-                        {/* Center Text */}
                         <motion.div
                           animate={{
                             scale: [1, 1.1, 1],
@@ -236,7 +232,6 @@ const AddHabit = () => {
                 {/* Right Side - Form */}
                 <div className="md:col-span-3 p-8 md:p-10">
                   <form onSubmit={handleSubmit} className="space-y-6">
-                    {/* Habit Title */}
                     <motion.div
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -259,7 +254,6 @@ const AddHabit = () => {
                       />
                     </motion.div>
 
-                    {/* Description */}
                     <motion.div
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -282,7 +276,6 @@ const AddHabit = () => {
                       ></textarea>
                     </motion.div>
 
-                    {/* Category */}
                     <motion.div
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -310,7 +303,6 @@ const AddHabit = () => {
                       </select>
                     </motion.div>
 
-                    {/* Reminder Time */}
                     <motion.div
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -332,7 +324,6 @@ const AddHabit = () => {
                       />
                     </motion.div>
 
-                    {/* Image URL */}
                     <motion.div
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -357,7 +348,6 @@ const AddHabit = () => {
                       />
                     </motion.div>
 
-                    {/* User Info */}
                     <motion.div
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -396,7 +386,6 @@ const AddHabit = () => {
                       </div>
                     </motion.div>
 
-                    {/* Submit Button */}
                     <motion.div
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -436,7 +425,6 @@ const AddHabit = () => {
               </div>
             </motion.div>
 
-            {/* Bottom Tips */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}

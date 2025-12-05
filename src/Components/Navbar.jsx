@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
-import { Link, NavLink } from "react-router"; // FIXED
+import { Link, NavLink } from "react-router";
 import logo from "../assets/habits (1).png";
 import { AuthContext } from "../Provider/AuthProvider";
 import { toast } from "react-toastify";
 
 const Navbar = () => {
-  const { user, logOut } = useContext(AuthContext); // FIXED
+  const { user, logOut } = useContext(AuthContext);
 
   const handleLogOut = () => {
     logOut()
@@ -19,9 +19,7 @@ const Navbar = () => {
   return (
     <nav className="bg-[#0e2d43] shadow-md font-sans">
       <div className="navbar w-11/12 mx-auto px-0">
-        {/* LEFT SIDE */}
         <div className="navbar-start text-white">
-          {/* Mobile dropdown */}
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
               <svg
@@ -67,7 +65,6 @@ const Navbar = () => {
             </ul>
           </div>
 
-          {/* Logo */}
           <Link
             to="/"
             className="flex justify-center items-center gap-1 btn-ghost text-2xl text-white"
@@ -79,7 +76,6 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* DESKTOP MENU */}
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 text-white">
             <li>
@@ -105,7 +101,6 @@ const Navbar = () => {
           </ul>
         </div>
 
-        {/* RIGHT SIDE (AUTH) */}
         <div className="navbar-end gap-2">
           {user ? (
             <div className="dropdown dropdown-end dropdown-hover">

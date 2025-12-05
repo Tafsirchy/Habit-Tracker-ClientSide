@@ -37,9 +37,7 @@ const HabitStats = () => {
           <div className="absolute inset-0 bg-gradient-to-br from-blue-900/70 via-blue-900/40 to-blue-900/70"></div>
         </div>
 
-        {/* Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-          {/* Heading */}
           <motion.div
             initial={{ opacity: 0, y: -30 }}
             whileInView={{ opacity: 1, y: 0 }}

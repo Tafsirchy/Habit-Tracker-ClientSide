@@ -21,10 +21,8 @@ const Habits = () => {
   const normalizeCategory = (cat) => {
     if (!cat || typeof cat !== "string") return "Default";
 
-    // Standardize: Capital first letter, rest lowercase
     const formatted = cat.charAt(0).toUpperCase() + cat.slice(1).toLowerCase();
 
-    // Only allow your 5 categories
     const allowed = ["Fitness", "Morning", "Study", "Evening", "Work"];
 
     return allowed.includes(formatted) ? formatted : "Default";
@@ -36,12 +34,9 @@ const Habits = () => {
     Study: "bg-purple-100 text-purple-700",
     Evening: "bg-orange-100 text-orange-700",
     Work: "bg-yellow-100 text-yellow-700",
-
-    // fallback
     Default: "bg-gray-100 text-gray-700",
   };
 
-  // Fetch latest habits sorted by createdAt
   useEffect(() => {
     setLoading(true);
     fetch("http://localhost:3000/habits")
@@ -56,7 +51,6 @@ const Habits = () => {
       });
   }, []);
 
-  // Category Icons (ONLY your 5 categories)
   const getCategoryIcon = (category) => {
     switch (category) {
       case "Morning":
@@ -74,7 +68,6 @@ const Habits = () => {
     }
   };
 
-  // Placeholder Image
   const DEFAULT_PLACEHOLDER =
     "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=600&q=80";
 
@@ -83,7 +76,6 @@ const Habits = () => {
     return DEFAULT_PLACEHOLDER;
   };
 
-  // Time format
   const formatTime = (time) => {
     if (!time) return "Not set";
     const [hours, minutes] = time.split(":");
@@ -157,7 +149,6 @@ const Habits = () => {
                     whileHover={{ y: -10, transition: { duration: 0.3 } }}
                     className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group"
                   >
-                    {/* Image Section */}
                     <div className="relative h-48 overflow-hidden">
                       <img
                         src={habitImage}
@@ -166,10 +157,8 @@ const Habits = () => {
                         onError={(e) => (e.target.src = DEFAULT_PLACEHOLDER)}
                       />
 
-                      {/* Smooth Dark Gradient */}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
 
-                      {/* Category Badge */}
                       <div className="absolute top-4 left-4 ">
                         <span
                           className={`inline-block mt-2 px-5 py-2 text-sm rounded-full ${
@@ -180,7 +169,6 @@ const Habits = () => {
                         </span>
                       </div>
 
-                      {/* Icon Badge */}
                       <motion.div
                         whileHover={{ scale: 1.1, rotate: 360 }}
                         transition={{ duration: 0.6 }}
@@ -190,7 +178,6 @@ const Habits = () => {
                       </motion.div>
                     </div>
 
-                    {/* Content Section */}
                     <div className="p-6">
                       <h3 className="text-xl font-bold text-[#1B3C53] mb-2">
                         {habit.title}
@@ -202,7 +189,6 @@ const Habits = () => {
                         </p>
                       )}
 
-                      {/* Creator Info */}
                       <div className="space-y-3 mb-5">
                         <div className="flex items-center gap-3 text-gray-600">
                           <div className="w-8 h-8 rounded-full bg-[#E3E3E3] flex items-center justify-center">
@@ -232,7 +218,6 @@ const Habits = () => {
                         </div>
                       </div>
 
-                      {/* View Details Button */}
                       <Link to={`/details/${habit._id}`}>
                         <motion.button
                           whileHover={{ scale: 1.02 }}

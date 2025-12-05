@@ -51,7 +51,6 @@ const Register = () => {
       })
       .then(() => {
         toast.success("Sign Up Successful");
-        // form.reset();
         navigate("/");
       })
       .catch((err) => {
@@ -96,9 +95,8 @@ const Register = () => {
 
   return (
     <div className="min-h-screen flex">
-      {/* Left Side - Image Section */}
       <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-purple-700 to-pink-900">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-gray-700 to-blue-900">
           <img
             src={register}
             className="w-full h-full object-cover opacity-60 mix-blend-overlay"
@@ -114,11 +112,12 @@ const Register = () => {
         </div>
       </div>
 
-      {/* Right Side - Form Section */}
       <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-white">
         <div className="w-full max-w-md">
           <div className="mb-8">
-            <h2 className="text-4xl font-bold text-gray-800 mb-2">Sign Up</h2>
+            <h2 className="text-5xl font-bold text-[#A3B18A]  mb-2">
+              Sign Up
+            </h2>
           </div>
 
           <form onSubmit={handleRegister} className="space-y-5">
@@ -186,8 +185,8 @@ const Register = () => {
 
             <button
               type="submit"
-              className="w-full py-3 px-6 rounded-full bg-gradient-to-br from-blue-900  to-pink-900 text-white font-semibold hover:from-[]#1B3C53 hover:to-[#1B3C5390] transition-all shadow-lg mt-6"
-              disabled={loading} // Disable button while loading
+              className="w-full py-3 px-6 rounded-full  bg-gradient-to-r from-[#234C6A] to-[#1B3C53] text-white font-semibold hover:from-[]#1B3C53 hover:to-[#1B3C5390] transition-all shadow-lg mt-6"
+              disabled={loading} 
             >
               {loading ? renderLoadingSpinner : "Sign Up"}
             </button>

@@ -204,7 +204,6 @@ const HabitsNotFound = () => {
           No Habits Found
         </motion.h1>
 
-        {/* CTA Buttons */}
       
       </div>
     </div>

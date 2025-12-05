@@ -29,9 +29,7 @@ const ForgetPass = () => {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-50">
-      {/* Main Card */}
       <div className="bg-white px-10 py-5 rounded-2xl shadow-sm border border-gray-100 w-full max-w-md mx-4">
-        {/* Illustration */}
         <div className="flex justify-center mb-2">
           <svg
             width="120"
@@ -40,7 +38,6 @@ const ForgetPass = () => {
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            {/* Mailbox illustration */}
             <rect
               x="30"
               y="50"
@@ -76,13 +73,11 @@ const ForgetPass = () => {
               strokeLinecap="round"
               strokeLinejoin="round"
             />
-            {/* Flag */}
             <rect x="85" y="40" width="3" height="30" fill="#6B7280" />
             <path d="M88 45 L100 48 L88 51 Z" fill="#EF4444" />
           </svg>
         </div>
 
-        {/* Header */}
         <h2 className="text-2xl font-bold text-center text-gray-800 mb-2">
           Forgot your password?
         </h2>
@@ -90,7 +85,6 @@ const ForgetPass = () => {
           Enter your email so that we can send you password reset link
         </p>
 
-        {/* Form */}
         <div className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
@@ -118,7 +112,6 @@ const ForgetPass = () => {
             Send Email
           </button>
 
-          {/* Back to Login */}
           <button
             type="button"
             onClick={() => navigate("/auth/login")}

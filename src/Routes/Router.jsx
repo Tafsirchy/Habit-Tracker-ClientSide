@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router"; // FIXED
+import { createBrowserRouter } from "react-router"; 
 import AddHabit from "../Pages/AddHabit";
 import MyHabit from "../Pages/MyHabit";
 import PublicHabit from "../Pages/PublicHabit";
@@ -25,7 +25,6 @@ const router = createBrowserRouter([
     ],
   },
 
-  // 🔥 Habit routes
   {
     path: "/addHabit",
     element: (
@@ -47,23 +46,21 @@ const router = createBrowserRouter([
     element: <PublicHabit></PublicHabit>,
   },
 
-  // 🔥 Authentication (login / register)
   {
     path: "/auth",
     element: <AuthLayout></AuthLayout>,
     children: [
       {
-        path: "login", // FIXED
+        path: "login", 
         element: <Login></Login>,
       },
       {
-        path: "register", // FIXED
+        path: "register", 
         element: <Register></Register>,
       },
     ],
   },
 
-  // 🔥 Forget password should NOT be inside /auth
   {
     path: "/forgetPass/:email?",
     element: <ForgetPass></ForgetPass>,
