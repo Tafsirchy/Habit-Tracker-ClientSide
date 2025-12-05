@@ -1,11 +1,6 @@
 import React from "react";
 import logo from "../assets/habits (1).png";
-import {
-  FaFacebook,
-  FaInstagram,
-  FaPhone,
-  FaPinterest,
-} from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaPhone, FaPinterest } from "react-icons/fa";
 import { Mail, MapPin } from "lucide-react";
 
 const Footer = () => {
@@ -54,7 +49,7 @@ const Footer = () => {
         </nav>
       </div>
       <div className="text-center text-gray-400 border-1 p-4">
-        <p>© 2025 GreenNest. All rights reserved.</p>
+        <p>© 2025 Habit Tracker. All rights reserved.</p>
       </div>
     </footer>
   );

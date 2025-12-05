@@ -25,6 +25,7 @@ const PublicHabit = () => {
   const [initialLoad, setInitialLoad] = useState(true);
   const [categoryLoading, setCategoryLoading] = useState(false);
 
+
   const categoryColors = {
     Fitness: "bg-green-100 text-green-700",
     Morning: "bg-blue-100 text-blue-700",
@@ -35,7 +36,7 @@ const PublicHabit = () => {
   };
 
   useEffect(() => {
-    if (!initialLoad && category) {
+    if (!initialLoad && category !== "") {
       setCategoryLoading(true);
     }
 
@@ -46,6 +47,8 @@ const PublicHabit = () => {
       .then((habit) => {
         setHabits(habit);
         setLoading(false);
+
+        // hide loaders
         setCategoryLoading(false);
         if (initialLoad) setInitialLoad(false);
       })

@@ -376,7 +376,7 @@ const AddHabit = () => {
                           type="email"
                           value={user?.email}
                           readOnly
-                          className="w-full px-4 py-3 border-2 border-gray-100 rounded-xl bg-[#E3E3E3] text-gray-600"
+                          className="w-full px-4 py-3 border-2 bg-gray-50 border-gray-100 rounded-lg text-gray-600"
                         />
                       </div>
                       <div>
@@ -391,7 +391,7 @@ const AddHabit = () => {
                           type="text"
                           value={user?.displayName}
                           readOnly
-                          className="w-full px-4 py-3 border-2 border-gray-100 rounded-xl bg-[#E3E3E3] text-gray-600"
+                          className="w-full px-4 py-3 border-2 bg-gray-50 border-gray-100 rounded-lg text-gray-600"
                         />
                       </div>
                     </motion.div>
