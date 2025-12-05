@@ -27,18 +27,12 @@ const Login = () => {
     setLoading(true);
 
     signIn(email, password)
-      .then((result) => {
+      .then(() => {
         toast.success("Login successfully");
         form.reset();
-
-        setTimeout(() => {
-          navigate(location.state ? location.state : "/");
-          setLoading(false);
-        }, 500);
+        navigate(location.state || "/");
       })
       .catch((error) => {
-        setLoading(false);
-
         if (error.code === "auth/wrong-password") {
           setError("Incorrect password. Please try again.");
         } else if (error.code === "auth/user-not-found") {
@@ -48,24 +42,23 @@ const Login = () => {
         } else {
           setError("Something went wrong. Please try again.");
         }
-      });
+      })
+      .finally(() => setLoading(false));
   };
 
   const googleSignIn = () => {
     setLoading(true);
 
     handleGoogleSignIn()
-      .then((result) => {
-        const user = result.user;
-        setUser(user);
-        navigate(location.state ? location.state : "/");
+      .then(() => {
+        navigate(location.state || "/");
       })
-      .catch((error) => console.log(error))
+      .catch((err) => console.log(err))
       .finally(() => setLoading(false));
   };
 
-  if (loading) {
-    return (
+  {
+    loading && (
       <div className="min-h-screen flex justify-center items-center">
         <Loading />
       </div>
@@ -80,7 +73,7 @@ const Login = () => {
     <div className="min-h-screen flex">
       {/* Left Side Image Section */}
       <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-600 via-teal-500 to-cyan-400">
+        <div className="absolute inset-0 bg-gradient-to-br from-green-700 via-teal-500 to-emerald-700">
           <img
             src={login}
             alt="Productivity and Habits"

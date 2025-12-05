@@ -10,7 +10,7 @@ import { Mail, MapPin } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#043915] text-white ">
+    <footer className="bg-[#0e2d43] text-white ">
       <div className="footer sm:footer-horizontal p-10 w-11/12 mx-auto ">
         <aside>
           <img className="w-20 h-20" src={logo} alt="" />

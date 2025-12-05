@@ -4,7 +4,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import { toast } from "react-toastify";
 import { Eye, EyeOff } from "lucide-react";
 import Loading from "../Components/Loading";
-import register from "../assets/register.jpg"
+import register from "../assets/register.jpg";
 
 const Register = () => {
   const { createUser, setUser, handleGoogleSignIn, updateUser } =
@@ -43,54 +43,62 @@ const Register = () => {
     setLoading(true);
 
     createUser(email, password)
-      .then((result) => {
-        const user = result.user;
-
-        updateUser({ displayName: name, photoURL: photo })
-          .then(() => {
-            setUser({ ...user, displayName: name, photoURL: photo });
-          })
-          .catch((error) => {
-            console.log(error);
-            setUser(user);
-          });
-
-        setUser(user);
+      .then(() => {
+        return updateUser({
+          displayName: name,
+          photoURL: photo,
+        });
+      })
+      .then(() => {
         toast.success("Sign Up Successful");
-        form.reset();
+        // form.reset();
         navigate("/");
       })
-      .catch(() => {
-        toast.error("Email already exists");
+      .catch((err) => {
+        setLoading(false);
+
+        if (err.code === "auth/email-already-in-use") {
+          toast.error("Email already in Use");
+        }
+        else {
+          setError(err.message);
+        }
       })
-      .finally(() => setLoading(false));
+     
   };
 
   const googleSignUp = () => {
     setLoading(true);
+
     handleGoogleSignIn()
-      .then((result) => {
-        const user = result.user;
-        setUser(user);
+      .then(() => {
         navigate("/");
       })
-      .catch((error) => console.log(error))
+      .catch((err) => console.log(err))
       .finally(() => setLoading(false));
   };
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex justify-center items-center">
-        <Loading></Loading>
-      </div>
-    );
-  }
+
+ {
+   loading && (
+     <div className="min-h-screen flex justify-center items-center">
+       <Loading />
+     </div>
+   );
+ }
+
+ const renderLoadingSpinner = (
+   <div className="flex justify-center items-center">
+     <Loading />
+   </div>
+ );
+
 
   return (
     <div className="min-h-screen flex">
       {/* Left Side - Image Section */}
       <div className="hidden lg:flex lg:w-1/2 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-400 via-pink-400 to-pink-500">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-purple-700 to-pink-900">
           <img
             src={register}
             className="w-full h-full object-cover opacity-60 mix-blend-overlay"
@@ -178,9 +186,10 @@ const Register = () => {
 
             <button
               type="submit"
-              className="w-full py-3 px-6 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-semibold hover:from-purple-600 hover:to-pink-600 transition-all shadow-lg mt-6"
+              className="w-full py-3 px-6 rounded-full bg-gradient-to-br from-blue-900  to-pink-900 text-white font-semibold hover:from-[]#1B3C53 hover:to-[#1B3C5390] transition-all shadow-lg mt-6"
+              disabled={loading} // Disable button while loading
             >
-              Sign Up
+              {loading ? renderLoadingSpinner : "Sign Up"}
             </button>
 
             <button

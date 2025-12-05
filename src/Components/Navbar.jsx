@@ -17,7 +17,7 @@ const Navbar = () => {
     isActive ? "bg-[#A3B18A] text-white font-semibold" : "";
 
   return (
-    <nav className="bg-[#043915] shadow-md font-sans">
+    <nav className="bg-[#0e2d43] shadow-md font-sans">
       <div className="navbar w-11/12 mx-auto px-0">
         {/* LEFT SIDE */}
         <div className="navbar-start text-white">

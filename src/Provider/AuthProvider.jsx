@@ -50,14 +50,6 @@ const AuthProvider = ({ children }) => {
     updateUser,
   };
 
-  if (loading) {
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        <Loading />
-      </div>
-    );
-  }
-
   return (
     <AuthContext.Provider value={authData}>{children}</AuthContext.Provider>
   );

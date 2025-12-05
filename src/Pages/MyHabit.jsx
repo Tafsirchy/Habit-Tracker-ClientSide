@@ -31,12 +31,12 @@ const MyHabit = () => {
   const [loadingIds, setLoadingIds] = useState(new Set());
 
   const categoryColors = {
-    Fitness: "bg-gradient-to-r from-green-400 to-emerald-500 text-white",
-    Morning: "bg-gradient-to-r from-blue-400 to-indigo-500 text-white",
-    Study: "bg-gradient-to-r from-purple-400 to-violet-500 text-white",
-    Evening: "bg-gradient-to-r from-orange-400 to-pink-500 text-white",
-    Work: "bg-gradient-to-r from-yellow-400 to-amber-500 text-white",
-    Default: "bg-gradient-to-r from-gray-400 to-gray-500 text-white",
+    Fitness: "bg-green-100 text-green-700",
+    Morning: "bg-blue-100 text-blue-700",
+    Study: "bg-purple-100 text-purple-700",
+    Evening: "bg-orange-100 text-orange-700",
+    Work: "bg-yellow-100 text-yellow-700",
+    Default: "bg-gray-100 text-gray-700",
   };
 
   const getCategoryColor = (rawCategory) => {
@@ -153,23 +153,23 @@ const MyHabit = () => {
       </header>
 
       <main>
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 py-12 px-4 relative overflow-hidden">
+        <div className="min-h-screen bg-gradient-to-br from-[#E3E3E3] via-slate-100 to-gray-100 py-12 px-4 relative overflow-hidden">
           {/* Background Decorations */}
           <motion.div
             animate={{
               scale: [1, 1.2, 1],
-              opacity: [0.1, 0.2, 0.1],
+              opacity: [0.08, 0.15, 0.08],
             }}
             transition={{ duration: 8, repeat: Infinity }}
-            className="absolute top-20 left-20 w-96 h-96 bg-purple-400 rounded-full blur-3xl"
+            className="absolute top-20 left-20 w-96 h-96 bg-[#456882] rounded-full blur-3xl"
           />
           <motion.div
             animate={{
               scale: [1, 1.3, 1],
-              opacity: [0.1, 0.15, 0.1],
+              opacity: [0.08, 0.12, 0.08],
             }}
             transition={{ duration: 10, repeat: Infinity, delay: 1 }}
-            className="absolute bottom-20 right-20 w-96 h-96 bg-blue-400 rounded-full blur-3xl"
+            className="absolute bottom-20 right-20 w-96 h-96 bg-[#234C6A] rounded-full blur-3xl"
           />
 
           <div className="max-w-5xl mx-auto relative z-10">
@@ -179,11 +179,11 @@ const MyHabit = () => {
               animate={{ opacity: 1, y: 0 }}
               className="text-center mb-10"
             >
-              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-6 py-2 rounded-full mb-4 shadow-lg">
+              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#1B3C53] to-[#234C6A] text-white px-6 py-2 rounded-full mb-4 shadow-lg">
                 <Target size={20} />
                 <span className="font-semibold">Habit Tracker</span>
               </div>
-              <h1 className="text-5xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 mb-3">
+              <h1 className="text-5xl  font-black text-transparent bg-clip-text bg-gradient-to-r from-[#1B3C53] via-[#234C6A] to-[#456882] mb-3">
                 My Habits
               </h1>
               <p className="text-gray-600 text-lg mb-6">
@@ -195,7 +195,7 @@ const MyHabit = () => {
                 <motion.button
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.98 }}
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl font-bold shadow-xl hover:shadow-2xl transition-all text-lg"
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#1B3C53] to-[#234C6A] text-white rounded-xl font-bold shadow-xl hover:shadow-2xl transition-all text-lg hover:from-[#A3B18A] hover:to-[#234C6A]"
                 >
                   <Plus size={24} />
                   Add New Habit
@@ -211,53 +211,53 @@ const MyHabit = () => {
               transition={{ delay: 0.2 }}
               className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8"
             >
-              <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+              <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-200">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-gray-500 text-sm font-medium mb-1">
                       Total Habits
                     </p>
-                    <p className="text-4xl font-bold text-indigo-600">
+                    <p className="text-4xl font-bold text-[#1B3C53]">
                       {myHabits.length}
                     </p>
                   </div>
-                  <div className="w-16 h-16 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-2xl flex items-center justify-center">
-                    <Target className="text-indigo-600" size={32} />
+                  <div className="w-16 h-16 bg-gradient-to-br from-[#E3E3E3] to-gray-200 rounded-2xl flex items-center justify-center">
+                    <Target className="text-[#1B3C53]" size={32} />
                   </div>
                 </div>
               </div>
 
-              <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+              <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-200">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-gray-500 text-sm font-medium mb-1">
                       Completed Today
                     </p>
-                    <p className="text-4xl font-bold text-green-600">
+                    <p className="text-4xl font-bold text-[#234C6A]">
                       {myHabits.filter(isCompletedToday).length}
                     </p>
                   </div>
-                  <div className="w-16 h-16 bg-gradient-to-br from-green-100 to-emerald-100 rounded-2xl flex items-center justify-center">
-                    <CheckCircle className="text-green-600" size={32} />
+                  <div className="w-16 h-16 bg-gradient-to-br from-[#E3E3E3] to-gray-200 rounded-2xl flex items-center justify-center">
+                    <CheckCircle className="text-[#234C6A]" size={32} />
                   </div>
                 </div>
               </div>
 
-              <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+              <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-200">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-gray-500 text-sm font-medium mb-1">
                       Total Streak
                     </p>
-                    <p className="text-4xl font-bold text-orange-600">
+                    <p className="text-4xl font-bold text-[#456882]">
                       {myHabits.reduce(
                         (sum, h) => sum + (h.currentStreak || 0),
                         0
                       )}
                     </p>
                   </div>
-                  <div className="w-16 h-16 bg-gradient-to-br from-orange-100 to-amber-100 rounded-2xl flex items-center justify-center">
-                    <Flame className="text-orange-600" size={32} />
+                  <div className="w-16 h-16 bg-gradient-to-br from-[#E3E3E3] to-gray-200 rounded-2xl flex items-center justify-center">
+                    <Flame className="text-[#456882]" size={32} />
                   </div>
                 </div>
               </div>
@@ -286,8 +286,8 @@ const MyHabit = () => {
                         whileHover={{ x: 4 }}
                         className={`bg-white rounded-2xl shadow-lg border-2 overflow-hidden ${
                           completedToday
-                            ? "border-green-300 bg-gradient-to-r from-white to-green-50"
-                            : "border-gray-100 hover:border-indigo-200"
+                            ? "border-[#456882] bg-gradient-to-r from-white to-[#E3E3E3]"
+                            : "border-gray-200 hover:border-[#456882]"
                         } transition-all`}
                       >
                         <div className="flex flex-col md:flex-row items-start md:items-center gap-4 p-6">
@@ -303,7 +303,7 @@ const MyHabit = () => {
                                   animate={{ scale: 1, rotate: 0 }}
                                   className="flex-shrink-0"
                                 >
-                                  <div className="w-8 h-8 bg-green-500 rounded-full flex items-center justify-center">
+                                  <div className="w-8 h-8 bg-[#456882] rounded-full flex items-center justify-center">
                                     <CheckCircle
                                       className="text-white"
                                       size={18}
@@ -325,7 +325,7 @@ const MyHabit = () => {
                               </span>
 
                               {/* Created Date */}
-                              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-xs font-medium">
+                              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#E3E3E3] text-gray-700 rounded-full text-xs font-medium">
                                 <Calendar size={12} />
                                 {formatDate(habit.createdAt)}
                               </span>
@@ -333,13 +333,13 @@ const MyHabit = () => {
                           </div>
 
                           {/* Middle Section - Streak */}
-                          <div className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-orange-50 to-amber-50 rounded-xl border border-orange-200">
-                            <Flame className="text-orange-600" size={24} />
+                          <div className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-[#E3E3E3] to-gray-100 rounded-xl border border-gray-300">
+                            <Flame className="text-[#456882]" size={24} />
                             <div>
                               <p className="text-xs text-gray-600 font-medium">
                                 Streak
                               </p>
-                              <p className="text-2xl font-black text-orange-600">
+                              <p className="text-2xl font-black text-[#456882]">
                                 {habit.currentStreak || 0}
                               </p>
                             </div>
@@ -354,8 +354,8 @@ const MyHabit = () => {
                               disabled={completedToday || isLoading}
                               className={`px-5 py-3 rounded-xl font-semibold transition-all flex items-center gap-2 ${
                                 completedToday
-                                  ? "bg-green-100 text-green-700 cursor-not-allowed"
-                                  : "bg-green-500 text-white hover:bg-green-600 shadow-md hover:shadow-lg"
+                                  ? "bg-[#E3E3E3] text-[#456882] cursor-not-allowed"
+                                  : "bg-[#456882] text-white hover:bg-[#234C6A] shadow-md hover:shadow-lg"
                               } ${isLoading ? "opacity-70 cursor-wait" : ""}`}
                             >
                               {isLoading ? (
@@ -386,7 +386,7 @@ const MyHabit = () => {
                               <motion.button
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.9 }}
-                                className="p-3 bg-blue-500 text-white rounded-xl hover:bg-blue-600 shadow-md transition-all"
+                                className="p-3 bg-[#234C6A] text-white rounded-xl hover:bg-[#1B3C53] shadow-md transition-all"
                               >
                                 <Edit2 size={18} />
                               </motion.button>
@@ -430,7 +430,7 @@ const MyHabit = () => {
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl font-bold shadow-lg flex items-center gap-2 mx-auto"
+                    className="px-8 py-3 bg-gradient-to-r from-[#1B3C53] to-[#234C6A] text-white rounded-xl font-bold shadow-lg flex items-center gap-2 mx-auto"
                   >
                     <Plus size={20} />
                     Create Your First Habit

@@ -104,14 +104,16 @@ const UpdateHabit = () => {
               animate={{ opacity: 1, y: 0 }}
               className="text-center mb-8"
             >
-              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-slate-700 to-gray-800 text-white px-6 py-2 rounded-full mb-4 shadow-md">
-                <Target size={20} />
-                <span className="font-semibold">Habit Management</span>
+              <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#1B3C53] to-[#234C6A] text-white px-6 py-2 rounded-full mb-4">
+                <Target size={20} className="text-white" />
+                <span className="font-semibold text-white">
+                  Habit Management
+                </span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-3">
+              <h2 className="text-3xl md:text-4xl lg:5xl font-bold text-[#1B3C53] mb-3">
                 Update Your Habit
               </h2>
-              <p className="text-gray-600 text-lg">
+              <p className="text-gray-500 text-lg">
                 Refine your goals and stay on track with your progress
               </p>
             </motion.div>
@@ -396,7 +398,7 @@ const UpdateHabit = () => {
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-2">
                         <span className="flex items-center gap-2">
-                          <Highlighter size={18} className="text-emerald-600" />
+                          <Highlighter size={18} className="text-[#1B3C53]" />
                           Habit Title
                         </span>
                       </label>
@@ -406,7 +408,7 @@ const UpdateHabit = () => {
                         name="title"
                         required
                         placeholder="e.g., Morning Meditation"
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 outline-none transition"
+                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#1B3C53] focus:ring-4 focus:ring-4 focus:ring-[#45688290] outline-none transition"
                       />
                     </div>
 
@@ -414,7 +416,7 @@ const UpdateHabit = () => {
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-2">
                         <span className="flex items-center gap-2">
-                          <FileText size={18} className="text-emerald-600" />
+                          <FileText size={18} className="text-[#1B3C53]" />
                           Description
                         </span>
                       </label>
@@ -423,7 +425,7 @@ const UpdateHabit = () => {
                         name="description"
                         rows="3"
                         required
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 outline-none transition resize-none"
+                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#1B3C53] focus:ring-4 focus:ring-4 focus:ring-[#45688290] outline-none transition resize-none"
                         placeholder="Why is this habit important?"
                       ></textarea>
                     </div>
@@ -432,14 +434,14 @@ const UpdateHabit = () => {
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-2">
                         <span className="flex items-center gap-2">
-                          <Layers size={18} className="text-emerald-600" />
+                          <Layers size={18} className="text-[#1B3C53]" />
                           Category
                         </span>
                       </label>
                       <select
                         value={category || ""}
                         onChange={(e) => setCategory(e.target.value)}
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg bg-white focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 outline-none transition"
+                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg bg-white focus:border-[#1B3C53] focus:ring-4 focus:ring-4 focus:ring-[#45688290] outline-none transition"
                       >
                         <option value="">Select a category</option>
                         <option value="Morning">Morning</option>
@@ -454,7 +456,7 @@ const UpdateHabit = () => {
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-2">
                         <span className="flex items-center gap-2">
-                          <Clock size={18} className="text-emerald-600" />
+                          <Clock size={18} className="text-[#1B3C53]" />
                           Reminder Time
                         </span>
                       </label>
@@ -464,7 +466,7 @@ const UpdateHabit = () => {
                         type="time"
                         name="reminderTime"
                         required
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 outline-none transition"
+                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[#1B3C53] focus:ring-4 focus:ring-4 focus:ring-[#45688290] outline-none transition"
                       />
                     </div>
 
@@ -472,7 +474,7 @@ const UpdateHabit = () => {
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-2">
                         <span className="flex items-center gap-2">
-                          <Upload size={18} className="text-emerald-600" />
+                          <Upload size={18} className="text-[#1B3C53]" />
                           Image URL (optional)
                         </span>
                       </label>
@@ -481,7 +483,7 @@ const UpdateHabit = () => {
                         type="text"
                         name="imgUrl"
                         placeholder="Paste image URL"
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 outline-none transition"
+                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:focus:border-[#1B3C53] focus:ring-4 focus:ring-[#45688290] outline-none transition"
                       />
                     </div>
 
@@ -490,7 +492,7 @@ const UpdateHabit = () => {
                       <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-2">
                           <span className="flex items-center gap-2">
-                            <Mail size={16} className="text-gray-500" /> Email
+                            <Mail size={16} className="text-[#1B3C53]" /> Email
                           </span>
                         </label>
                         <input
@@ -503,7 +505,7 @@ const UpdateHabit = () => {
                       <div>
                         <label className="block text-sm font-semibold text-gray-700 mb-2">
                           <span className="flex items-center gap-2">
-                            <User size={16} className="text-gray-500" /> Name
+                            <User size={16} className="text-[#1B3C53]" /> Name
                           </span>
                         </label>
                         <input
@@ -521,7 +523,7 @@ const UpdateHabit = () => {
                       disabled={loading}
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 text-white py-4 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl transition disabled:opacity-50 flex items-center justify-center gap-2"
+                      className="w-full bg-gradient-to-r from-[#1B3C53] to-[#234C6A] text-white py-4 rounded-lg font-semibold text-lg shadow-lg hover:shadow-xl transition disabled:opacity-50 flex items-center justify-center gap-2 hover:from-[#A3B18A] hover:to-[#234C6A]"
                     >
                       {loading ? (
                         <div>
