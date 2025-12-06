@@ -58,10 +58,8 @@ const HabitDetails = () => {
     return allowed.includes(formatted) ? formatted : "Default";
   };
 
-
-
   useEffect(() => {
-    fetch(`http://localhost:3000/habits/${id}`)
+    fetch(`habittracker-weld.vercel.app/habits/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setHabit(data);
@@ -95,10 +93,13 @@ const HabitDetails = () => {
     try {
       setButtonLoading(true);
 
-      const res = await fetch(`http://localhost:3000/habits/${id}/complete`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-      });
+      const res = await fetch(
+        `habittracker-weld.vercel.app/habits/${id}/complete`,
+        {
+          method: "PATCH",
+          headers: { "Content-Type": "application/json" },
+        }
+      );
 
       const updatedHabit = await res.json();
 

@@ -25,7 +25,6 @@ const PublicHabit = () => {
   const [initialLoad, setInitialLoad] = useState(true);
   const [categoryLoading, setCategoryLoading] = useState(false);
 
-
   const categoryColors = {
     Fitness: "bg-green-100 text-green-700",
     Morning: "bg-blue-100 text-blue-700",
@@ -41,7 +40,7 @@ const PublicHabit = () => {
     }
 
     fetch(
-      `http://localhost:3000/public-habits?category=${category}&search=${search}`
+      `habittracker-weld.vercel.app/public-habits?category=${category}&search=${search}`
     )
       .then((res) => res.json())
       .then((habit) => {

@@ -39,7 +39,7 @@ const Habits = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch("http://localhost:3000/habits")
+    fetch("habittracker-weld.vercel.app/habits")
       .then((res) => res.json())
       .then((habit) => {
         setHabits(habit);

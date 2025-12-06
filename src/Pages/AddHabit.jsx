@@ -47,7 +47,7 @@ const AddHabit = () => {
     };
 
     axios
-      .post("http://localhost:3000/habits", habitData)
+      .post("habittracker-weld.vercel.app/habits", habitData)
       .then(() => {
         toast.success("Habit added successfully! 🎉");
         form.reset();
