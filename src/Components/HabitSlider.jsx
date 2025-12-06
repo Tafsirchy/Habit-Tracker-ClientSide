@@ -14,25 +14,36 @@ import "swiper/css/pagination";
 
 const HabitSlider = () => {
   return (
-    <section className=" bg-[#E3E3E3] hover:bg-white transition-color duration-1000">
-      <div className="w-full max-w-7xl mx-auto p-4 ">
+    <section className="bg-[#E3E3E3] hover:bg-white transition-color duration-1000 w-full">
+      <div className="w-full p-0 ">
         <Swiper
           modules={[Navigation, Pagination, Autoplay]}
           navigation
           pagination={{ clickable: true }}
           autoplay={{ delay: 6000 }}
           loop={true}
-          className="rounded-xl shadow-lg"
+          className="w-full shadow-lg" // FULL WIDTH, NO RADIUS
         >
           {/* SLIDE 1 */}
-          <SwiperSlide>
-            <div className="bg-gradient-to-br from-blue-900 via-purple-900 to-pink-700 rounded-3xl overflow-hidden shadow-2xl md:min-h-[550px] lg:min-h-[650px] min-h-fit">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-0 h-full">
+          <SwiperSlide
+            className=" bg-gradient-to-br from-blue-900 via-purple-900 to-pink-700 
+              overflow-hidden shadow-2xl"
+          >
+            <div
+              className="
+              md:min-h-[550px] lg:min-h-[650px] min-h-fit 
+              w-full h-full
+            "
+            >
+              {/* GRID */}
+              <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 gap-0 h-full">
                 {/* LEFT CONTENT */}
-                <div className="p-4 sm:p-8 md:p-10 lg:p-14 flex flex-col justify-center text-white order-2 md:order-1">
+                <div className="py-4 sm:py-8 md:py-10 lg:py-14 flex flex-col justify-center text-white order-2 md:order-1">
+                  {/* Remove rounded-full? No. This is a badge - keep it,
+                      it does NOT affect slider corners */}
                   <div className="inline-flex items-center gap-2 bg-white text-black bg-opacity-20 px-3 py-1.5 rounded-full mb-3 sm:mb-4 backdrop-blur-sm w-fit">
                     <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span>
-                    <span className="text-xs sm:text-sm font-semibold">
+                    <span className="text-xs sm:text-sm font-semibold p-1">
                       50,000+ Active Users
                     </span>
                   </div>
@@ -54,7 +65,7 @@ const HabitSlider = () => {
                     />
                   </h1>
 
-                  <p className="text-sm sm:text-base md:text-lg opacity-90 mb-3 sm:mb-4 leading-relaxed">
+                  <p className="text-sm sm:text-base md:text-lg opacity-90 md:pb-3 mb-3 sm:mb-4 leading-relaxed">
                     Build powerful routines backed by science. Track, analyze,
                     and master your daily habits with our intuitive platform.
                   </p>
@@ -157,10 +168,10 @@ const HabitSlider = () => {
 
           {/* SLIDE 2 */}
           <SwiperSlide>
-            <div className="bg-white rounded-3xl overflow-hidden shadow-2xl md:min-h-[550px] lg:min-h-[650px] min-h-fit">
-              <div className="grid grid-cols-1 md:grid-cols-5 min-h-full">
+            <div className="bg-white overflow-hidden shadow-2xl md:min-h-[550px] lg:min-h-[650px] min-h-fit">
+              <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-5 min-h-full">
                 <div className="hidden md:block md:col-span-2 relative h-full">
-                  <div className="absolute inset-0 grid grid-cols-2 gap-4 p-6">
+                  <div className="absolute inset-0 grid grid-cols-2 gap-4 py-6">
                     <div className="rounded-2xl overflow-hidden shadow-lg">
                       <img
                         src={p5}
@@ -191,10 +202,10 @@ const HabitSlider = () => {
                   >
                     <Typewriter
                       words={[
-                        "Guided Self Improvement",
-                        "Guide Inner Well-being",
-                        "Unlock Your Full Potential",
-                        "Achieve Daily Excellence",
+                        "Smart Habit Coach",
+                        "Proper Well-being",
+                        "Unlock Potential",
+                        "Achieve Excellence",
                       ]}
                       loop={0}
                       cursor
@@ -286,8 +297,8 @@ const HabitSlider = () => {
 
           {/* SLIDE 3 */}
           <SwiperSlide>
-            <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 rounded-3xl overflow-hidden shadow-2xl md:min-h-[550px] lg:min-h-[650px] min-h-fit">
-              <div className="grid grid-cols-1 md:grid-cols-2 h-full px-4 py-4 sm:p-8 md:p-12">
+            <div className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900  overflow-hidden shadow-2xl md:min-h-[550px] lg:min-h-[650px] min-h-fit">
+              <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-2 h-full py-4 sm:py-8 md:py-12">
                 <div className="flex flex-col justify-center text-white space-y-3 sm:space-y-6 order-2 md:order-1">
                   <div className="inline-flex bg-emerald-500/20 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full w-fit">
                     <span className="text-emerald-400 font-semibold text-xs sm:text-sm">
@@ -295,13 +306,13 @@ const HabitSlider = () => {
                     </span>
                   </div>
 
-                  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-400 to-pink-400 bg-clip-text text-transparent min-h-[60px] sm:min-h-[80px] md:min-h-[100px]">
+                  <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-blue-400 to-pink-400 bg-clip-text text-transparent min-h-[60px] sm:min-h-[80px] md:min-h-[100px] mb-2">
                     <Typewriter
                       words={[
-                        "Build Habits That Last Forever",
-                        "Create Your Success Story",
-                        "Transform Every Single Day",
-                        "Become Your Best Self",
+                        "Build better Habits",
+                        "Create Success Story",
+                        "Transform Your Day",
+                        "Unlock Your Best",
                       ]}
                       loop={0}
                       cursor
@@ -312,7 +323,7 @@ const HabitSlider = () => {
                     />
                   </h1>
 
-                  <p className="text-gray-300 leading-relaxed text-sm sm:text-base md:text-lg">
+                  <p className="text-gray-300 leading-relaxed text-sm sm:text-base md:text-lg pt-0 mt-0">
                     Science-backed habit tracking with personalized insights.
                   </p>
 
