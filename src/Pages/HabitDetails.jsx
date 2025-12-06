@@ -126,8 +126,8 @@ const HabitDetails = () => {
   return (
     <div>
       <Navbar />
-      <main>
-        <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 py-8 px-4 sm:py-12">
+      <main className="bg-gradient-to-br from-slate-50 via-white to-slate-100">
+        <div className="w-11/12 mx-auto flex justify-center items-center  py-8 px-4 sm:py-12">
           <div className="max-w-6xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 30 }}

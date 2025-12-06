@@ -1,24 +1,15 @@
 import { motion } from "framer-motion";
-import {
-  Home,
-  Plus,
-  Zap,
-  Star,
-  Heart,
-  Coffee,
-  Book,
-  Dumbbell,
-} from "lucide-react";
+import { Coffee, Book, Dumbbell, Heart, Star, Zap } from "lucide-react";
 
 const HabitsNotFound = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center px-4 relative overflow-hidden">
-      {/* Animated Particle Background */}
+      {/* Floating Particles */}
       {[...Array(20)].map((_, i) => (
         <motion.div
           key={i}
           animate={{
-            y: [Math.random() * window.innerHeight, -100],
+            y: [Math.random() * 600, -100],
             opacity: [0, 1, 0],
           }}
           transition={{
@@ -38,12 +29,13 @@ const HabitsNotFound = () => {
       <motion.div
         animate={{ scale: [1, 1.4, 1], opacity: [0.2, 0.35, 0.2] }}
         transition={{ duration: 7, repeat: Infinity }}
-        className="absolute top-16 left-16 w-72 h-72 bg-purple-500 rounded-full blur-3xl"
+        className="absolute top-16 left-16 w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72 bg-purple-500 rounded-full blur-3xl"
       />
+
       <motion.div
         animate={{ scale: [1, 1.3, 1], opacity: [0.2, 0.3, 0.2] }}
         transition={{ duration: 9, repeat: Infinity }}
-        className="absolute bottom-16 right-16 w-72 h-72 bg-pink-500 rounded-full blur-3xl"
+        className="absolute bottom-16 right-16 w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72 bg-pink-500 rounded-full blur-3xl"
       />
 
       <div className="max-w-4xl mx-auto relative z-10">
@@ -61,7 +53,7 @@ const HabitsNotFound = () => {
                 rotateX: [0, 1.5, 0, -1.5, 0],
               }}
               transition={{ duration: 6, repeat: Infinity }}
-              className="relative w-64 h-64"
+              className="relative w-40 h-40 sm:w-48 sm:h-48 md:w-64 md:h-64"
               style={{ transformStyle: "preserve-3d" }}
             >
               {/* Front */}
@@ -98,13 +90,13 @@ const HabitsNotFound = () => {
                   </motion.div>
                 </div>
 
-                {/* Dashed lines */}
+                {/* Dashes */}
                 {[...Array(5)].map((_, i) => (
                   <motion.div
                     key={i}
                     initial={{ scaleX: 0 }}
-                    animate={{ scaleX: [0, 1] }}
-                    transition={{ delay: i * 0.08 + 0.4 }}
+                    animate={{ scaleX: 1 }}
+                    transition={{ delay: i * 0.1 + 0.4 }}
                     className="absolute h-0.5 bg-gray-600"
                     style={{
                       top: `${25 + i * 11}%`,
@@ -117,20 +109,21 @@ const HabitsNotFound = () => {
 
               {/* Top */}
               <div
-                className="absolute inset-0 bg-gradient-to-br from-gray-600 to-gray-700 rounded-3xl border-4 border-gray-500"
+                className="absolute inset-0 bg-gradient-to-br from-gray-600 to-gray-700 
+                rounded-3xl border-4 border-gray-500"
                 style={{ transform: "rotateX(90deg) translateZ(35px)" }}
               />
 
               {/* Side */}
               <div
-                className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl border-4 border-gray-700"
+                className="absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 
+                rounded-3xl border-4 border-gray-700"
                 style={{ transform: "rotateY(90deg) translateZ(35px)" }}
               />
             </motion.div>
 
             {/* Floating Icons */}
             {[
-              /* same icons but unchanged */
               {
                 Icon: Coffee,
                 color: "from-amber-400 to-orange-500",
@@ -181,11 +174,13 @@ const HabitsNotFound = () => {
               >
                 <motion.div
                   whileHover={{ scale: 1.15, rotate: 360 }}
-                  className={`w-12 h-12 bg-gradient-to-br ${item.color} rounded-xl shadow-xl flex items-center justify-center cursor-pointer backdrop-blur-sm border-2 border-white/20`}
+                  className={`w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 
+                  bg-gradient-to-br ${item.color} rounded-xl shadow-xl flex items-center justify-center 
+                  cursor-pointer backdrop-blur-sm border-2 border-white/20`}
                 >
                   <item.Icon
                     className="text-white"
-                    size={22}
+                    size={20}
                     strokeWidth={2.5}
                   />
                 </motion.div>
@@ -199,12 +194,10 @@ const HabitsNotFound = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className="py-5 text-4xl md:text-5xl font-black text-white text-center mb-4"
+          className="py-5 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white text-center mb-4"
         >
           No Habits Found
         </motion.h1>
-
-      
       </div>
     </div>
   );

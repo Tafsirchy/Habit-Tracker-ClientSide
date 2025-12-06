@@ -63,8 +63,8 @@ const AddHabit = () => {
         <Navbar />
       </header>
 
-      <main>
-        <div className="min-h-screen bg-gradient-to-br from-[#E3E3E3] via-slate-100 to-gray-100 py-12 px-4">
+      <main className="bg-gradient-to-br from-[#E3E3E3] via-slate-100 to-gray-100">
+        <div className="w-11/12 mx-auto flex justify-center items-center  py-12 px-4">
           <div className="max-w-5xl mx-auto">
             {/* Header Section */}
             <motion.div
