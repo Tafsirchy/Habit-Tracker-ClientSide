@@ -58,12 +58,10 @@ const Register = () => {
 
         if (err.code === "auth/email-already-in-use") {
           toast.error("Email already in Use");
-        }
-        else {
+        } else {
           setError(err.message);
         }
-      })
-     
+      });
   };
 
   const googleSignUp = () => {
@@ -77,21 +75,19 @@ const Register = () => {
       .finally(() => setLoading(false));
   };
 
+  {
+    loading && (
+      <div className="min-h-screen flex justify-center items-center">
+        <Loading></Loading>
+      </div>
+    );
+  }
 
- {
-   loading && (
-     <div className="min-h-screen flex justify-center items-center">
-       <Loading />
-     </div>
-   );
- }
-
- const renderLoadingSpinner = (
-   <div className="flex justify-center items-center">
-     <Loading />
-   </div>
- );
-
+  const renderLoadingSpinner = (
+    <div className="flex justify-center items-center">
+      <Loading></Loading>
+    </div>
+  );
 
   return (
     <div className="min-h-screen flex">
@@ -115,9 +111,7 @@ const Register = () => {
       <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-white">
         <div className="w-full max-w-md">
           <div className="mb-8">
-            <h2 className="text-5xl font-bold text-[#A3B18A]  mb-2">
-              Sign Up
-            </h2>
+            <h2 className="text-5xl font-bold text-[#A3B18A]  mb-2">Sign Up</h2>
           </div>
 
           <form onSubmit={handleRegister} className="space-y-5">
@@ -186,7 +180,7 @@ const Register = () => {
             <button
               type="submit"
               className="w-full py-3 px-6 rounded-full  bg-gradient-to-r from-[#234C6A] to-[#1B3C53] text-white font-semibold hover:from-[]#1B3C53 hover:to-[#1B3C5390] transition-all shadow-lg mt-6"
-              disabled={loading} 
+              disabled={loading}
             >
               {loading ? renderLoadingSpinner : "Sign Up"}
             </button>

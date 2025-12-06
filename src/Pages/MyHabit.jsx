@@ -63,7 +63,7 @@ const MyHabit = () => {
 
     setLoading(true);
 
-    fetch(`habittracker-weld.vercel.app/my-habits?email=${user.email}`)
+    fetch(`https://habittracker-weld.vercel.app/my-habits?email=${user.email}`)
       .then((res) => res.json())
       .then((habits) => {
         setMyHabits(habits || []);
@@ -91,7 +91,7 @@ const MyHabit = () => {
   if (loading)
     return (
       <div className="min-h-screen flex justify-center items-center">
-        <Loading />
+        <Loading></Loading>
       </div>
     );
 
@@ -106,7 +106,7 @@ const MyHabit = () => {
     setLoadingIds((prev) => new Set(prev).add(id));
 
     axios
-      .patch(`habittracker-weld.vercel.app/habits/${id}/complete`)
+      .patch(`https://habittracker-weld.vercel.app/habits/${id}/complete`)
       .then((res) => {
         const updatedHabit = res.data;
 
@@ -135,7 +135,7 @@ const MyHabit = () => {
     if (!window.confirm("Are you sure? This action cannot be undone.")) return;
 
     axios
-      .delete(`habittracker-weld.vercel.app/delete/${id}`)
+      .delete(`https://habittracker-weld.vercel.app/delete/${id}`)
       .then(() => {
         setMyHabits((prev) =>
           prev.filter((habit) => String(habit._id) !== String(id))

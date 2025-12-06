@@ -60,7 +60,7 @@ const Login = () => {
   {
     loading && (
       <div className="min-h-screen flex justify-center items-center">
-        <Loading />
+        <Loading></Loading>
       </div>
     );
   }

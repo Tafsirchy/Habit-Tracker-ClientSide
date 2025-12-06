@@ -39,7 +39,7 @@ const Habits = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch("habittracker-weld.vercel.app/habits")
+    fetch("https://habittracker-weld.vercel.app/habits")
       .then((res) => res.json())
       .then((habit) => {
         setHabits(habit);
@@ -102,7 +102,7 @@ const Habits = () => {
   if (loading)
     return (
       <div className="min-h-screen flex justify-center items-center">
-        <Loading></Loading>;
+        <Loading></Loading>
       </div>
     );
 

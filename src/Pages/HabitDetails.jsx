@@ -59,7 +59,7 @@ const HabitDetails = () => {
   };
 
   useEffect(() => {
-    fetch(`habittracker-weld.vercel.app/habits/${id}`)
+    fetch(`https://habittracker-weld.vercel.app/habits/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setHabit(data);
@@ -70,7 +70,7 @@ const HabitDetails = () => {
   if (loading)
     return (
       <div className="min-h-screen flex justify-center items-center">
-        <Loading></Loading>;
+        <Loading></Loading>
       </div>
     );
 
@@ -94,7 +94,7 @@ const HabitDetails = () => {
       setButtonLoading(true);
 
       const res = await fetch(
-        `habittracker-weld.vercel.app/habits/${id}/complete`,
+        `https://habittracker-weld.vercel.app/habits/${id}/complete`,
         {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },

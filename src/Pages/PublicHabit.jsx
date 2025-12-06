@@ -40,7 +40,7 @@ const PublicHabit = () => {
     }
 
     fetch(
-      `habittracker-weld.vercel.app/public-habits?category=${category}&search=${search}`
+      `https://habittracker-weld.vercel.app/public-habits?category=${category}&search=${search}`
     )
       .then((res) => res.json())
       .then((habit) => {
@@ -108,7 +108,7 @@ const PublicHabit = () => {
   if (initialLoad && loading)
     return (
       <div className="min-h-screen flex justify-center items-center">
-        <Loading />
+        <Loading></Loading>
       </div>
     );
 
@@ -218,7 +218,7 @@ const PublicHabit = () => {
 
             {categoryLoading ? (
               <div className="flex justify-center items-center py-20">
-                <Loading />
+                <Loading></Loading>
               </div>
             ) : habits.length === 0 ? (
               <div className="py-12">

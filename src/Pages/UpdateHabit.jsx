@@ -41,7 +41,7 @@ const UpdateHabit = () => {
 
   useEffect(() => {
     axios
-      .get(`habittracker-weld.vercel.app/habits/${id}`)
+      .get(`https://habittracker-weld.vercel.app/habits/${id}`)
       .then((res) => {
         setHabits(res.data);
         setCategory(res.data.category);
@@ -74,7 +74,7 @@ const UpdateHabit = () => {
     };
 
     axios
-      .put(`habittracker-weld.vercel.app/habits/${id}`, habitData)
+      .put(`https://habittracker-weld.vercel.app/habits/${id}`, habitData)
       .then((res) => {
         form.reset();
         navigation("/myHabit");
@@ -511,7 +511,7 @@ const UpdateHabit = () => {
                     >
                       {loading ? (
                         <div>
-                          <Loading />
+                          <Loading></Loading>
                         </div>
                       ) : (
                         <>
