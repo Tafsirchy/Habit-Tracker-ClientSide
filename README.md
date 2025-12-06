@@ -1,16 +1,29 @@
-# React + Vite
+### Habit Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Feature:
 
-Currently, two official plugins are available:
+Habit Tracker is a web application that allows users to track their habits. Users can add, edit, delete, mark as done or undone, view history and statistics of their habits. and also set reminders for their habits.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. User Registration and Login
+2. Add Habit for Tracking
+3. Edit Habit Details
+4. Delete Habit
+5. Mark Habit as Done
+6. View Habit History
+7. View Habit Statistics
+8. Set Reminders for Habits
+9. Edit/Update Your habit and so on
 
-## React Compiler
+### Technologies Used
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+1. HTML
+2. CSS
+3. JavaScript
+4. React
+5. Node.js
+6. Express.js
+7. MongoDB
+8. Axios
+9. Tailwind CSS
+10. DaisyUI
+11. React Router
