@@ -107,7 +107,7 @@ const ForgetPass = () => {
 
           <button
             onClick={handleSubmit}
-            className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 rounded-lg transition-colors shadow-sm"
+            className="w-full bg-gradient-to-r from-[#234C6A] to-[#1B3C53] text-white font-semibold py-3 rounded-lg transition-colors shadow-md hover:shadow-lg hover:from-[#A3B18A] hover:to-[#A3B18A]"
           >
             Send Email
           </button>
@@ -115,7 +115,7 @@ const ForgetPass = () => {
           <button
             type="button"
             onClick={() => navigate("/auth/login")}
-            className="w-full flex items-center justify-center gap-2 text-gray-600 hover:text-gray-800 font-medium transition-colors"
+            className="w-full flex items-center justify-center gap-2 text-gray-700 hover:text-[#A3B18A] font-medium transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             Back to Login
