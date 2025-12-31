@@ -1,29 +1,128 @@
-### Habit Tracker
+# ✅ Habit Tracker – MERN Stack Application
 
-Feature:
+Habit Tracker is a web application that helps users build consistency by tracking daily habits. Users can create, update, delete, and monitor habits with detailed history, statistics, and reminders through a clean and responsive interface.
 
-Habit Tracker is a web application that allows users to track their habits. Users can add, edit, delete, mark as done or undone, view history and statistics of their habits. and also set reminders for their habits.
+---
 
-1. User Registration and Login
-2. Add Habit for Tracking
-3. Edit Habit Details
-4. Delete Habit
-5. Mark Habit as Done
-6. View Habit History
-7. View Habit Statistics
-8. Set Reminders for Habits
-9. Edit/Update Your habit and so on
+## 📌 Project Overview
+Habit Tracker allows users to manage their daily routines efficiently by providing habit tracking, progress monitoring, and reminder features. The application focuses on simplicity, performance, and user engagement to help users stay consistent with their goals.
 
-### Technologies Used
+---
 
-1. HTML
-2. CSS
-3. JavaScript
-4. React
-5. Node.js
-6. Express.js
-7. MongoDB
-8. Axios
-9. Tailwind CSS
-10. DaisyUI
-11. React Router
+## ✨ Core Features
+- User registration and authentication
+- Add new habits for tracking
+- Edit and update habit details
+- Delete habits when no longer needed
+- Mark habits as done or undone
+- View habit completion history
+- Visual statistics for habit performance
+- Set reminders for daily habits
+- Responsive UI for all devices
+
+---
+
+## 🛠️ Technologies Used
+
+### Frontend
+- HTML
+- CSS
+- JavaScript (ES6+)
+- React
+- Tailwind CSS
+- DaisyUI
+- React Router
+- React Toastify
+- Lucide Icons
+- Framer Motion
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB
+- Axios
+
+---
+
+## 📦 Dependencies Used
+
+### Frontend
+- react
+- react-router
+- react-toastify
+- tailwindcss
+- daisyui
+- lucide-react
+- framer-motion
+
+### Backend
+- express
+- mongodb
+- axios
+
+---
+
+## ▶️ Run the Project Locally
+
+### 1️⃣ Clone the repository
+git clone https://github.com/Tafsirchy/Habit-Tracker-ClientSide.git
+git clone https://github.com/Tafsirchy/Habit-Tracker-ServerSide.git
+
+---
+
+### 2️⃣ Install dependencies
+
+#### Backend
+
+```bash
+cd server
+npm install
+```
+
+#### Frontend
+
+```bash
+cd client
+npm install
+```
+
+---
+
+### 3️⃣ Environment Variables
+
+Create a `.env` file inside the **server** directory:
+
+```env
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+```
+
+---
+
+### 4️⃣ Start the application
+
+#### Backend
+
+```bash
+nodemon index.ja
+```
+
+#### Frontend
+
+```bash
+npm run dev
+```
+
+The app will run at:
+👉 http://localhost:3000
+
+---
+
+## 🌐 Live Demo & Resources
+
+* 🔗 Live Website: [(https://habit-tracker-4a192.web.app/)](https://habit-tracker-4a192.web.app/)
+* 💻 GitHub Repository: 
+https://github.com/Tafsirchy/Habit-Tracker-ClientSide.git
+https://github.com/Tafsirchy/Habit-Tracker-ServerSide.git
+
+---
