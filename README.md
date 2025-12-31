@@ -5,7 +5,7 @@ Habit Tracker is a web application that helps users build consistency by trackin
 ---
 
 ## 📌 Project Overview
-Habit Tracker allows users to manage their daily routines efficiently by providing habit tracking, progress monitoring, and reminder features. The application focuses on simplicity, performance, and user engagement to help users stay consistent with their goals.
+Habit Tracker is a full-stack web application that helps users build and maintain daily habits effectively. Users can create, update, delete, and mark habits as completed or uncompleted. The application provides habit history and visual statistics to track progress over time. Users can also set reminders to stay consistent with their routines. Built using the MERN stack, the app focuses on performance, scalability, and a clean user experience.
 
 ---
 
@@ -114,15 +114,17 @@ npm run dev
 ```
 
 The app will run at:
-👉 http://localhost:3000
+👉 http://localhost:5000
 
 ---
 
 ## 🌐 Live Demo & Resources
 
 * 🔗 Live Website: [(https://habit-tracker-4a192.web.app/)](https://habit-tracker-4a192.web.app/)
-* 💻 GitHub Repository: 
+* 💻 GitHub Repository:
+Client:
 https://github.com/Tafsirchy/Habit-Tracker-ClientSide.git
+Server:
 https://github.com/Tafsirchy/Habit-Tracker-ServerSide.git
 
 ---
