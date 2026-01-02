@@ -265,7 +265,7 @@ const Contact = () => {
                   whileTap={{ scale: 0.95 }}
                   className="text-[var(--color-primary-dark)] dark:text-[var(--color-secondary)] font-semibold hover:underline"
                 >
-                  > Visit FAQ →
+                  Visit FAQ →
                 </motion.button>
               </div>
             </motion.div>
