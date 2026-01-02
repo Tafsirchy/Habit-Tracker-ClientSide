@@ -15,8 +15,8 @@ import {
 import { useContext, useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { AuthContext } from "../Provider/AuthProvider";
-import Navbar from "../Components/Navbar";
-import Footer from "../Components/Footer";
+
+
 import { useNavigate, useParams } from "react-router";
 import Loading from "../Components/Loading";
 import axios from "axios";
@@ -77,7 +77,7 @@ const UpdateHabit = () => {
       .put(`https://habittracker-weld.vercel.app/habits/${id}`, habitData)
       .then((res) => {
         form.reset();
-        navigation("/myHabit");
+        navigation("/dashboard/my-habits");
 
         setTimeout(() => {
           toast.success("Habit Updated Successfully ✔");
@@ -91,9 +91,8 @@ const UpdateHabit = () => {
   };
   return (
     <div>
-      <Navbar />
-      <main className="bg-gradient-to-br from-slate-50 via-gray-50 to-stone-50">
-        <div className="w-11/12 mx-auto flex justify-center items-center py-12 px-4">
+      <main className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-stone-50">
+        <div className="py-12 px-4">
           <div className="max-w-5xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: -20 }}
@@ -530,8 +529,6 @@ const UpdateHabit = () => {
           </div>
         </div>
       </main>
-
-      <Footer />
     </div>
   );
 };

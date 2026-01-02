@@ -11,8 +11,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { motion } from "framer-motion";
 import Loading from "../Components/Loading";
-import Navbar from "../Components/Navbar";
-import Footer from "../Components/Footer";
+
+
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -125,7 +125,6 @@ const HabitDetails = () => {
 
   return (
     <div>
-      <Navbar />
       <main className="bg-gradient-to-br from-slate-50 via-white to-slate-100">
         <div className="w-11/12 mx-auto flex justify-center items-center  py-8 px-4 sm:py-12">
           <div className="max-w-6xl mx-auto">
@@ -350,7 +349,6 @@ const HabitDetails = () => {
           </div>
         </div>
       </main>
-      <Footer />
     </div>
   );
 };

@@ -18,9 +18,8 @@ const cardVariants = {
 
 const Reward = () => {
   return (
-    <section className=" bg-[#E3E3E3] hover:bg-white transition-color duration-1000">
-      <div className="w-11/12 mx-auto w-full py-12 sm:py-16 lg:py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="w-full py-20">
+      <div className="w-11/12 max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -41,20 +40,17 @@ const Reward = () => {
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.3 }}
-                  className="font-bold text-sm sm:text-base tracking-wider uppercase mb-3"
-                  style={{ color: "#456882" }}
+                  className="font-bold text-sm sm:text-base tracking-wider uppercase mb-3 text-[#456882] dark:text-blue-400"
                 >
                   GAMIFICATION
                 </motion.p>
                 <h2
-                  className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 leading-tight"
-                  style={{ color: "#1B3C53" }}
+                  className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 leading-tight text-[#1B3C53] dark:text-white"
                 >
                   Gamify Your Habits
                 </h2>
                 <p
-                  className="text-base sm:text-lg leading-relaxed mb-6"
-                  style={{ color: "#234C6A" }}
+                  className="text-base sm:text-lg leading-relaxed mb-6 text-[#234C6A] dark:text-gray-300"
                 >
                   Earn rewards, badges, and celebrate your streaks to stay
                   motivated every day. Transform your daily routines into an
@@ -211,7 +207,6 @@ const Reward = () => {
             </div>
           </div>
         </div>
-      </div>
     </section>
   );
 };

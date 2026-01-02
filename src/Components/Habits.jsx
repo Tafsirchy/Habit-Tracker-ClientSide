@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import {
   Clock,
   User,
-  Mail,
   ChevronRight,
   BookOpen,
   Sun,
@@ -20,21 +19,18 @@ const Habits = () => {
 
   const normalizeCategory = (cat) => {
     if (!cat || typeof cat !== "string") return "Default";
-
     const formatted = cat.charAt(0).toUpperCase() + cat.slice(1).toLowerCase();
-
     const allowed = ["Fitness", "Morning", "Study", "Evening", "Work"];
-
     return allowed.includes(formatted) ? formatted : "Default";
   };
 
   const categoryColors = {
-    Fitness: "bg-green-100 text-green-700",
-    Morning: "bg-blue-100 text-blue-700",
-    Study: "bg-purple-100 text-purple-700",
-    Evening: "bg-orange-100 text-orange-700",
-    Work: "bg-yellow-100 text-yellow-700",
-    Default: "bg-gray-100 text-gray-700",
+    Fitness: "bg-green-500",
+    Morning: "bg-blue-500",
+    Study: "bg-purple-500",
+    Evening: "bg-orange-500",
+    Work: "bg-yellow-500",
+    Default: "bg-gray-500",
   };
 
   useEffect(() => {
@@ -42,7 +38,7 @@ const Habits = () => {
     fetch("https://habittracker-weld.vercel.app/habits")
       .then((res) => res.json())
       .then((habit) => {
-        setHabits(habit);
+        setHabits(habit.slice(0, 6)); // Show 6 habits in clean grid
         setLoading(false);
       })
       .catch((err) => {
@@ -85,18 +81,28 @@ const Habits = () => {
     return `${displayHour}:${minutes} ${ampm}`;
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
   const cardVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: (i) => ({
+    visible: {
       opacity: 1,
       y: 0,
       transition: {
-        delay: i * 0.1,
-        duration: 0.5,
         type: "spring",
-        stiffness: 60,
+        stiffness: 100,
+        damping: 15,
       },
-    }),
+    },
   };
 
   if (loading)
@@ -107,136 +113,157 @@ const Habits = () => {
     );
 
   return (
-    <div className=" bg-[#E3E3E3] hover:bg-white transition-color duration-800">
-      <section className="w-11/12 mx-auto py-12 sm:py-16 lg:py-20">
-        <div className="max-w-7xl mx-auto">
-          {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1B3C53] mb-4">
-              Popular Habits
-            </h2>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Explore and track the newest habits created by our community
+    <section className="w-full py-20">
+      <div className="w-11/12 max-w-7xl mx-auto">
+        {/* Header - Centered & Symmetrical */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-[var(--color-text-primary)] mb-4">
+            Popular Habits
+          </h2>
+          <p className="text-lg text-[var(--color-text-secondary)] max-w-2xl mx-auto">
+            Explore and track the newest habits created by our community
+          </p>
+        </motion.div>
+
+        {/* Cards Grid - Perfect Symmetry */}
+        {habits.length === 0 ? (
+          <div className="text-center py-20">
+            <p className="text-[var(--color-text-secondary)] text-lg">
+              No habits found. Create your first habit!
             </p>
-          </motion.div>
+          </div>
+        ) : (
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            {habits.map((habit, index) => {
+              const IconComponent = getCategoryIcon(habit.category);
+              const habitImage = getHabitImage(habit.img);
+              const category = normalizeCategory(habit.category);
 
-          {/* Cards Grid */}
-          {habits.length === 0 ? (
-            <div className="text-center py-12">
-              <p className="text-gray-600 text-lg">
-                No habits found. Create your first habit!
-              </p>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-              {habits.map((habit, index) => {
-                const IconComponent = getCategoryIcon(habit.category);
-                const habitImage = getHabitImage(habit.img);
+              return (
+                <motion.div
+                  key={habit._id}
+                  variants={cardVariants}
+                  whileHover={{
+                    y: -8,
+                    transition: { duration: 0.3 },
+                  }}
+                  className="bg-white dark:bg-[var(--color-bg-secondary)] rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group"
+                >
+                  {/* Image Section - Fixed Height */}
+                  <div className="relative h-56 overflow-hidden">
+                    <img
+                      src={habitImage}
+                      alt={habit.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                      onError={(e) => (e.target.src = DEFAULT_PLACEHOLDER)}
+                    />
 
-                return (
-                  <motion.div
-                    key={habit._id}
-                    custom={index}
-                    variants={cardVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    whileHover={{ y: -10, transition: { duration: 0.3 } }}
-                    className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group"
-                  >
-                    <div className="relative h-48 overflow-hidden">
-                      <img
-                        src={habitImage}
-                        alt={habit.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                        onError={(e) => (e.target.src = DEFAULT_PLACEHOLDER)}
-                      />
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
 
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                    {/* Category Badge - Top Left */}
+                    <div className="absolute top-4 left-4">
+                      <span
+                        className={`inline-flex items-center px-3 py-1.5 text-sm font-semibold text-white ${categoryColors[category]} rounded-full`}
+                      >
+                        {category}
+                      </span>
+                    </div>
 
-                      <div className="absolute top-4 left-4 ">
-                        <span
-                          className={`inline-block mt-2 px-5 py-2 text-sm rounded-full ${
-                            categoryColors[normalizeCategory(habit.category)]
-                          }`}
-                        >
-                          {normalizeCategory(habit.category)}
+                    {/* Icon - Top Right */}
+                    <div className="absolute top-4 right-4 w-12 h-12 bg-white/90 dark:bg-[var(--color-bg-primary)]/90 rounded-full flex items-center justify-center shadow-lg">
+                      <IconComponent className="w-6 h-6 text-[var(--color-primary-dark)]" />
+                    </div>
+                  </div>
+
+                  {/* Content Section - Consistent Padding */}
+                  <div className="p-6">
+                    {/* Title */}
+                    <h3 className="text-xl font-bold text-[var(--color-text-primary)] mb-3 line-clamp-1">
+                      {habit.title}
+                    </h3>
+
+                    {/* Description */}
+                    {habit.description && (
+                      <p className="text-sm text-[var(--color-text-secondary)] mb-4 line-clamp-2 h-10">
+                        {habit.description}
+                      </p>
+                    )}
+
+                    {/* Info Grid - Symmetrical */}
+                    <div className="space-y-3 mb-6">
+                      {/* User */}
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-[var(--color-bg-tertiary)] flex items-center justify-center flex-shrink-0">
+                          <User className="w-5 h-5 text-[var(--color-primary-dark)]" />
+                        </div>
+                        <span className="text-sm text-[var(--color-text-secondary)] truncate">
+                          {habit.name || "Anonymous"}
                         </span>
                       </div>
 
-                      <motion.div
-                        whileHover={{ scale: 1.1, rotate: 360 }}
-                        transition={{ duration: 0.6 }}
-                        className="absolute top-4 right-4 w-12 h-12 bg-white/90 rounded-full flex items-center justify-center shadow-lg"
-                      >
-                        <IconComponent className="w-6 h-6 text-gray-700" />
-                      </motion.div>
-                    </div>
-
-                    <div className="p-6">
-                      <h3 className="text-xl font-bold text-[#1B3C53] mb-2">
-                        {habit.title}
-                      </h3>
-
-                      {habit.description && (
-                        <p className="text-sm text-gray-500 mb-4 line-clamp-2">
-                          {habit.description}
-                        </p>
-                      )}
-
-                      <div className="space-y-3 mb-5">
-                        <div className="flex items-center gap-3 text-gray-600">
-                          <div className="w-8 h-8 rounded-full bg-[#E3E3E3] flex items-center justify-center">
-                            <User className="w-4 h-4 text-[#1B3C53]" />
-                          </div>
-                          <span className="text-sm truncate text-[#1B3C53]">
-                            {habit.name || "Anonymous"}
-                          </span>
+                      {/* Time */}
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-full bg-[var(--color-bg-tertiary)] flex items-center justify-center flex-shrink-0">
+                          <Clock className="w-5 h-5 text-[var(--color-primary-dark)]" />
                         </div>
-
-                        <div className="flex items-center gap-3 text-gray-600">
-                          <div className="w-8 h-8 rounded-full bg-[#E3E3E3] flex items-center justify-center">
-                            <Mail className="w-4 h-4 text-[#1B3C53]" />
-                          </div>
-                          <span className="text-sm truncate text-[#1B3C53]">
-                            {habit.email || "No email"}
-                          </span>
-                        </div>
-
-                        <div className="flex items-center gap-3 text-gray-600">
-                          <div className="w-8 h-8 rounded-full bg-[#E3E3E3] flex items-center justify-center">
-                            <Clock className="w-4 h-4 text-[#1B3C53]" />
-                          </div>
-                          <span className="text-sm text-[#1B3C53]">
-                            {formatTime(habit.reminderTime)}
-                          </span>
-                        </div>
+                        <span className="text-sm text-[var(--color-text-secondary)]">
+                          {formatTime(habit.reminderTime)}
+                        </span>
                       </div>
-
-                      <Link to={`/details/${habit._id}`}>
-                        <motion.button
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
-                          className="w-full bg-gradient-to-r from-[#234C6A] to-[#1B3C53] text-white font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2 shadow-md hover:shadow-lg hover:from-[#A3B18A] hover:to-[#234C6A]"
-                        >
-                          View Details
-                          <ChevronRight className="w-5 h-5" />
-                        </motion.button>
-                      </Link>
                     </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          )}
-        </div>
-      </section>
-    </div>
+
+                    {/* CTA Button - Full Width */}
+                    <Link to={`/details/${habit._id}`} className="block">
+                      <motion.button
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="w-full bg-gradient-to-r from-[var(--color-primary-dark)] to-[var(--color-primary-medium)] text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-shadow"
+                      >
+                        View Details
+                        <ChevronRight className="w-5 h-5" />
+                      </motion.button>
+                    </Link>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        )}
+
+        {/* View All CTA - Centered */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5 }}
+          className="text-center mt-12"
+        >
+          <Link to="/publicHabit">
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-[var(--color-secondary)] to-[var(--color-secondary-dark)] text-white font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-shadow"
+            >
+              Explore All Habits
+              <ChevronRight className="w-5 h-5" />
+            </motion.button>
+          </Link>
+        </motion.div>
+      </div>
+    </section>
   );
 };
 

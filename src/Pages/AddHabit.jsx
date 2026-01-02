@@ -14,8 +14,8 @@ import { useContext, useState } from "react";
 import { motion } from "framer-motion";
 import { AuthContext } from "../Provider/AuthProvider";
 import axios from "axios";
-import Navbar from "../Components/Navbar";
-import Footer from "../Components/Footer";
+
+
 import { toast, ToastContainer } from "react-toastify";
 
 const AddHabit = () => {
@@ -59,12 +59,8 @@ const AddHabit = () => {
   return (
     <div>
       <ToastContainer></ToastContainer>
-      <header>
-        <Navbar />
-      </header>
-
-      <main className="bg-gradient-to-br from-[#E3E3E3] via-slate-100 to-gray-100">
-        <div className="w-11/12 mx-auto flex justify-center items-center  py-12 px-4">
+      <main className="min-h-screen bg-[var(--color-bg-secondary)] transition-colors duration-300">
+        <div className="py-12 px-4">
           <div className="max-w-5xl mx-auto">
             {/* Header Section */}
             <motion.div
@@ -76,10 +72,10 @@ const AddHabit = () => {
                 <Sparkles size={20} />
                 <span className="font-semibold">Build Better Habits</span>
               </div>
-              <h2 className="text-4xl md:text-5xl lg:5xl font-bold text-[#1B3C53] mb-3">
+              <h2 className="text-4xl md:text-5xl lg:5xl font-bold text-[var(--color-text-primary)] mb-3">
                 Add New Habit
               </h2>
-              <p className="text-gray-600 text-lg">
+              <p className="text-[var(--color-text-secondary)] text-lg">
                 Start your journey to a better you, one habit at a time
               </p>
             </motion.div>
@@ -88,7 +84,7 @@ const AddHabit = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="bg-white rounded-3xl shadow-2xl overflow-hidden"
+              className="bg-[var(--color-bg-primary)] rounded-3xl shadow-2xl overflow-hidden border border-[var(--color-border)]"
             >
               <div className="grid md:grid-cols-5 gap-0">
                 {/* Left Sidebar */}
@@ -237,7 +233,7 @@ const AddHabit = () => {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.2 }}
                     >
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label className="block text-sm font-semibold text-[var(--color-text-primary)] mb-2">
                         <span className="flex items-center gap-2">
                           <Highlighter size={18} className="text-[#234C6A]" />
                           Habit Title
@@ -250,7 +246,7 @@ const AddHabit = () => {
                         required
                         onFocus={() => setFocusedField("title")}
                         onBlur={() => setFocusedField(null)}
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#456882] focus:ring-4 focus:ring-[#456882]/20 outline-none transition-all"
+                        className="w-full px-4 py-3 border-2 border-[var(--color-border)] bg-[var(--color-bg-primary)] text-[var(--color-text-primary)] rounded-xl focus:border-[#456882] focus:ring-4 focus:ring-[#456882]/20 outline-none transition-all"
                       />
                     </motion.div>
 
@@ -259,7 +255,7 @@ const AddHabit = () => {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.25 }}
                     >
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label className="block text-sm font-semibold text-[var(--color-text-primary)] mb-2">
                         <span className="flex items-center gap-2">
                           <FileText size={18} className="text-[#234C6A]" />
                           Description{" "}
@@ -272,7 +268,7 @@ const AddHabit = () => {
                         required
                         onFocus={() => setFocusedField("description")}
                         onBlur={() => setFocusedField(null)}
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#456882] focus:ring-4 focus:ring-[#456882]/20 outline-none transition-all resize-none"
+                        className="w-full px-4 py-3 border-2 border-[var(--color-border)] bg-[var(--color-bg-primary)] text-[var(--color-text-primary)] rounded-xl focus:border-[#456882] focus:ring-4 focus:ring-[#456882]/20 outline-none transition-all resize-none"
                       ></textarea>
                     </motion.div>
 
@@ -281,7 +277,7 @@ const AddHabit = () => {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.3 }}
                     >
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label className="block text-sm font-semibold text-[var(--color-text-primary)] mb-2">
                         <span className="flex items-center gap-2">
                           <Layers size={18} className="text-[#234C6A]" />
                           Category
@@ -292,7 +288,7 @@ const AddHabit = () => {
                         required
                         onFocus={() => setFocusedField("category")}
                         onBlur={() => setFocusedField(null)}
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#456882] focus:ring-4 focus:ring-[#456882]/20 outline-none transition-all appearance-none bg-white cursor-pointer"
+                        className="w-full px-4 py-3 border-2 border-[var(--color-border)] bg-[var(--color-bg-primary)] text-[var(--color-text-primary)] rounded-xl focus:border-[#456882] focus:ring-4 focus:ring-[#456882]/20 outline-none transition-all appearance-none cursor-pointer"
                       >
                         <option value="">Select a category</option>
                         {categoryOptions.map((cat) => (
@@ -308,7 +304,7 @@ const AddHabit = () => {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.35 }}
                     >
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label className="block text-sm font-semibold text-[var(--color-text-primary)] mb-2">
                         <span className="flex items-center gap-2">
                           <Clock size={18} className="text-[#234C6A]" />
                           Reminder Time
@@ -320,7 +316,7 @@ const AddHabit = () => {
                         required
                         onFocus={() => setFocusedField("time")}
                         onBlur={() => setFocusedField(null)}
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#456882] focus:ring-4 focus:ring-[#456882]/20 outline-none transition-all"
+                        className="w-full px-4 py-3 border-2 border-[var(--color-border)] bg-[var(--color-bg-primary)] text-[var(--color-text-primary)] rounded-xl focus:border-[#456882] focus:ring-4 focus:ring-[#456882]/20 outline-none transition-all"
                       />
                     </motion.div>
 
@@ -329,11 +325,11 @@ const AddHabit = () => {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.4 }}
                     >
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label className="block text-sm font-semibold text-[var(--color-text-primary)] mb-2">
                         <span className="flex items-center gap-2">
                           <Upload size={18} className="text-[#234C6A]" />
                           Image URL{" "}
-                          <span className="text-gray-400 font-normal">
+                          <span className="text-[var(--color-text-tertiary)] font-normal">
                             (optional)
                           </span>
                         </span>
@@ -344,7 +340,7 @@ const AddHabit = () => {
                         placeholder="Paste a valid image URL"
                         onFocus={() => setFocusedField("image")}
                         onBlur={() => setFocusedField(null)}
-                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-[#456882] focus:ring-4 focus:ring-[#456882]/20 outline-none transition-all"
+                        className="w-full px-4 py-3 border-2 border-[var(--color-border)] bg-[var(--color-bg-primary)] text-[var(--color-text-primary)] rounded-xl focus:border-[#456882] focus:ring-4 focus:ring-[#456882]/20 outline-none transition-all"
                       />
                     </motion.div>
 
@@ -355,9 +351,9 @@ const AddHabit = () => {
                       className="grid sm:grid-cols-2 gap-4 pt-2"
                     >
                       <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label className="block text-sm font-semibold text-[var(--color-text-primary)] mb-2">
                           <span className="flex items-center gap-2">
-                            <Mail size={16} className="text-gray-500" />
+                            <Mail size={16} className="text-[var(--color-text-secondary)]" />
                             Email
                           </span>
                         </label>
@@ -366,13 +362,13 @@ const AddHabit = () => {
                           type="email"
                           value={user?.email}
                           readOnly
-                          className="w-full px-4 py-3 border-2 bg-gray-50 border-gray-100 rounded-lg text-gray-600"
+                          className="w-full px-4 py-3 border-2 bg-[var(--color-bg-secondary)] border-[var(--color-border)] rounded-lg text-[var(--color-text-secondary)]"
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label className="block text-sm font-semibold text-[var(--color-text-primary)] mb-2">
                           <span className="flex items-center gap-2">
-                            <User size={16} className="text-gray-500" />
+                            <User size={16} className="text-[var(--color-text-secondary)]" />
                             Name
                           </span>
                         </label>
@@ -381,7 +377,7 @@ const AddHabit = () => {
                           type="text"
                           value={user?.displayName}
                           readOnly
-                          className="w-full px-4 py-3 border-2 bg-gray-50 border-gray-100 rounded-lg text-gray-600"
+                          className="w-full px-4 py-3 border-2 bg-[var(--color-bg-secondary)] border-[var(--color-border)] rounded-lg text-[var(--color-text-secondary)]"
                         />
                       </div>
                     </motion.div>
@@ -431,7 +427,7 @@ const AddHabit = () => {
               transition={{ delay: 0.6 }}
               className="mt-8 text-center"
             >
-              <p className="text-gray-500 text-sm">
+              <p className="text-[var(--color-text-secondary)] text-sm">
                 💡 Tip: Start with small, achievable habits and gradually build
                 momentum
               </p>
@@ -439,8 +435,6 @@ const AddHabit = () => {
           </div>
         </div>
       </main>
-
-      <Footer />
     </div>
   );
 };

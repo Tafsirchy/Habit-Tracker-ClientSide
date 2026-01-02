@@ -9,7 +9,7 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import app from "../firebase/firebase.config";
+import app from "../Firebase/firebase.config.js";
 import Loading from "../Components/Loading";
 
 export const AuthContext = createContext();

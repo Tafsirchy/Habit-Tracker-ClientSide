@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import Navbar from "../Components/Navbar";
-import Footer from "../Components/Footer";
+
+
 import Loading from "../Components/Loading";
 import { AuthContext } from "../Provider/AuthProvider";
 
@@ -31,12 +31,12 @@ const MyHabit = () => {
   const [loadingIds, setLoadingIds] = useState(new Set());
 
   const categoryColors = {
-    Fitness: "bg-green-100 text-green-700",
-    Morning: "bg-blue-100 text-blue-700",
-    Study: "bg-purple-100 text-purple-700",
-    Evening: "bg-orange-100 text-orange-700",
-    Work: "bg-yellow-100 text-yellow-700",
-    Default: "bg-gray-100 text-gray-700",
+    Fitness: "bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-200",
+    Morning: "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-200",
+    Study: "bg-purple-100 dark:bg-purple-900 text-purple-700 dark:text-purple-200",
+    Evening: "bg-orange-100 dark:bg-orange-900 text-orange-700 dark:text-orange-200",
+    Work: "bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-200",
+    Default: "bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)]",
   };
 
   const getCategoryColor = (rawCategory) => {
@@ -148,30 +148,28 @@ const MyHabit = () => {
   return (
     <div>
       <ToastContainer />
-      <header>
-        <Navbar />
-      </header>
+      <main className="min-h-screen bg-[var(--color-bg-secondary)] transition-colors duration-300 relative overflow-hidden">
+        {/* Animated Background Elements */}
+        <motion.div
+          animate={{
+            scale: [1, 1.2, 1],
+            opacity: [0.08, 0.15, 0.08],
+          }}
+          transition={{ duration: 8, repeat: Infinity }}
+          className="absolute top-20 left-20 w-96 h-96 bg-[#456882] rounded-full blur-3xl"
+        />
+        <motion.div
+          animate={{
+            scale: [1, 1.3, 1],
+            opacity: [0.08, 0.12, 0.08],
+          }}
+          transition={{ duration: 10, repeat: Infinity, delay: 1 }}
+          className="absolute bottom-20 right-20 w-96 h-96 bg-[#234C6A] rounded-full blur-3xl"
+        />
 
-      <main>
-        <div className="min-h-screen bg-gradient-to-br from-[#E3E3E3] via-slate-100 to-gray-100 py-12 px-4 relative overflow-hidden">
-          <motion.div
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.08, 0.15, 0.08],
-            }}
-            transition={{ duration: 8, repeat: Infinity }}
-            className="absolute top-20 left-20 w-96 h-96 bg-[#456882] rounded-full blur-3xl"
-          />
-          <motion.div
-            animate={{
-              scale: [1, 1.3, 1],
-              opacity: [0.08, 0.12, 0.08],
-            }}
-            transition={{ duration: 10, repeat: Infinity, delay: 1 }}
-            className="absolute bottom-20 right-20 w-96 h-96 bg-[#234C6A] rounded-full blur-3xl"
-          />
-
-          <div className="max-w-5xl mx-auto relative z-10">
+        {/* Content Container */}
+        <div className="relative z-10 py-12 px-4">
+          <div className="max-w-5xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -184,11 +182,11 @@ const MyHabit = () => {
               <h1 className="text-5xl  font-black text-transparent bg-clip-text bg-gradient-to-r from-[#1B3C53] via-[#234C6A] to-[#456882] mb-3">
                 My Habits
               </h1>
-              <p className="text-gray-600 text-lg mb-6">
+              <p className="text-[var(--color-text-secondary)] text-lg mb-6">
                 Track your daily habits and build lasting consistency
               </p>
 
-              <Link to="/addHabit">
+              <Link to="/dashboard/add-habit">
                 <motion.button
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.98 }}
@@ -207,42 +205,42 @@ const MyHabit = () => {
               transition={{ delay: 0.2 }}
               className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8"
             >
-              <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-200">
+              <div className="bg-[var(--color-bg-primary)] rounded-2xl p-6 shadow-lg border border-[var(--color-border)]">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-gray-500 text-sm font-medium mb-1">
+                    <p className="text-[var(--color-text-secondary)] text-sm font-medium mb-1">
                       Total Habits
                     </p>
-                    <p className="text-4xl font-bold text-[#1B3C53]">
+                    <p className="text-4xl font-bold text-[var(--color-text-primary)]">
                       {myHabits.length}
                     </p>
                   </div>
-                  <div className="w-16 h-16 bg-gradient-to-br from-[#E3E3E3] to-gray-200 rounded-2xl flex items-center justify-center">
-                    <Target className="text-[#1B3C53]" size={32} />
+                  <div className="w-16 h-16 bg-gradient-to-br from-[var(--color-bg-secondary)] to-[var(--color-bg-tertiary)] rounded-2xl flex items-center justify-center">
+                    <Target className="text-[var(--color-text-primary)]" size={32} />
                   </div>
                 </div>
               </div>
 
-              <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-200">
+              <div className="bg-[var(--color-bg-primary)] rounded-2xl p-6 shadow-lg border border-[var(--color-border)]">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-gray-500 text-sm font-medium mb-1">
+                    <p className="text-[var(--color-text-secondary)] text-sm font-medium mb-1">
                       Completed Today
                     </p>
                     <p className="text-4xl font-bold text-[#234C6A]">
                       {myHabits.filter(isCompletedToday).length}
                     </p>
                   </div>
-                  <div className="w-16 h-16 bg-gradient-to-br from-[#E3E3E3] to-gray-200 rounded-2xl flex items-center justify-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-[var(--color-bg-secondary)] to-[var(--color-bg-tertiary)] rounded-2xl flex items-center justify-center">
                     <CheckCircle className="text-[#234C6A]" size={32} />
                   </div>
                 </div>
               </div>
 
-              <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-200">
+              <div className="bg-[var(--color-bg-primary)] rounded-2xl p-6 shadow-lg border border-[var(--color-border)]">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-gray-500 text-sm font-medium mb-1">
+                    <p className="text-[var(--color-text-secondary)] text-sm font-medium mb-1">
                       Total Streak
                     </p>
                     <p className="text-4xl font-bold text-[#456882]">
@@ -252,7 +250,7 @@ const MyHabit = () => {
                       )}
                     </p>
                   </div>
-                  <div className="w-16 h-16 bg-gradient-to-br from-[#E3E3E3] to-gray-200 rounded-2xl flex items-center justify-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-[var(--color-bg-secondary)] to-[var(--color-bg-tertiary)] rounded-2xl flex items-center justify-center">
                     <Flame className="text-[#456882]" size={32} />
                   </div>
                 </div>
@@ -279,16 +277,16 @@ const MyHabit = () => {
                         exit={{ opacity: 0, x: 20 }}
                         transition={{ delay: index * 0.05 }}
                         whileHover={{ x: 4 }}
-                        className={`bg-white rounded-2xl shadow-lg border-2 overflow-hidden ${
+                        className={`bg-[var(--color-bg-primary)] rounded-2xl shadow-lg border-2 overflow-hidden ${
                           completedToday
-                            ? "border-[#456882] bg-gradient-to-r from-white to-[#E3E3E3]"
-                            : "border-gray-200 hover:border-[#456882]"
+                            ? "border-[#456882] bg-gradient-to-r from-[var(--color-bg-primary)] to-[var(--color-bg-secondary)]"
+                            : "border-[var(--color-border)] hover:border-[#456882]"
                         } transition-all`}
                       >
                         <div className="flex flex-col md:flex-row items-start md:items-center gap-4 p-6">
                           <div className="flex-1 min-w-0">
                             <div className="flex items-start gap-3 mb-3">
-                              <h3 className="text-xl font-bold text-gray-800 flex-1">
+                              <h3 className="text-xl font-bold text-[var(--color-text-primary)] flex-1">
                                 {habit.title}
                               </h3>
                               {completedToday && (
@@ -317,17 +315,17 @@ const MyHabit = () => {
                                 {formatCategory(habit.category)}
                               </span>
 
-                              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#E3E3E3] text-gray-700 rounded-full text-xs font-medium">
+                              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)] rounded-full text-xs font-medium">
                                 <Calendar size={12} />
                                 {formatDate(habit.createdAt)}
                               </span>
                             </div>
                           </div>
 
-                          <div className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-[#E3E3E3] to-gray-100 rounded-xl border border-gray-300">
+                          <div className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-[var(--color-bg-secondary)] to-[var(--color-bg-tertiary)] rounded-xl border border-[var(--color-border)]">
                             <Flame className="text-[#456882]" size={24} />
                             <div>
-                              <p className="text-xs text-gray-600 font-medium">
+                              <p className="text-xs text-[var(--color-text-secondary)] font-medium">
                                 Streak
                               </p>
                               <p className="text-2xl font-black text-[#456882]">
@@ -344,7 +342,7 @@ const MyHabit = () => {
                               disabled={completedToday || isLoading}
                               className={`px-5 py-3 rounded-xl font-semibold transition-all flex items-center gap-2 ${
                                 completedToday
-                                  ? "bg-[#E3E3E3] text-[#456882] cursor-not-allowed"
+                                  ? "bg-[var(--color-bg-secondary)] text-[#456882] cursor-not-allowed"
                                   : "bg-[#456882] text-white hover:bg-[#234C6A] shadow-md hover:shadow-lg"
                               } ${isLoading ? "opacity-70 cursor-wait" : ""}`}
                             >
@@ -372,7 +370,7 @@ const MyHabit = () => {
                               )}
                             </motion.button>
 
-                            <Link to={`/updateHabit/${habit._id}`}>
+                            <Link to={`/dashboard/update-habit/${habit._id}`}>
                               <motion.button
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.9 }}
@@ -401,7 +399,7 @@ const MyHabit = () => {
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="bg-white rounded-2xl shadow-xl p-16 text-center"
+                className="bg-[var(--color-bg-primary)] rounded-2xl shadow-xl p-16 text-center border border-[var(--color-border)]"
               >
                 <motion.div
                   animate={{ y: [0, -10, 0] }}
@@ -410,13 +408,13 @@ const MyHabit = () => {
                 >
                   <TrendingUp size={80} className="mx-auto text-gray-300" />
                 </motion.div>
-                <h3 className="text-2xl font-bold text-gray-700 mb-2">
+                <h3 className="text-2xl font-bold text-[var(--color-text-primary)] mb-2">
                   No habits yet
                 </h3>
-                <p className="text-gray-500 text-lg mb-6">
+                <p className="text-[var(--color-text-secondary)] text-lg mb-6">
                   Start building your routine and track your progress!
                 </p>
-                <Link to="/addHabit">
+                <Link to="/dashboard/add-habit">
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -435,15 +433,13 @@ const MyHabit = () => {
               transition={{ delay: 0.6 }}
               className="mt-12 text-center"
             >
-              <p className="text-gray-500">
+              <p className="text-[var(--color-text-secondary)]">
                 💪 Keep building your consistency! Every day counts. 🎯
               </p>
             </motion.div>
           </div>
         </div>
       </main>
-
-      <Footer />
     </div>
   );
 };

@@ -13,8 +13,7 @@ import {
 import { FaDumbbell } from "react-icons/fa";
 import { Link } from "react-router";
 import Loading from "../Components/Loading";
-import Navbar from "../Components/Navbar";
-import Footer from "../Components/Footer";
+
 import HabitsNotFound from "./HabitsNotFound ";
 
 const PublicHabit = () => {
@@ -114,11 +113,7 @@ const PublicHabit = () => {
 
   return (
     <div>
-      <header>
-        <Navbar />
-      </header>
-
-      <main className="bg-[#E3E3E3] hover:bg-white transition-color duration-500">
+      <main className="bg-[var(--color-bg-secondary)] dark:bg-[var(--color-bg-secondary)] transition-color duration-500">
         <div className="w-11/12 mx-auto py-12 sm:py-16 lg:py-20">
           <div className="max-w-7xl mx-auto">
             <motion.div
@@ -127,10 +122,10 @@ const PublicHabit = () => {
               transition={{ duration: 0.6 }}
               className="text-center mb-12"
             >
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1B3C53] mb-4">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[var(--color-text-primary)] mb-4">
                 All Community Habits
               </h2>
-              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              <p className="text-[var(--color-text-secondary)] text-lg max-w-2xl mx-auto">
                 Explore every habit created by users across the platform
               </p>
             </motion.div>
@@ -145,11 +140,11 @@ const PublicHabit = () => {
                 <input
                   type="text"
                   placeholder="Search habits..."
-                  className="w-full px-5 py-3.5 bg-white border border-gray-300 rounded-full focus:ring-2 focus:ring-blue-900 focus:border-transparent outline-none transition-all duration-200 text-gray-700 placeholder:text-gray-400 shadow-sm"
+                  className="w-full px-5 py-3.5 bg-white dark:bg-[var(--color-bg-tertiary)] border border-[var(--color-border)] rounded-full focus:ring-2 focus:ring-[var(--color-primary-dark)] focus:border-transparent outline-none transition-all duration-200 text-[var(--color-text-primary)] placeholder:text-[var(--color-text-tertiary)] shadow-sm"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                 />
-                <BookOpen className="absolute right-5 top-1/2 -translate-y-1/2 w-5 h-5 text-[#1B3C53] pointer-events-none" />
+                <BookOpen className="absolute right-5 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--color-primary-dark)] pointer-events-none" />
               </div>
 
               <div className="flex flex-wrap sm:flex-nowrap gap-2 justify-center">
@@ -157,8 +152,8 @@ const PublicHabit = () => {
                   onClick={() => setCategory("")}
                   className={`px-5 py-2.5 rounded-full font-medium transition-all duration-200 ${
                     category === ""
-                      ? "bg-gradient-to-r from-[#1B3C53] to-[#456882] text-white shadow-md"
-                      : "bg-white text-gray-600 border border-gray-300 hover:border-blue-900"
+                      ? "bg-gradient-to-r from-[var(--color-primary-dark)] to-[var(--color-primary-medium)] text-white shadow-md"
+                      : "bg-white dark:bg-[var(--color-bg-secondary)] text-[var(--color-primary-dark)] dark:text-[var(--color-text-primary)] border border-[var(--color-border)] hover:border-[var(--color-primary-dark)]"
                   }`}
                 >
                   All
@@ -167,8 +162,8 @@ const PublicHabit = () => {
                   onClick={() => setCategory("Morning")}
                   className={`px-5 py-2.5 rounded-full font-medium transition-all duration-200 ${
                     category === "Morning"
-                      ? "bg-gradient-to-r from-[#1B3C53] to-[#456882] text-white shadow-md"
-                      : "bg-white text-gray-600 border border-gray-300 hover:border-blue-900"
+                      ? "bg-gradient-to-r from-[var(--color-primary-dark)] to-[var(--color-primary-medium)] text-white shadow-md"
+                      : "bg-white dark:bg-[var(--color-bg-secondary)] text-[var(--color-primary-dark)] dark:text-[var(--color-text-primary)] border border-[var(--color-border)] hover:border-[var(--color-primary-dark)]"
                   }`}
                 >
                   Morning
@@ -177,8 +172,8 @@ const PublicHabit = () => {
                   onClick={() => setCategory("Fitness")}
                   className={`px-5 py-2.5 rounded-full font-medium transition-all duration-200 ${
                     category === "Fitness"
-                      ? "bg-gradient-to-r from-[#1B3C53] to-[#456882] text-white shadow-md"
-                      : "bg-white text-gray-600 border border-gray-300 hover:border-blue-900"
+                      ? "bg-gradient-to-r from-[var(--color-primary-dark)] to-[var(--color-primary-medium)] text-white shadow-md"
+                      : "bg-white dark:bg-[var(--color-bg-secondary)] text-[var(--color-primary-dark)] dark:text-[var(--color-text-primary)] border border-[var(--color-border)] hover:border-[var(--color-primary-dark)]"
                   }`}
                 >
                   Fitness
@@ -187,8 +182,8 @@ const PublicHabit = () => {
                   onClick={() => setCategory("Work")}
                   className={`px-5 py-2.5 rounded-full font-medium transition-all duration-200 ${
                     category === "Work"
-                      ? "bg-gradient-to-r from-[#1B3C53] to-[#456882] text-white shadow-md"
-                      : "bg-white text-gray-600 border border-gray-300 hover:border-blue-900"
+                      ? "bg-gradient-to-r from-[var(--color-primary-dark)] to-[var(--color-primary-medium)] text-white shadow-md"
+                      : "bg-white dark:bg-[var(--color-bg-secondary)] text-[var(--color-primary-dark)] dark:text-[var(--color-text-primary)] border border-[var(--color-border)] hover:border-[var(--color-primary-dark)]"
                   }`}
                 >
                   Work
@@ -197,8 +192,8 @@ const PublicHabit = () => {
                   onClick={() => setCategory("Evening")}
                   className={`px-5 py-2.5 rounded-full font-medium transition-all duration-200 ${
                     category === "Evening"
-                      ? "bg-gradient-to-r from-[#1B3C53] to-[#456882] text-white shadow-md"
-                      : "bg-white text-gray-600 border border-gray-300 hover:border-blue-900"
+                      ? "bg-gradient-to-r from-[var(--color-primary-dark)] to-[var(--color-primary-medium)] text-white shadow-md"
+                      : "bg-white dark:bg-[var(--color-bg-secondary)] text-[var(--color-primary-dark)] dark:text-[var(--color-text-primary)] border border-[var(--color-border)] hover:border-[var(--color-primary-dark)]"
                   }`}
                 >
                   Evening
@@ -207,8 +202,8 @@ const PublicHabit = () => {
                   onClick={() => setCategory("Study")}
                   className={`px-5 py-2.5 rounded-full font-medium transition-all duration-200 ${
                     category === "Study"
-                      ? "bg-gradient-to-r from-[#1B3C53] to-[#456882] text-white shadow-md"
-                      : "bg-white text-gray-600 border border-gray-300 hover:border-blue-9000"
+                      ? "bg-gradient-to-r from-[var(--color-primary-dark)] to-[var(--color-primary-medium)] text-white shadow-md"
+                      : "bg-white dark:bg-[var(--color-bg-secondary)] text-[var(--color-primary-dark)] dark:text-[var(--color-text-primary)] border border-[var(--color-border)] hover:border-[var(--color-primary-dark)]"
                   }`}
                 >
                   Study
@@ -225,7 +220,7 @@ const PublicHabit = () => {
                 <HabitsNotFound />
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
                 {habits.map((habit, index) => {
                   const IconComponent = getCategoryIcon(habit.category);
                   const habitImage = getHabitImage(habit.img);
@@ -239,7 +234,7 @@ const PublicHabit = () => {
                       whileInView="visible"
                       viewport={{ once: true }}
                       whileHover={{ y: -10, transition: { duration: 0.3 } }}
-                      className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group"
+                      className="bg-[var(--color-bg-primary)] dark:bg-[var(--color-bg-tertiary)] rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group border border-[var(--color-border)]"
                     >
                       {/* Image */}
                       <div className="relative h-48 overflow-hidden">
@@ -267,47 +262,47 @@ const PublicHabit = () => {
                         <motion.div
                           whileHover={{ scale: 1.1, rotate: 360 }}
                           transition={{ duration: 0.6 }}
-                          className="absolute top-4 right-4 w-12 h-12 bg-white/90 rounded-full flex items-center justify-center shadow-lg"
+                          className="absolute top-4 right-4 w-12 h-12 bg-white/90 dark:bg-[var(--color-bg-secondary)]/90 rounded-full flex items-center justify-center shadow-lg"
                         >
-                          <IconComponent className="w-6 h-6 text-gray-700" />
+                          <IconComponent className="w-6 h-6 text-[var(--color-primary-dark)]" />
                         </motion.div>
                       </div>
 
                       <div className="p-6">
-                        <h3 className="text-xl font-bold text-[#1B3C53] mb-2">
+                        <h3 className="text-xl font-bold text-[var(--color-text-primary)] mb-2">
                           {habit.title}
                         </h3>
 
                         {habit.description && (
-                          <p className="text-sm text-gray-500 mb-4 line-clamp-2">
+                          <p className="text-sm text-[var(--color-text-secondary)] mb-4 line-clamp-2">
                             {habit.description}
                           </p>
                         )}
 
                         <div className="space-y-3 mb-5">
-                          <div className="flex items-center gap-3 text-gray-600">
-                            <div className="w-8 h-8 rounded-full bg-[#E3E3E3]  flex items-center justify-center">
-                              <User className="w-4 h-4 text-[#1B3C53]" />
+                          <div className="flex items-center gap-3 text-[var(--color-text-secondary)]">
+                            <div className="w-8 h-8 rounded-full bg-[var(--color-bg-tertiary)] flex items-center justify-center">
+                              <User className="w-4 h-4 text-[var(--color-primary-dark)]" />
                             </div>
-                            <span className="text-sm truncate text-[#1B3C53]">
+                            <span className="text-sm truncate text-[var(--color-text-primary)]">
                               {habit.name || "Anonymous"}
                             </span>
                           </div>
 
-                          <div className="flex items-center gap-3 text-gray-600">
-                            <div className="w-8 h-8 rounded-full bg-[#E3E3E3]  flex items-center justify-center">
-                              <Mail className="w-4 h-4 text-[#1B3C53]" />
+                          <div className="flex items-center gap-3 text-[var(--color-text-secondary)]">
+                            <div className="w-8 h-8 rounded-full bg-[var(--color-bg-tertiary)] flex items-center justify-center">
+                              <Mail className="w-4 h-4 text-[var(--color-primary-dark)]" />
                             </div>
-                            <span className="text-sm truncate text-[#1B3C53]">
+                            <span className="text-sm truncate text-[var(--color-text-primary)]">
                               {habit.email || "No email"}
                             </span>
                           </div>
 
-                          <div className="flex items-center gap-3 text-gray-600">
-                            <div className="w-8 h-8 rounded-full bg-[#E3E3E3]  flex items-center justify-center">
-                              <Clock className="w-4 h-4 text-[#1B3C53]" />
+                          <div className="flex items-center gap-3 text-[var(--color-text-secondary)]">
+                            <div className="w-8 h-8 rounded-full bg-[var(--color-bg-tertiary)] flex items-center justify-center">
+                              <Clock className="w-4 h-4 text-[var(--color-primary-dark)]" />
                             </div>
-                            <span className="text-sm text-[#1B3C53]">
+                            <span className="text-sm text-[var(--color-text-primary)]">
                               {formatTime(habit.reminderTime)}
                             </span>
                           </div>
@@ -317,7 +312,7 @@ const PublicHabit = () => {
                           <motion.button
                             whileHover={{ scale: 1.02 }}
                             whileTap={{ scale: 0.98 }}
-                            className="w-full bg-gradient-to-r from-[#234C6A] to-[#1B3C53] text-white font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2 shadow-md hover:shadow-lg hover:from-[#A3B18A] hover:to-[#234C6A]"
+                            className="w-full bg-gradient-to-r from-[var(--color-primary-dark)] to-[var(--color-primary-medium)] text-white font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2 shadow-md hover:shadow-lg dark:hover:from-[var(--color-secondary)] dark:hover:to-[var(--color-primary-dark)]"
                           >
                             View Details
                             <ChevronRight className="w-5 h-5" />
@@ -332,10 +327,6 @@ const PublicHabit = () => {
           </div>
         </div>
       </main>
-
-      <footer>
-        <Footer />
-      </footer>
     </div>
   );
 };

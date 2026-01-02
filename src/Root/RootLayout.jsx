@@ -19,7 +19,7 @@ const RootLayout = () => {
           <Loading></Loading>
         </div>
       ) : (
-        <div className="">
+        <div className="pt-20">
           <Outlet></Outlet>
         </div>
       )}
