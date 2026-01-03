@@ -7,7 +7,7 @@ import ThemeToggle from "./ThemeToggle";
 import { LayoutDashboard, LogOut, Menu, X, ChevronDown, BookOpen, Mail, HelpCircle, User as UserIcon } from "lucide-react";
 
 const Navbar = () => {
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut, loading } = useContext(AuthContext);
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [resourcesOpen, setResourcesOpen] = React.useState(false);
   const [profileOpen, setProfileOpen] = React.useState(false);
@@ -41,6 +41,31 @@ const Navbar = () => {
     isActive
       ? "!text-white font-semibold px-3 py-2 rounded-md bg-[var(--color-secondary)] shadow-sm text-sm whitespace-nowrap"
       : "!text-white hover:bg-[var(--color-primary-light)] px-3 py-2 rounded-md transition-colors duration-200 text-sm whitespace-nowrap";
+
+  // Show minimal navbar while loading to prevent flash
+  if (loading) {
+    return (
+      <nav className="w-full bg-[var(--color-primary-dark)] shadow-lg fixed top-0 z-50">
+        <div className="w-11/12 max-w-7xl mx-auto">
+          <div className="relative flex items-center justify-between h-16 md:h-20">
+            {/* Logo */}
+            <div className="flex items-center flex-1">
+              <Link to="/" className="flex items-center gap-2">
+                <img src={logo} alt="Habit Tracker" className="w-10 h-10 md:w-12 md:h-12" />
+                <span className="text-white font-bold text-lg md:text-xl">Habit Tracker</span>
+              </Link>
+            </div>
+            
+            {/* Loading skeleton */}
+            <div className="flex items-center gap-3">
+              <ThemeToggle />
+              <div className="w-10 h-10 bg-[var(--color-bg-secondary)] animate-pulse rounded-full border-2 border-[var(--color-border)]"></div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    );
+  }
 
   return (
     <nav className="w-full bg-[var(--color-primary-dark)] shadow-lg fixed top-0 z-50">
@@ -113,7 +138,7 @@ const Navbar = () => {
               </div>
             </div>
             
-            {user && (
+            {!loading && user && (
               <>
                 <NavLink className={NavActiveStyle} to="/dashboard">
                   <span className="flex items-center gap-2">
@@ -149,7 +174,12 @@ const Navbar = () => {
             <ThemeToggle />
 
             {/* User Profile or Login Button */}
-            {user ? (
+            {loading ? (
+              // Loading skeleton - prevents flash with more visible styling
+              <div className="flex items-center gap-2">
+                <div className="w-10 h-10 bg-[var(--color-bg-secondary)] animate-pulse rounded-full border-2 border-[var(--color-border)]"></div>
+              </div>
+            ) : user ? (
               <div ref={profileRef} className="relative group">
                 <div
                   tabIndex={0}
@@ -225,7 +255,7 @@ const Navbar = () => {
                   </ul>
                 </div>
               </div>
-            ) : (
+            ) : !loading && (
               <Link
                 to="/auth/login"
                 className="bg-[var(--color-secondary)] !text-white px-6 md:px-8 py-2 hover:bg-[var(--color-secondary-dark)] border-none font-bold text-sm md:text-base rounded-lg transition-colors"
@@ -284,7 +314,7 @@ const Navbar = () => {
                 </Link>
               </div>
               
-              {user && (
+              {!loading && user && (
                 <>
                   <NavLink
                     onClick={() => setMobileMenuOpen(false)}

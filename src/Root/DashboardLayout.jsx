@@ -124,10 +124,12 @@ const DashboardLayout = () => {
                   </div>
                 </div>
 
-                <ul
-                  tabIndex={0}
-                  className={`dropdown-content menu p-3 shadow-xl bg-[var(--color-bg-primary)] rounded-xl w-64 mt-3 border border-[var(--color-border)] transition-all ${profileOpen ? 'block' : 'hidden group-hover:block'}`}
-                >
+                {/* Dropdown with padding-top to bridge the gap */}
+                <div className={`absolute right-0 pt-3 transition-all ${profileOpen ? 'block' : 'hidden group-hover:block'}`}>
+                  <ul
+                    tabIndex={0}
+                    className="dropdown-content menu p-3 shadow-xl bg-[var(--color-bg-primary)] rounded-xl w-64 border border-[var(--color-border)]"
+                  >
                   <li className="pointer-events-none bg-[var(--color-bg-secondary)] rounded-lg mb-2 p-3">
                     <div className="flex items-center gap-3">
                       {user?.photoURL ? (
@@ -182,6 +184,7 @@ const DashboardLayout = () => {
                     </button>
                   </li>
                 </ul>
+              </div>
               </div>
             </div>
           </div>

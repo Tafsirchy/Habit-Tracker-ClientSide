@@ -88,6 +88,7 @@ const UpdateHabit = () => {
         console.log(err);
       })
       .finally(() => setLoading(false));
+
   };
   return (
     <div>

@@ -374,7 +374,7 @@ const MyHabit = () => {
                               <motion.button
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.9 }}
-                                className="p-3 bg-[#234C6A] text-white rounded-xl hover:bg-[#1B3C53] shadow-md transition-all"
+                                className="px-4 py-4 bg-[#234C6A] text-white rounded-xl hover:bg-[#1B3C53] shadow-md transition-all"
                               >
                                 <Edit2 size={18} />
                               </motion.button>
@@ -384,7 +384,7 @@ const MyHabit = () => {
                               whileHover={{ scale: 1.1 }}
                               whileTap={{ scale: 0.9 }}
                               onClick={() => handleDelete(habit._id)}
-                              className="p-3 bg-red-500 text-white rounded-xl hover:bg-red-600 shadow-md transition-all"
+                              className="px-4 py-3 bg-red-500 text-white rounded-xl hover:bg-red-600 shadow-md transition-all"
                             >
                               <Trash2 size={18} />
                             </motion.button>
