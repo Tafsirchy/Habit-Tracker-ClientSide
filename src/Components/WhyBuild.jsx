@@ -33,26 +33,25 @@ const WhyBuild = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-12 lg:mb-16"
         >
-          <motion.h2
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-3xl pb-6 sm:text-4xl lg:text-5xl font-bold text-[var(--color-primary-dark)]"
+            transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            Why Build Habits?
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-            className="text-base sm:text-lg lg:text-xl max-w-3xl mx-auto text-[var(--color-primary-medium)]"
-          >
-            Habits are the foundation of success. Developing powerful habits can
-            enhance focus, save time, and accelerate your personal growth.
-          </motion.p>
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-[var(--color-primary-medium)]/10 dark:bg-[var(--color-primary-medium)]/20 border border-[var(--color-primary-medium)]/20 rounded-full mb-8">
+              <span className="w-2 h-2 bg-[var(--color-primary-medium)] rounded-full animate-pulse"></span>
+              <span className="text-xs font-black text-[var(--color-primary-medium)] uppercase tracking-[0.2em]">Foundation of Success</span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-black text-[var(--color-text-primary)] mb-8 tracking-tighter leading-[0.9]">
+              Why Build <span className="text-[var(--color-primary-medium)]">Habits</span>? <br />
+              <span className="bg-gradient-to-r from-[var(--color-primary-medium)] to-[var(--color-secondary)] bg-clip-text text-transparent">Transform Your Life</span>
+            </h2>
+            <p className="text-xl text-[var(--color-text-secondary)] max-w-2xl mx-auto leading-relaxed font-medium">
+              Habits are the foundation of success. Developing powerful habits can
+              enhance focus, save time, and accelerate your personal growth.
+            </p>
+          </motion.div>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
@@ -130,7 +129,7 @@ const WhyBuild = () => {
                       {card.icon}
                     </motion.div>
 
-                    <h3 className="text-xl sm:text-2xl font-bold mb-3 text-[var(--color-text-primary)]">
+                    <h3 className="text-lg sm:text-xl font-bold mb-3 text-[var(--color-text-primary)]">
                       {card.title}
                     </h3>
 

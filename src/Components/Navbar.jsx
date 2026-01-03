@@ -4,7 +4,7 @@ import logo from "../assets/habits (1).png";
 import { AuthContext } from "../Provider/AuthProvider";
 import { toast } from "react-toastify";
 import ThemeToggle from "./ThemeToggle";
-import { LayoutDashboard, LogOut, Menu, X, ChevronDown, BookOpen, Mail, HelpCircle } from "lucide-react";
+import { LayoutDashboard, LogOut, Menu, X, ChevronDown, BookOpen, Mail, HelpCircle, User as UserIcon } from "lucide-react";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -157,11 +157,17 @@ const Navbar = () => {
                   onClick={() => setProfileOpen(!profileOpen)}
                   className="flex items-center gap-2 p-1.5 rounded-full border-2 border-[var(--color-secondary)] cursor-pointer hover:scale-105 transition-transform"
                 >
-                  <img
-                    src={user.photoURL || "https://via.placeholder.com/150"}
-                    alt="User"
-                    className="w-8 h-8 md:w-9 md:h-9 rounded-full object-cover"
-                  />
+                  {user.photoURL ? (
+                    <img
+                      src={user.photoURL}
+                      alt="User"
+                      className="w-8 h-8 md:w-9 md:h-9 rounded-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-[var(--color-bg-secondary)] flex items-center justify-center text-[var(--color-secondary)]">
+                      <UserIcon className="w-5 h-5 md:w-6 md:h-6" />
+                    </div>
+                  )}
                 </div>
 
                 {/* Dropdown with padding-top to bridge the gap */}
@@ -173,11 +179,17 @@ const Navbar = () => {
                     {/* User Info */}
                     <li className="pointer-events-none bg-[var(--color-bg-secondary)] rounded-lg mb-2 p-3">
                       <div className="flex items-center gap-3">
-                        <img
-                          src={user.photoURL || "https://via.placeholder.com/150"}
-                          alt="Profile"
-                          className="w-12 h-12 rounded-full object-cover"
-                        />
+                        {user.photoURL ? (
+                          <img
+                            src={user.photoURL}
+                            alt="Profile"
+                            className="w-12 h-12 rounded-full object-cover"
+                          />
+                        ) : (
+                          <div className="w-12 h-12 rounded-full bg-[var(--color-bg-tertiary)] flex items-center justify-center text-[var(--color-secondary)]">
+                            <UserIcon className="w-7 h-7" />
+                          </div>
+                        )}
                         <div className="flex-1 min-w-0">
                           <p className="font-bold text-[var(--color-text-primary)] truncate">
                             {user.displayName || "User"}

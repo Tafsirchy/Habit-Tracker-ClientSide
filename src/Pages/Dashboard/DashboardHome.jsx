@@ -271,8 +271,8 @@ const DashboardHome = () => {
                     {habit.daysCompleted || 0}
                   </td>
                   <td className="py-3 px-4">
-                    <span className="px-3 py-1 rounded-full bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-200 font-semibold text-sm">
-                      {habit.currentStreak || 0} days
+                    <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-yellow-100 dark:bg-yellow-900 text-yellow-700 dark:text-yellow-200 font-semibold text-sm whitespace-nowrap">
+                      {habit.currentStreak || 0}<span className="hidden sm:inline"> days</span><span className="sm:hidden">d</span>
                     </span>
                   </td>
                 </tr>

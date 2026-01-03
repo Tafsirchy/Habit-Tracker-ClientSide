@@ -130,18 +130,20 @@ const Profile = () => {
                           whileHover={{ scale: 1.05 }}
                           className="w-full h-full rounded-full overflow-hidden border-4 border-white/30 shadow-2xl"
                         >
-                          <img
-                            src={
-                              photoURL ||
-                              user?.photoURL ||
-                              "https://via.placeholder.com/200"
-                            }
-                            alt="Profile"
-                            className="w-full h-full object-cover"
-                            onError={(e) => {
-                              e.target.src = "https://via.placeholder.com/200";
-                            }}
-                          />
+                          {photoURL || user?.photoURL ? (
+                            <img
+                              src={photoURL || user?.photoURL}
+                              alt="Profile"
+                              className="w-full h-full object-cover"
+                              onError={(e) => {
+                                e.target.src = "https://via.placeholder.com/200";
+                              }}
+                            />
+                          ) : (
+                            <div className="w-full h-full bg-white/10 backdrop-blur-md flex items-center justify-center text-white/40">
+                              <User size={80} strokeWidth={1.5} />
+                            </div>
+                          )}
                         </motion.div>
                         <motion.div
                           whileHover={{ scale: 1.1 }}

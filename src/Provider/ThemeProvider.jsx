@@ -20,6 +20,14 @@ const ThemeProvider = ({ children }) => {
   useEffect(() => {
     // Apply theme to document
     document.documentElement.setAttribute("data-theme", theme);
+    
+    // Add/remove 'dark' class for Tailwind dark mode
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+    
     // Save to localStorage
     localStorage.setItem("habit-tracker-theme", theme);
   }, [theme]);

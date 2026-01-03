@@ -6,7 +6,7 @@ import { Mail, MapPin } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#0e2d43] dark:bg-gray-900 text-white ">
+    <footer className="bg-[var(--color-primary-dark)] text-white ">
       <div className="footer sm:footer-horizontal p-10 w-11/12 mx-auto ">
         <aside>
           <img className="w-20 h-20" src={logo} alt="" />

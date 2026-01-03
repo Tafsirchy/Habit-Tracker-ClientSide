@@ -131,7 +131,7 @@ const HabitSlider = () => {
                 </motion.div>
 
                 <motion.h1
-                  className="text-2xl sm:text-3xl lg:text-4xl font-bold min-h-[60px] drop-shadow-lg"
+                  className="text-xl sm:text-2xl lg:text-3xl font-bold min-h-[50px] drop-shadow-lg"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.6 }}
@@ -368,12 +368,12 @@ const HabitSlider = () => {
                 </motion.div>
 
                 <motion.h1
-                  className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-2 text-gray-900 dark:text-white"
+                  className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2 text-gray-900 dark:text-white"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.6 }}
                 >
-                  <div className="min-h-[50px] sm:min-h-[60px]">
+                  <div className="min-h-[40px] sm:min-h-[50px]">
                     <Typewriter
                       words={[
                         "Smart Habit Coach",
@@ -504,7 +504,7 @@ const HabitSlider = () => {
                 </motion.div>
 
                 <motion.h1
-                  className="text-2xl sm:text-3xl lg:text-4xl font-bold min-h-[60px]"
+                  className="text-xl sm:text-2xl lg:text-3xl font-bold min-h-[50px]"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.6 }}

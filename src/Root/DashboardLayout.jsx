@@ -103,11 +103,17 @@ const DashboardLayout = () => {
                   onClick={() => setProfileOpen(!profileOpen)}
                   className="flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-[var(--color-primary-light)] transition-colors cursor-pointer"
                 >
-                  <img
-                    src={user?.photoURL || "https://via.placeholder.com/150"}
-                    alt="Profile"
-                    className="w-8 h-8 rounded-full object-cover border-2 border-[var(--color-secondary)]"
-                  />
+                  {user?.photoURL ? (
+                    <img
+                      src={user?.photoURL}
+                      alt="Profile"
+                      className="w-8 h-8 rounded-full object-cover border-2 border-[var(--color-secondary)]"
+                    />
+                  ) : (
+                    <div className="w-8 h-8 rounded-full bg-[var(--color-bg-secondary)] dark:bg-[var(--color-bg-tertiary)] flex items-center justify-center border-2 border-[var(--color-secondary)] text-[var(--color-secondary)]">
+                      <User className="w-5 h-5" />
+                    </div>
+                  )}
                   <div className="hidden md:block text-left">
                     <p className="text-white text-sm font-semibold truncate max-w-[150px]">
                       {user?.displayName || "User"}
@@ -124,11 +130,17 @@ const DashboardLayout = () => {
                 >
                   <li className="pointer-events-none bg-[var(--color-bg-secondary)] rounded-lg mb-2 p-3">
                     <div className="flex items-center gap-3">
-                      <img
-                        src={user?.photoURL || "https://via.placeholder.com/150"}
-                        alt="Profile"
-                        className="w-12 h-12 rounded-full object-cover"
-                      />
+                      {user?.photoURL ? (
+                        <img
+                          src={user?.photoURL}
+                          alt="Profile"
+                          className="w-12 h-12 rounded-full object-cover"
+                        />
+                      ) : (
+                        <div className="w-12 h-12 rounded-full bg-[var(--color-bg-tertiary)] flex items-center justify-center text-[var(--color-secondary)]">
+                          <User className="w-7 h-7" />
+                        </div>
+                      )}
                       <div className="flex-1 min-w-0">
                         <p className="font-bold text-[var(--color-text-primary)] truncate">
                           {user?.displayName || "User"}

@@ -26,7 +26,7 @@ const Home = () => {
             {/* All Content Sections - Consistent Spacing */}
             <div className="">
                 {/* Section 1: Popular Habits */}
-                <div className="w-full bg-gradient-to-b from-gray-50 to-white dark:from-[var(--color-bg-secondary)] dark:to-[var(--color-bg-primary)] relative z-10">
+                <div className="w-full bg-gradient-to-b from-[var(--color-bg-secondary)] to-[var(--color-bg-primary)] relative z-10">
                     <Habits />
                 </div>
                 
@@ -46,17 +46,17 @@ const Home = () => {
 
             <div className="">
                 {/* Section 5: Featured Categories */}
-                <div className="w-full bg-white dark:bg-[var(--color-bg-primary)] relative z-10">
+                <div className="w-full bg-[var(--color-bg-primary)] relative z-10">
                     <FeaturedCategories />
                 </div>
                 
                 {/* Section 6: How Habit Building Works */}
-                <div className="w-full bg-white dark:bg-[var(--color-bg-primary)] relative z-10">
+                <div className="w-full bg-[var(--color-bg-primary)] relative z-10">
                     <HabitProcess />
                 </div>
                 
                 {/* Section 7: Daily Habit Challenge */}
-                <div className="w-full bg-gradient-to-b from-gray-50 to-white dark:from-[var(--color-bg-secondary)] dark:to-[var(--color-bg-primary)] relative z-10">
+                <div className="w-full bg-gradient-to-b from-[var(--color-bg-secondary)] to-[var(--color-bg-primary)] relative z-10">
                     <DailyHabitChallenge />
                 </div>
                 
@@ -66,7 +66,7 @@ const Home = () => {
                 </div>
                 
                 {/* Section 9: FAQ */}
-                <div className="w-full bg-white dark:bg-[var(--color-bg-primary)] relative z-10">
+                <div className="w-full bg-[var(--color-bg-primary)] relative z-10">
                     <FAQ />
                 </div>
                 

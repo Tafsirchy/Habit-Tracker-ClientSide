@@ -19,289 +19,192 @@ const Newsletter = () => {
   };
 
   return (
-    <section className="relative w-full py-20 overflow-hidden bg-[var(--color-bg-secondary)] transition-colors duration-300">
-      {/* Subtle Background Gradients */}
-      <div className="absolute inset-0 overflow-hidden opacity-30">
-        <motion.div
-          animate={{
-            scale: [1, 1.1, 1],
-            opacity: [0.2, 0.3, 0.2],
+    <section className="relative w-full py-20 overflow-hidden bg-[var(--color-bg-primary)] dark:bg-[var(--color-bg-primary)] transition-colors duration-500">
+      {/* Premium Background Graphics - Enhanced */}
+      <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.07] pointer-events-none">
+        <div 
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `radial-gradient(circle at 1.5px 1.5px, var(--color-primary-medium) 1.5px, transparent 0)`,
+            backgroundSize: "60px 60px"
           }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-slate-300 to-slate-400 dark:from-slate-700 dark:to-slate-800 rounded-full blur-3xl"
-        />
-        <motion.div
-          animate={{
-            scale: [1.1, 1, 1.1],
-            opacity: [0.2, 0.3, 0.2],
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-br from-slate-300 to-slate-400 dark:from-slate-700 dark:to-slate-800 rounded-full blur-3xl"
         />
       </div>
 
-      {/* Floating Particles */}
-      {[...Array(12)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-1 h-1 bg-slate-400 dark:bg-slate-600 rounded-full opacity-30"
-          style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-          }}
-          animate={{
-            y: [0, -30, 0],
-            opacity: [0.1, 0.3, 0.1],
-          }}
-          transition={{
-            duration: 3 + Math.random() * 2,
-            repeat: Infinity,
-            delay: Math.random() * 2,
-          }}
-        />
-      ))}
+      {/* Floating Dynamic Particles/Orbs */}
+      <motion.div
+        animate={{
+          y: [0, -40, 0],
+          x: [0, 30, 0],
+          scale: [1, 1.2, 1],
+        }}
+        transition={{ duration: 15, repeat: Infinity }}
+        className="absolute -top-24 -right-24 w-96 h-96 bg-[var(--color-primary-medium)] opacity-10 blur-[120px] rounded-full"
+      />
+      <motion.div
+        animate={{
+          y: [0, 40, 0],
+          x: [0, -30, 0],
+          scale: [1.2, 1, 1.2],
+        }}
+        transition={{ duration: 18, repeat: Infinity }}
+        className="absolute -bottom-24 -left-24 w-80 h-80 bg-[var(--color-secondary)] opacity-10 blur-[100px] rounded-full"
+      />
 
-      <div className="relative z-10 w-11/12 max-w-5xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          {/* Main Card with Gradient Border */}
-          <div className="relative group">
-            {/* Gradient Border Effect */}
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-600 via-pink-500 to-blue-500 rounded-3xl opacity-75 dark:opacity-50 group-hover:opacity-100 blur transition duration-500"></div>
-            
-            {/* Main Content Card */}
-            <div className="relative bg-[var(--color-bg-primary)] rounded-3xl shadow-2xl p-10 md:p-12 border border-[var(--color-border)]">
+      <div className="relative z-10 w-11/12 max-w-7xl mx-auto px-4">
+        <div className="flex flex-col lg:flex-row gap-20 items-center">
+          {/* Main Subscription Card with Premium Glassmorphism */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="w-full lg:w-3/5"
+          >
+            <div className={`relative p-10 lg:p-16 rounded-[3rem] bg-[var(--color-bg-secondary)] dark:bg-[var(--color-bg-secondary)]/50 backdrop-blur-3xl border-2 border-[var(--color-border)] shadow-2xl transition-all duration-700 overflow-hidden group`}>
+              {/* Internal Gradient Glow */}
+              <div className="absolute -top-[20%] -right-[20%] w-[400px] h-[400px] bg-gradient-to-br from-[var(--color-primary-medium)]/10 to-transparent rounded-full blur-[80px]"></div>
               
-              {/* Decorative Elements */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-slate-200/30 to-slate-300/30 dark:from-slate-700/20 dark:to-slate-800/20 rounded-full blur-2xl"></div>
-              <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-br from-slate-200/30 to-slate-300/30 dark:from-slate-700/20 dark:to-slate-800/20 rounded-full blur-2xl"></div>
+              <div className="relative z-10">
+                <div className="inline-flex items-center gap-3 px-4 py-2 bg-[var(--color-primary-medium)]/10 dark:bg-[var(--color-primary-medium)]/20 border border-[var(--color-primary-medium)]/20 rounded-full mb-8">
+                  <span className="w-2 h-2 bg-[var(--color-primary-medium)] rounded-full animate-pulse"></span>
+                  <span className="text-[10px] font-black text-[var(--color-primary-medium)] uppercase tracking-[0.3em]">Insights Terminal active</span>
+                </div>
 
-              {/* Header Section */}
-              <div className="text-center mb-10 relative z-10">
-                {/* Icon with Pulse Animation */}
-                <motion.div
-                  animate={{ 
-                    scale: [1, 1.05, 1],
-                  }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-purple-500 via-pink-500 to-blue-500 rounded-2xl mb-6 shadow-lg relative"
-                >
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-500 via-pink-500 to-blue-500 rounded-2xl blur-md opacity-50"></div>
-                  <Mail className="w-10 h-10 text-white relative z-10" />
-                </motion.div>
-
-                {/* Badge */}
-                <motion.div
-                  initial={{ scale: 0, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ delay: 0.2, type: "spring", bounce: 0.5 }}
-                  className="inline-block mb-4"
-                >
-                  <div className="px-4 py-2 bg-gradient-to-r from-purple-100 to-blue-100 dark:from-purple-900/30 dark:to-blue-900/30 rounded-full border border-purple-200 dark:border-purple-800/50">
-                    <span className="text-purple-700 dark:text-purple-300 font-semibold text-sm flex items-center gap-2">
-                      <Sparkles className="w-4 h-4" />
-                      JOIN 50,000+ SUBSCRIBERS
-                    </span>
-                  </div>
-                </motion.div>
-
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-                  Stay <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-pink-500 to-blue-500">Connected</span>
+                <h2 className="text-4xl md:text-5xl font-black text-[var(--color-text-primary)] mb-6 tracking-tighter leading-[0.9]">
+                  Level Up Your <br />
+                  <span className="bg-gradient-to-r from-[var(--color-primary-medium)] to-secondary bg-clip-text text-transparent italic">Biological Code</span>
                 </h2>
-                <p className="text-gray-600 dark:text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
-                  Get exclusive tips, early access to new features, and join a community of habit builders leveling up their lives
+                
+                <p className="text-lg text-[var(--color-text-secondary)] font-medium max-w-xl mb-10 leading-relaxed">
+                  Join 50,000+ elite performers receiving weekly behavioral science 
+                  debriefs and exclusive habit-hacking protocols.
                 </p>
-              </div>
 
-              {/* Form or Success Message - Fixed Height */}
-              <div className="min-h-[220px] flex items-center justify-center relative z-10">
-                <AnimatePresence mode="wait">
+                {/* Modern Floating Input Group */}
+                <form onSubmit={handleSubmit} className="relative max-w-xl">
                   {!isSubmitted ? (
-                    <motion.form
-                      key="form"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      onSubmit={handleSubmit}
-                      className="w-full max-w-2xl"
+                    <motion.div
+                      animate={{
+                        boxShadow: isFocused
+                          ? "0 20px 40px -15px rgba(var(--color-primary-medium-rgb), 0.2)"
+                          : "0 10px 20px -10px rgba(0, 0, 0, 0.1)",
+                      }}
+                      className="flex flex-col sm:flex-row gap-3 p-3 bg-[var(--color-bg-primary)] dark:bg-[var(--color-bg-tertiary)] backdrop-blur-xl rounded-[2.5rem] border-2 border-[var(--color-border)] shadow-2xl transition-all duration-500 group/input"
                     >
-                      {/* Input Group with Glassmorphism */}
-                      <motion.div
-                        animate={{
-                          boxShadow: isFocused
-                            ? "0 0 0 3px rgba(168, 85, 247, 0.1)"
-                            : "0 0 0 0px rgba(168, 85, 247, 0)",
-                        }}
-                        className="flex flex-col sm:flex-row gap-3 p-2 bg-gray-50/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-200 dark:border-gray-700 mb-6"
-                      >
-                        <div className="relative flex-1">
-                          <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400 dark:text-gray-500" />
-                          <input
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            onFocus={() => setIsFocused(true)}
-                            onBlur={() => setIsFocused(false)}
-                            placeholder="Enter your email address"
-                            required
-                            className="w-full pl-12 pr-4 py-4 bg-transparent text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 rounded-xl focus:outline-none"
-                          />
-                        </div>
-
-                        <motion.button
-                          type="submit"
-                          whileHover={{ scale: 1.02 }}
-                          whileTap={{ scale: 0.98 }}
-                          className="group px-8 py-4 bg-gradient-to-r from-purple-600 via-pink-500 to-blue-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all whitespace-nowrap flex items-center justify-center gap-2 relative overflow-hidden"
-                        >
-                          <span className="relative z-10">Subscribe</span>
-                          <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
-                          <div className="absolute inset-0 bg-gradient-to-r from-purple-700 via-pink-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        </motion.button>
-                      </motion.div>
-
-                      {/* Trust Badges */}
-                      <div className="flex flex-wrap items-center justify-center gap-6 text-gray-600 dark:text-gray-400 text-sm">
-                        <motion.div 
-                          whileHover={{ scale: 1.05 }}
-                          className="flex items-center gap-2"
-                        >
-                          <div className="w-5 h-5 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
-                            <CheckCircle className="w-3.5 h-3.5 text-green-600 dark:text-green-400" />
-                          </div>
-                          <span>100% Free</span>
-                        </motion.div>
-                        <motion.div 
-                          whileHover={{ scale: 1.05 }}
-                          className="flex items-center gap-2"
-                        >
-                          <div className="w-5 h-5 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
-                            <CheckCircle className="w-3.5 h-3.5 text-green-600 dark:text-green-400" />
-                          </div>
-                          <span>Unsubscribe anytime</span>
-                        </motion.div>
-                        <motion.div 
-                          whileHover={{ scale: 1.05 }}
-                          className="flex items-center gap-2"
-                        >
-                          <div className="w-5 h-5 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
-                            <CheckCircle className="w-3.5 h-3.5 text-green-600 dark:text-green-400" />
-                          </div>
-                          <span>No spam</span>
-                        </motion.div>
+                      <div className="flex-1 flex items-center px-6 gap-4 border-r-0 sm:border-r border-[var(--color-border)] mb-2 sm:mb-0">
+                        <Mail className="w-6 h-6 text-[var(--color-primary-medium)] group-focus-within/input:scale-110 transition-transform" />
+                        <input
+                          type="email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          onFocus={() => setIsFocused(true)}
+                          onBlur={() => setIsFocused(false)}
+                          placeholder="Your professional email"
+                          className="w-full bg-transparent border-none focus:outline-none focus:ring-0 text-[var(--color-text-primary)] font-black text-lg placeholder:text-[var(--color-text-tertiary)]"
+                          required
+                        />
                       </div>
-                    </motion.form>
+                      <motion.button
+                        whileHover={{ scale: 1.05, y: -2 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="group relative px-10 py-5 bg-[var(--color-primary-dark)] text-white font-black rounded-[2rem] shadow-xl overflow-hidden transition-all text-lg"
+                      >
+                        <span className="relative z-10 flex items-center justify-center gap-3">
+                            Initialize Sync
+                            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                        </span>
+                        <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-primary-medium)] to-[var(--color-primary-dark)] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      </motion.button>
+                    </motion.div>
                   ) : (
                     <motion.div
-                      key="success"
-                      initial={{ opacity: 0, scale: 0.8 }}
+                      initial={{ opacity: 0, scale: 0.9 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.8 }}
-                      className="text-center py-8"
+                      className="p-8 bg-green-500/10 border-2 border-green-500/30 rounded-[2.5rem] flex items-center gap-6"
                     >
-                      <motion.div
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        transition={{ type: "spring", bounce: 0.6 }}
-                        className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full mb-5 shadow-lg relative"
-                      >
-                        <div className="absolute inset-0 bg-gradient-to-br from-green-400 to-emerald-500 rounded-full blur-md opacity-50"></div>
-                        <CheckCircle className="w-10 h-10 text-white relative z-10" />
-                      </motion.div>
-                      <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-3">
-                        Welcome Aboard! 🎉
-                      </h3>
-                      <p className="text-gray-600 dark:text-gray-300 text-lg">
-                        Check your inbox for confirmation
-                      </p>
+                      <div className="w-16 h-16 bg-green-500 rounded-2xl flex items-center justify-center shadow-xl">
+                        <CheckCircle className="w-10 h-10 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="text-2xl font-black text-green-600 dark:text-green-400 mb-1 leading-none">Sync Initialized</h3>
+                        <p className="text-lg text-green-700/70 dark:text-green-400/60 font-medium">Verify your uplink to begin protocols.</p>
+                      </div>
                     </motion.div>
                   )}
-                </AnimatePresence>
-              </div>
+                </form>
 
-              {/* Benefits Grid - Equal Height Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mt-12 relative z-10">
-                {[
-                  {
-                    icon: Gift,
-                    title: "Exclusive Content",
-                    description: "Access premium templates and guides",
-                    gradient: "from-purple-500 to-pink-500",
-                    bgGradient: "from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20",
-                  },
-                  {
-                    icon: Bell,
-                    title: "Weekly Updates",
-                    description: "Fresh tips delivered every Monday",
-                    gradient: "from-blue-500 to-cyan-500",
-                    bgGradient: "from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20",
-                  },
-                  {
-                    icon: Sparkles,
-                    title: "Early Access",
-                    description: "Be first to try new features",
-                    gradient: "from-orange-500 to-yellow-500",
-                    bgGradient: "from-orange-50 to-yellow-50 dark:from-orange-900/20 dark:to-yellow-900/20",
-                  },
-                ].map((benefit, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    whileHover={{ y: -5 }}
-                    className="flex"
-                  >
-                    <div className={`flex flex-col w-full bg-gradient-to-br ${benefit.bgGradient} rounded-2xl p-6 text-center border border-gray-200/50 dark:border-gray-700/50 backdrop-blur-sm transition-all duration-300 hover:shadow-lg`}>
-                      <div className={`inline-flex items-center justify-center w-14 h-14 bg-gradient-to-br ${benefit.gradient} rounded-xl mb-4 mx-auto shadow-md relative group-hover:scale-110 transition-transform`}>
-                        <div className={`absolute inset-0 bg-gradient-to-br ${benefit.gradient} rounded-xl blur-md opacity-50`}></div>
-                        <benefit.icon className="w-7 h-7 text-white relative z-10" />
+                {/* Social Proof with Avatars */}
+                <div className="mt-16 pt-10 border-t border-[var(--color-border)] flex items-center gap-6">
+                  <div className="flex -space-x-4">
+                    {[1, 5, 12, 18, 22].map(i => (
+                      <div key={i} className="w-12 h-12 rounded-full border-4 border-[var(--color-bg-secondary)] bg-gray-200 overflow-hidden shadow-xl hover:z-10 hover:scale-110 transition-transform cursor-pointer">
+                        <img src={`https://i.pravatar.cc/150?img=${i+30}`} alt="User" />
                       </div>
-                      <h4 className="text-base font-bold text-gray-900 dark:text-white mb-2">
-                        {benefit.title}
-                      </h4>
-                      <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                        {benefit.description}
-                      </p>
+                    ))}
+                    <div className="w-12 h-12 rounded-full border-4 border-[var(--color-bg-secondary)] bg-[var(--color-primary-medium)] flex items-center justify-center text-white text-[10px] font-black shadow-xl">
+                      +50K
                     </div>
-                  </motion.div>
-                ))}
+                  </div>
+                  <p className="text-sm font-black text-[var(--color-text-tertiary)] uppercase tracking-widest leading-none">
+                    Verified Global Agents <br />
+                    <span className="text-[var(--color-success)] text-[10px]">99.8% Protocol Saturation</span>
+                  </p>
+                </div>
               </div>
-            </div>
-          </div>
-
-          {/* Social Proof */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-            className="text-center mt-8"
-          >
-            <div className="inline-flex items-center gap-3 px-6 py-3 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md rounded-full border border-gray-200 dark:border-gray-800 shadow-lg">
-              <div className="flex -space-x-2">
-                {[1, 5, 7, 10, 12].map((img) => (
-                  <motion.img
-                    key={img}
-                    whileHover={{ scale: 1.2, zIndex: 10 }}
-                    src={`https://i.pravatar.cc/100?img=${img}`}
-                    alt="User"
-                    className="w-8 h-8 rounded-full border-2 border-white dark:border-gray-900 transition-transform"
-                  />
-                ))}
-              </div>
-              <div className="h-8 w-px bg-gray-300 dark:bg-gray-700"></div>
-              <p className="text-sm text-gray-700 dark:text-gray-300">
-                <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-blue-600">50,000+</span> subscribers
-              </p>
             </div>
           </motion.div>
-        </motion.div>
+
+          {/* Improved Benefit Cards Grid */}
+          <div className="w-full lg:w-2/5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6">
+            {[
+              {
+                icon: Gift,
+                title: "Exclusive Content",
+                desc: "Access premium templates and guides",
+                bgGradient: "from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20",
+              },
+              {
+                icon: Bell,
+                title: "Weekly Updates",
+                desc: "Fresh tips delivered every Monday",
+                bgGradient: "from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20",
+              },
+              {
+                icon: Sparkles,
+                title: "Early Access",
+                desc: "Be first to try new features",
+                bgGradient: "from-orange-50 to-yellow-50 dark:from-orange-900/20 dark:to-yellow-900/20",
+              },
+            ].map((benefit, index) => {
+              const Icon = benefit.icon;
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
+                  whileHover={{ scale: 1.05, x: 10 }}
+                  className={`group relative p-6 rounded-[2rem] bg-gradient-to-br ${benefit.bgGradient} border-2 border-[var(--color-border)] shadow-xl transition-all duration-500 overflow-hidden`}
+                >
+                  {/* Glass Card Background Overlay */}
+                  <div className="absolute inset-0 bg-white/5 dark:bg-black/5 backdrop-blur-md opacity-20 group-hover:opacity-40 transition-opacity"></div>
+                  
+                  <div className="relative z-10 flex items-center gap-6">
+                    <div className="w-14 h-14 bg-white dark:bg-[var(--color-bg-tertiary)] rounded-2xl flex items-center justify-center shadow-2xl group-hover:rotate-6 transition-transform group-hover:scale-110 shrink-0">
+                      <Icon className="w-7 h-7 text-[var(--color-primary-medium)]" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-black text-[var(--color-text-primary)] mb-1 tracking-tighter leading-none">{benefit.title}</h3>
+                      <p className="text-sm text-[var(--color-text-secondary)] font-medium leading-tight">{benefit.desc}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </section>
   );

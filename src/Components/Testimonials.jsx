@@ -52,299 +52,200 @@ const Testimonials = () => {
   const CurrentIcon = testimonials[currentIndex].icon;
 
   return (
-    <section className="w-full flex items-center justify-center py-20 bg-[var(--color-bg-secondary)] transition-colors duration-300 relative overflow-hidden">
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
+    <section className="w-full min-h-screen flex items-center justify-center py-16 bg-[var(--color-bg-primary)] dark:bg-[var(--color-bg-primary)] transition-colors duration-500 relative overflow-hidden">
+      {/* Cinematic Background - Enhanced */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
           animate={{
-            scale: [1, 1.2, 1],
-            rotate: [0, 90, 0],
-            opacity: [0.3, 0.5, 0.3],
+            scale: [1, 1.1, 1],
+            opacity: [0.1, 0.2, 0.1],
           }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-br from-purple-400/30 to-pink-400/30 dark:from-purple-500/20 dark:to-pink-500/20 rounded-full blur-3xl"
+          transition={{ duration: 15, repeat: Infinity }}
+          className="absolute top-0 left-1/4 w-[800px] h-[800px] bg-[var(--color-primary-medium)] rounded-full blur-[150px]"
         />
         <motion.div
           animate={{
-            scale: [1.2, 1, 1.2],
-            rotate: [90, 0, 90],
-            opacity: [0.3, 0.5, 0.3],
+            scale: [1.1, 1, 1.1],
+            opacity: [0.1, 0.2, 0.1],
           }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-          className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-to-br from-blue-400/30 to-cyan-400/30 dark:from-blue-500/20 dark:to-cyan-500/20 rounded-full blur-3xl"
+          transition={{ duration: 18, repeat: Infinity }}
+          className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-secondary rounded-full blur-[120px]"
+        />
+        
+        {/* Animated Grid Overlay */}
+        <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.07]"
+             style={{
+               backgroundImage: `linear-gradient(var(--color-border) 1px, transparent 1px), linear-gradient(90deg, var(--color-border) 1px, transparent 1px)`,
+               backgroundSize: '100px 100px'
+             }}
         />
       </div>
 
-      {/* Floating Particles */}
-      {[...Array(20)].map((_, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-1 h-1 bg-purple-400/50 dark:bg-white/30 rounded-full"
-          style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-          }}
-          animate={{
-            y: [0, -30, 0],
-            opacity: [0, 1, 0],
-          }}
-          transition={{
-            duration: 3 + Math.random() * 2,
-            repeat: Infinity,
-            delay: Math.random() * 2,
-          }}
-        />
-      ))}
-
-      <div className="w-11/12 max-w-7xl mx-auto relative z-10">
-        {/* Header with Animation */}
+      <div className="w-11/12 max-w-7xl mx-auto relative z-10 px-4">
+        {/* Modern Section Header */}
         <motion.div
           initial={{ opacity: 0, y: -50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, type: "spring" }}
-          className="text-center mb-16"
+          transition={{ duration: 0.8 }}
+          className="text-center mb-6"
         >
-          <motion.div
-            animate={{ rotate: [0, 360] }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            className="inline-block mb-6"
-          >
-            <div className="w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center shadow-2xl">
-              <Sparkles className="w-8 h-8 text-white" />
-            </div>
-          </motion.div>
+          <div className="inline-flex items-center gap-3 px-5 py-2.5 bg-white/5 dark:bg-white/5 backdrop-blur-xl border border-white/10 rounded-full mb-8 shadow-2xl">
+            <span className="w-2 h-2 bg-yellow-500 rounded-full animate-pulse"></span>
+            <span className="text-[10px] font-black text-[var(--color-text-primary)] uppercase tracking-[0.4em]">Validation Matrix active</span>
+          </div>
           
-          <h2 className="text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-gray-900 via-purple-600 to-gray-900 dark:from-white dark:via-purple-200 dark:to-white mb-4">
-            Success Stories
+          <h2 className="text-3xl md:text-5xl font-black text-[var(--color-text-primary)] mb-6 tracking-tighter leading-[0.85]">
+            Verified <br />
+            <span className="bg-gradient-to-r from-[var(--color-primary-medium)] via-white to-secondary bg-clip-text text-transparent italic drop-shadow-sm">Transformations</span>
           </h2>
-          <p className="text-[var(--color-text-secondary)] dark:text-purple-200 text-xl max-w-3xl mx-auto leading-relaxed">
-            Join thousands transforming their lives, one habit at a time
+          <p className="text-lg text-[var(--color-text-secondary)] font-medium max-w-2xl mx-auto leading-relaxed">
+            Real-time synchronization logs from elite performers across the 
+            global behavioral network.
           </p>
         </motion.div>
 
-        {/* 3D Card Grid Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-          {/* Side Cards (Hidden on Mobile) */}
-          <div className="hidden lg:block">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={`prev-${currentIndex}`}
-                initial={{ opacity: 0, x: -100, rotateY: -45 }}
-                animate={{ opacity: 0.4, x: 0, rotateY: -15 }}
-                exit={{ opacity: 0, x: -100 }}
-                transition={{ duration: 0.5 }}
-                className="transform perspective-1000 hover:opacity-60 transition-opacity cursor-pointer"
+        {/* 3D Floating Carousel Structure */}
+        <div className="relative perspective-2000 py-10">
+          <div className="flex items-center justify-center gap-12 lg:gap-24 relative">
+            
+            {/* Nav Controls - Premium Floating Glass */}
+            <div className="absolute left-0 top-1/2 -translate-y-1/2 z-30 hidden xl:block">
+              <motion.button
+                whileHover={{ scale: 1.1, x: -10 }}
+                whileTap={{ scale: 0.9 }}
                 onClick={() => paginate(-1)}
+                className="w-16 h-16 bg-white/5 dark:bg-white/5 backdrop-blur-3xl border-2 border-white/10 rounded-[1.5rem] flex items-center justify-center text-[var(--color-text-primary)] shadow-2xl hover:border-[var(--color-primary-medium)]/50 transition-colors"
+                aria-label="Previous Log"
               >
-                <div className="bg-gradient-to-br from-white/90 to-white/70 dark:from-white/10 dark:to-white/5 backdrop-blur-xl rounded-3xl p-6 border border-gray-200 dark:border-white/10 shadow-2xl h-64">
-                  <div className="flex items-center gap-3 mb-4">
-                    <img
-                      src={testimonials[(currentIndex - 1 + testimonials.length) % testimonials.length].image}
-                      alt="Previous"
-                      className="w-12 h-12 rounded-xl object-cover"
-                    />
-                    <div>
-                      <h4 className="text-[var(--color-text-primary)] font-bold text-sm">
-                        {testimonials[(currentIndex - 1 + testimonials.length) % testimonials.length].name}
-                      </h4>
-                      <p className="text-purple-600 dark:text-purple-300 text-xs">
-                        {testimonials[(currentIndex - 1 + testimonials.length) % testimonials.length].role}
-                      </p>
-                    </div>
-                  </div>
-                  <p className="text-gray-700 dark:text-white/60 text-sm line-clamp-4">
-                    "{testimonials[(currentIndex - 1 + testimonials.length) % testimonials.length].text}"
-                  </p>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
+                <ChevronLeft size={32} strokeWidth={3} />
+              </motion.button>
+            </div>
 
-          {/* Main Card */}
-          <div className="relative">
-            <AnimatePresence mode="wait">
+            <AnimatePresence mode="wait" custom={direction}>
               <motion.div
                 key={currentIndex}
-                initial={{ opacity: 0, scale: 0.8, rotateY: 90 }}
-                animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-                exit={{ opacity: 0, scale: 0.8, rotateY: -90 }}
-                transition={{ duration: 0.6, type: "spring", bounce: 0.4 }}
-                className="relative"
+                custom={direction}
+                initial={{ opacity: 0, x: direction > 0 ? 200 : -200, rotateY: direction > 0 ? 45 : -45, scale: 0.8 }}
+                animate={{ opacity: 1, x: 0, rotateY: 0, scale: 1 }}
+                exit={{ opacity: 0, x: direction > 0 ? -200 : 200, rotateY: direction > 0 ? -45 : 45, scale: 0.8 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="w-full max-w-4xl relative group"
               >
-                {/* Glowing Border Effect */}
-                <div className={`absolute inset-0 bg-gradient-to-r ${testimonials[currentIndex].color} rounded-3xl blur-xl opacity-50`} />
-                
-                <div className="relative bg-[var(--color-bg-primary)] backdrop-blur-2xl rounded-3xl p-10 border-2 border-[var(--color-border)] shadow-2xl">
-                  {/* Decorative Corner Elements */}
-                  <div className={`absolute top-4 right-4 w-18 h-18 bg-gradient-to-br ${testimonials[currentIndex].color} rounded-full blur-2xl opacity-50`} />
-                  <div className={`absolute bottom-4 left-4 w-16 h-16 bg-gradient-to-br ${testimonials[currentIndex].color} rounded-full blur-2xl opacity-50`} />
+                {/* Holographic Card Container */}
+                <div className="relative p-10 md:p-14 rounded-[3rem] bg-[var(--color-bg-secondary)] dark:bg-[var(--color-bg-secondary)]/40 backdrop-blur-[40px] border-2 border-white/10 shadow-[0_40px_80px_-15px_rgba(0,0,0,0.5)] overflow-hidden">
                   
-                  <div className="relative z-10">
-                    {/* Achievement Badge */}
-                    <motion.div
-                      initial={{ scale: 0, rotate: -180 }}
-                      animate={{ scale: 1, rotate: 0 }}
-                      transition={{ delay: 0.3, type: "spring", bounce: 0.6 }}
-                      className="absolute -top-6 -right-6"
-                    >
-                      <div className={`w-20 h-20 bg-gradient-to-br ${testimonials[currentIndex].color} rounded-2xl flex items-center justify-center shadow-2xl transform rotate-12`}>
-                        <CurrentIcon className="w-10 h-10 text-white" />
-                      </div>
-                    </motion.div>
-
-                    {/* User Section */}
-                    <div className="flex items-start gap-6 mb-8">
-                      <div className="relative">
-                        <motion.img
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          transition={{ delay: 0.2, type: "spring", bounce: 0.5 }}
-                          src={testimonials[currentIndex].image}
+                  {/* Adaptive Background Glow */}
+                  <div className={`absolute -top-1/4 -right-1/4 w-96 h-96 bg-gradient-to-br ${testimonials[currentIndex].color} opacity-20 blur-[100px] group-hover:opacity-40 transition-opacity duration-700`}></div>
+                  
+                  <div className="relative z-10 flex flex-col md:flex-row gap-12 items-start">
+                    {/* User Profile Crypt */}
+                    <div className="relative shrink-0 mx-auto md:mx-0">
+                      <div className="w-24 h-24 md:w-36 md:h-36 rounded-[2rem] overflow-hidden border-4 border-white/10 shadow-2xl group-hover:rotate-6 transition-transform duration-700">
+                        <img 
+                          src={testimonials[currentIndex].image} 
                           alt={testimonials[currentIndex].name}
-                          className="w-24 h-24 rounded-2xl object-cover shadow-2xl border-4 border-white/40 dark:border-white/20"
+                          className="w-full h-full object-cover scale-110 group-hover:scale-125 transition-transform duration-1000"
                         />
-                        <motion.div
-                          animate={{ scale: [1, 1.2, 1] }}
-                          transition={{ duration: 2, repeat: Infinity }}
-                          className={`absolute -bottom-2 -right-2 w-10 h-10 bg-gradient-to-br ${testimonials[currentIndex].color} rounded-xl flex items-center justify-center shadow-xl`}
-                        >
-                          <Quote className="w-5 h-5 text-white" />
-                        </motion.div>
                       </div>
-                      
-                      <div className="flex-1">
-                        <h4 className="text-2xl font-black text-[var(--color-text-primary)] mb-2">
-                          {testimonials[currentIndex].name}
-                        </h4>
-                        <p className="text-purple-600 dark:text-purple-300 mb-3">
-                          {testimonials[currentIndex].role}
-                        </p>
-                        <div className={`inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r ${testimonials[currentIndex].color} rounded-full shadow-lg`}>
-                          <CurrentIcon className="w-4 h-4 text-white" />
-                          <span className="text-white font-bold text-sm">
-                            {testimonials[currentIndex].achievement}
-                          </span>
+                      <motion.div
+                        animate={{ y: [0, -10, 0] }}
+                        transition={{ duration: 3, repeat: Infinity }}
+                        className={`absolute -bottom-4 -right-4 w-16 h-16 bg-gradient-to-br ${testimonials[currentIndex].color} rounded-2xl flex items-center justify-center shadow-2xl border-2 border-white/20`}
+                      >
+                        <Quote size={28} className="text-white" />
+                      </motion.div>
+                    </div>
+
+                    {/* Testimonial Content Data */}
+                    <div className="flex-1 text-center md:text-left">
+                      <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 mb-8">
+                        {/* Status Chip */}
+                        <div className={`px-4 py-2 bg-gradient-to-r ${testimonials[currentIndex].color} rounded-full flex items-center gap-3 shadow-xl`}>
+                          <CurrentIcon size={18} className="text-white" />
+                          <span className="text-[10px] font-black text-white uppercase tracking-widest">{testimonials[currentIndex].achievement}</span>
                         </div>
+                        {/* Time Metadata */}
+                        <span className="text-[10px] font-black text-[var(--color-text-tertiary)] uppercase tracking-widest">Protocol Sync 0x4F2A</span>
+                      </div>
+
+                      <h3 className="text-2xl md:text-3xl font-black text-[var(--color-text-primary)] mb-3 tracking-tighter leading-tight">
+                        {testimonials[currentIndex].name}
+                      </h3>
+                      <p className="text-base md:text-lg font-black text-[var(--color-primary-medium)] mb-6 uppercase tracking-[0.2em]">{testimonials[currentIndex].role}</p>
+                      
+                      {/* Premium Quote Block */}
+                      <div className="relative">
+                        <div className="absolute -left-6 -top-2 text-6xl text-white/5 font-serif">"</div>
+                        <p className="text-lg md:text-xl text-[var(--color-text-secondary)] font-medium leading-relaxed italic pr-4">
+                          {testimonials[currentIndex].text}
+                        </p>
+                      </div>
+
+                      {/* Dynamic Rating */}
+                      <div className="flex items-center justify-center md:justify-start gap-3 mt-12 bg-black/5 dark:bg-white/5 backdrop-blur-md w-fit px-6 py-2 rounded-2xl border border-white/5">
+                        <div className="flex gap-1">
+                          {[...Array(5)].map((_, i) => (
+                            <Star key={i} size={20} className={i < testimonials[currentIndex].rating ? "fill-yellow-500 text-yellow-500" : "text-white/20"} />
+                          ))}
+                        </div>
+                        <span className="text-sm font-black text-[var(--color-text-primary)] uppercase tracking-widest">Efficiency 5.0</span>
                       </div>
                     </div>
+                  </div>
 
-                    {/* Star Rating */}
-                    <div className="flex gap-1 mb-6">
-                      {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
-                        <motion.div
-                          key={i}
-                          initial={{ scale: 0, rotate: -180 }}
-                          animate={{ scale: 1, rotate: 0 }}
-                          transition={{ delay: 0.4 + i * 0.1, type: "spring" }}
-                        >
-                          <Star className="w-6 h-6 fill-yellow-400 text-yellow-400 drop-shadow-lg" />
-                        </motion.div>
-                      ))}
-                    </div>
-
-                    {/* Testimonial Text */}
-                    <p className="text-[var(--color-text-primary)] text-lg leading-relaxed">
-                      "{testimonials[currentIndex].text}"
-                    </p>
+                  {/* Internal Design Details */}
+                  <div className="absolute bottom-6 right-10 flex gap-4 opacity-10">
+                    <Sparkles size={40} className="text-[var(--color-primary-medium)]" />
+                    <Trophy size={40} className="text-secondary" />
                   </div>
                 </div>
               </motion.div>
             </AnimatePresence>
 
-            {/* Navigation Buttons */}
-            <motion.button
-              whileHover={{ scale: 1.1, x: -5 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={() => paginate(-1)}
-              className={`absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 w-14 h-14 bg-gradient-to-br ${testimonials[currentIndex].color} rounded-2xl shadow-2xl flex items-center justify-center text-white border-2 border-white/20`}
-              aria-label="Previous testimonial"
-            >
-              <ChevronLeft className="w-7 h-7" />
-            </motion.button>
-            
-            <motion.button
-              whileHover={{ scale: 1.1, x: 5 }}
-              whileTap={{ scale: 0.9 }}
-              onClick={() => paginate(1)}
-              className={`absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 w-14 h-14 bg-gradient-to-br ${testimonials[currentIndex].color} rounded-2xl shadow-2xl flex items-center justify-center text-white border-2 border-white/20`}
-              aria-label="Next testimonial"
-            >
-              <ChevronRight className="w-7 h-7" />
-            </motion.button>
-          </div>
-
-          {/* Right Side Card (Hidden on Mobile) */}
-          <div className="hidden lg:block">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={`next-${currentIndex}`}
-                initial={{ opacity: 0, x: 100, rotateY: 45 }}
-                animate={{ opacity: 0.4, x: 0, rotateY: 15 }}
-                exit={{ opacity: 0, x: 100 }}
-                transition={{ duration: 0.5 }}
-                className="transform perspective-1000 hover:opacity-60 transition-opacity cursor-pointer"
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 z-30 hidden xl:block">
+              <motion.button
+                whileHover={{ scale: 1.1, x: 10 }}
+                whileTap={{ scale: 0.9 }}
                 onClick={() => paginate(1)}
+                className="w-16 h-16 bg-white/5 dark:bg-white/5 backdrop-blur-3xl border-2 border-white/10 rounded-[1.5rem] flex items-center justify-center text-[var(--color-text-primary)] shadow-2xl hover:border-[var(--color-primary-medium)]/50 transition-colors"
+                aria-label="Next Log"
               >
-                <div className="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-xl rounded-3xl p-6 border border-white/10 shadow-2xl h-64">
-                  <div className="flex items-center gap-3 mb-4">
-                    <img
-                      src={testimonials[(currentIndex + 1) % testimonials.length].image}
-                      alt="Next"
-                      className="w-12 h-12 rounded-xl object-cover"
-                    />
-                    <div>
-                      <h4 className="text-white font-bold text-sm">
-                        {testimonials[(currentIndex + 1) % testimonials.length].name}
-                      </h4>
-                      <p className="text-purple-300 text-xs">
-                        {testimonials[(currentIndex + 1) % testimonials.length].role}
-                      </p>
-                    </div>
-                  </div>
-                  <p className="text-white/60 text-sm line-clamp-4">
-                    "{testimonials[(currentIndex + 1) % testimonials.length].text}"
-                  </p>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+                <ChevronRight size={32} strokeWidth={3} />
+              </motion.button>
+            </div>
           </div>
         </div>
 
-        {/* Creative Pagination */}
-        <div className="flex justify-center gap-4 mt-16">
-          {testimonials.map((testimonial, index) => (
-            <motion.button
+        {/* Global Progress Indicators */}
+        <div className="flex justify-center flex-wrap gap-6 mt-10">
+          {testimonials.map((t, index) => (
+            <button
               key={index}
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
               onClick={() => {
-                setDirection(index > currentIndex ? 1 : -1);
-                setCurrentIndex(index);
+                  setDirection(index > currentIndex ? 1 : -1);
+                  setCurrentIndex(index);
               }}
-              className="relative group"
-              aria-label={`Go to testimonial ${index + 1}`}
+              className="group relative"
             >
-              <div className={`w-14 h-14 rounded-2xl transition-all duration-300 ${
-                index === currentIndex
-                  ? `bg-gradient-to-br ${testimonial.color} shadow-2xl scale-110`
-                  : "bg-white/10 backdrop-blur-sm border border-white/20"
+              <div className={`w-20 h-20 rounded-[2rem] p-1 transition-all duration-500 overflow-hidden ${
+                index === currentIndex ? `bg-gradient-to-br ${t.color} scale-125 shadow-2xl rotate-12` : "bg-white/5 dark:bg-white/5 hover:scale-110"
               }`}>
-                <img
-                  src={testimonial.image}
-                  alt={testimonial.name}
-                  className={`w-full h-full rounded-2xl object-cover transition-all duration-300 ${
-                    index === currentIndex ? "opacity-100" : "opacity-40 group-hover:opacity-70"
+                <img 
+                  src={t.image} 
+                  alt={t.name}
+                  className={`w-full h-full object-cover rounded-[1.8rem] transition-all duration-500 ${
+                    index === currentIndex ? "opacity-100" : "opacity-30 group-hover:opacity-60 grayscale"
                   }`}
                 />
               </div>
               {index === currentIndex && (
                 <motion.div
-                  layoutId="activeIndicator"
-                  className={`absolute -bottom-3 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-gradient-to-r ${testimonial.color}`}
+                  layoutId="activeLog"
+                  className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-4 h-1 bg-[var(--color-primary-medium)] rounded-full"
                 />
               )}
-            </motion.button>
+            </button>
           ))}
         </div>
       </div>

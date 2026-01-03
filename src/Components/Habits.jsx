@@ -30,7 +30,7 @@ const Habits = () => {
     Study: "bg-purple-500",
     Evening: "bg-orange-500",
     Work: "bg-yellow-500",
-    Default: "bg-gray-500",
+    Default: "bg-[var(--color-bg-tertiary)]",
   };
 
   useEffect(() => {
@@ -107,7 +107,7 @@ const Habits = () => {
 
   if (loading)
     return (
-      <div className="min-h-screen flex justify-center items-center">
+      <div className="min-h-screen flex justify-center items-center bg-[var(--color-bg-primary)]">
         <Loading></Loading>
       </div>
     );
@@ -123,12 +123,24 @@ const Habits = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-[var(--color-text-primary)] mb-4">
-            Popular Habits
-          </h2>
-          <p className="text-lg text-[var(--color-text-secondary)] max-w-2xl mx-auto">
-            Explore and track the newest habits created by our community
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-[var(--color-primary-medium)]/10 dark:bg-[var(--color-primary-medium)]/20 border border-[var(--color-primary-medium)]/20 rounded-full mb-8">
+              <span className="w-2 h-2 bg-[var(--color-primary-medium)] rounded-full animate-pulse"></span>
+              <span className="text-xs font-black text-[var(--color-primary-medium)] uppercase tracking-[0.2em]">Community Favorites</span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-black text-[var(--color-text-primary)] mb-8 tracking-tighter leading-[0.9]">
+              Popular <span className="text-[var(--color-primary-medium)]">Habits</span> <br />
+              <span className="bg-gradient-to-r from-[var(--color-primary-medium)] to-[var(--color-secondary)] bg-clip-text text-transparent">Join the Movement</span>
+            </h2>
+            <p className="text-xl text-[var(--color-text-secondary)] max-w-2xl mx-auto leading-relaxed font-medium">
+              Explore and track the newest habits created by our community
+            </p>
+          </motion.div>
         </motion.div>
 
         {/* Cards Grid - Perfect Symmetry */}
@@ -144,7 +156,7 @@ const Habits = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             {habits.map((habit, index) => {
               const IconComponent = getCategoryIcon(habit.category);
@@ -159,10 +171,10 @@ const Habits = () => {
                     y: -8,
                     transition: { duration: 0.3 },
                   }}
-                  className="bg-white dark:bg-[var(--color-bg-secondary)] rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group"
+                  className="bg-[var(--color-bg-primary)] dark:bg-[var(--color-bg-secondary)] rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group border border-[var(--color-border)] dark:border-transparent"
                 >
                   {/* Image Section - Fixed Height */}
-                  <div className="relative h-56 overflow-hidden">
+                  <div className="relative h-48 overflow-hidden">
                     <img
                       src={habitImage}
                       alt={habit.title}
@@ -183,21 +195,21 @@ const Habits = () => {
                     </div>
 
                     {/* Icon - Top Right */}
-                    <div className="absolute top-4 right-4 w-12 h-12 bg-white/90 dark:bg-[var(--color-bg-primary)]/90 rounded-full flex items-center justify-center shadow-lg">
-                      <IconComponent className="w-6 h-6 text-[var(--color-primary-dark)]" />
+                    <div className="absolute top-4 right-4 w-10 h-10 bg-[var(--color-bg-primary)]/90 rounded-full flex items-center justify-center shadow-lg backdrop-blur-sm">
+                      <IconComponent className="w-5 h-5 text-[var(--color-primary-dark)]" />
                     </div>
                   </div>
 
                   {/* Content Section - Consistent Padding */}
-                  <div className="p-6">
+                  <div className="p-5">
                     {/* Title */}
-                    <h3 className="text-xl font-bold text-[var(--color-text-primary)] mb-3 line-clamp-1">
+                    <h3 className="text-lg font-bold text-[var(--color-text-primary)] mb-2 line-clamp-1">
                       {habit.title}
                     </h3>
 
                     {/* Description */}
                     {habit.description && (
-                      <p className="text-sm text-[var(--color-text-secondary)] mb-4 line-clamp-2 h-10">
+                      <p className="text-xs text-[var(--color-text-secondary)] mb-3 line-clamp-2 h-8">
                         {habit.description}
                       </p>
                     )}
@@ -206,20 +218,20 @@ const Habits = () => {
                     <div className="space-y-3 mb-6">
                       {/* User */}
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-[var(--color-bg-tertiary)] flex items-center justify-center flex-shrink-0">
-                          <User className="w-5 h-5 text-[var(--color-primary-dark)]" />
+                        <div className="w-8 h-8 rounded-full bg-[var(--color-bg-tertiary)] flex items-center justify-center flex-shrink-0">
+                          <User className="w-4 h-4 text-[var(--color-primary-dark)]" />
                         </div>
-                        <span className="text-sm text-[var(--color-text-secondary)] truncate">
+                        <span className="text-xs text-[var(--color-text-secondary)] truncate">
                           {habit.name || "Anonymous"}
                         </span>
                       </div>
 
                       {/* Time */}
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-[var(--color-bg-tertiary)] flex items-center justify-center flex-shrink-0">
-                          <Clock className="w-5 h-5 text-[var(--color-primary-dark)]" />
+                        <div className="w-8 h-8 rounded-full bg-[var(--color-bg-tertiary)] flex items-center justify-center flex-shrink-0">
+                          <Clock className="w-4 h-4 text-[var(--color-primary-dark)]" />
                         </div>
-                        <span className="text-sm text-[var(--color-text-secondary)]">
+                        <span className="text-xs text-[var(--color-text-secondary)]">
                           {formatTime(habit.reminderTime)}
                         </span>
                       </div>
@@ -230,10 +242,10 @@ const Habits = () => {
                       <motion.button
                         whileHover={{ scale: 1.02 }}
                         whileTap={{ scale: 0.98 }}
-                        className="w-full bg-gradient-to-r from-[var(--color-primary-dark)] to-[var(--color-primary-medium)] text-white font-semibold py-3 px-4 rounded-xl flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-shadow"
+                        className="w-full bg-gradient-to-r from-[var(--color-primary-dark)] to-[var(--color-primary-medium)] text-white font-semibold py-2.5 px-4 rounded-xl flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-shadow text-sm"
                       >
                         View Details
-                        <ChevronRight className="w-5 h-5" />
+                        <ChevronRight className="w-4 h-4" />
                       </motion.button>
                     </Link>
                   </div>
@@ -255,7 +267,7 @@ const Habits = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-[var(--color-secondary)] to-[var(--color-secondary-dark)] text-white font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-shadow"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-[var(--color-secondary)] to-[var(--color-secondary-dark)] text-white font-bold px-7 py-3 rounded-full shadow-lg hover:shadow-xl transition-shadow"
             >
               Explore All Habits
               <ChevronRight className="w-5 h-5" />

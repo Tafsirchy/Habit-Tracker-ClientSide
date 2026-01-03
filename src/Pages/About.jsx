@@ -52,7 +52,7 @@ const About = () => {
           <motion.h1
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-6xl font-bold text-white mb-6"
+            className="text-3xl md:text-5xl font-bold text-white mb-6"
           >
             About Habit Tracker
           </motion.h1>
@@ -77,7 +77,7 @@ const About = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-text-primary)] mb-6">
+              <h2 className="text-2xl md:text-3xl font-bold text-[var(--color-text-primary)] mb-6">
                 Our Story
               </h2>
               <p className="text-lg text-[var(--color-text-secondary)] mb-4 leading-relaxed">

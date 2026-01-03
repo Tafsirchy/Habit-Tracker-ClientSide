@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
-import { Eye, EyeOff, Mail, Lock, CheckCircle, AlertCircle } from "lucide-react";
+import { Eye, EyeOff, Mail, Lock, CheckCircle, AlertCircle, Trophy, Flame } from "lucide-react";
+import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 import Loading from "../Components/Loading";
 import SocialLoginButton from "../Components/SocialLoginButton";
@@ -145,280 +146,284 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex">
-      {/* Left Panel - Hero Section */}
-      <div className="hidden lg:flex lg:w-1/2 h-screen relative overflow-hidden">
-        <div className="absolute inset-0">
+    <div className="min-h-screen grid lg:grid-cols-2 bg-[var(--color-bg-primary)] selection:bg-[var(--color-primary-medium)]/30">
+      {/* Left Panel - Immersive Hero Section */}
+      <div className="hidden lg:block sticky top-0 h-screen overflow-hidden bg-[#0a0f18]">
+        {/* Dynamic Background Elements */}
+        <div className="absolute inset-0 z-0">
           <img
             src={login}
-            alt="Productivity and Habits"
-            className="w-full h-screen object-cover"
+            alt="Productivity"
+            className="w-full h-full object-cover opacity-10 filter grayscale contrast-125"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-[#1B3C53]/80 via-[#234C6A]/70 to-[#1B3C53]/80"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-[#0a0f18] via-[#1B3C53]/40 to-[#0a0f18]/90"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(35,76,106,0.3),transparent_70%)]"></div>
         </div>
 
-        <div className="relative z-10 flex flex-col justify-center items-center text-white p-12 w-full">
-          <div className="text-center max-w-md">
-            <div className="flex items-center justify-center mb-6 animate-bounce">
-              <CheckCircle className="w-20 h-20 mb-2" strokeWidth={2.5} />
-            </div>
-            <h1
-              className="font-bold text-6xl mb-6 bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent"
-              style={{ fontFamily: "cursive" }}
+        {/* Animated Background Orbs */}
+        <motion.div
+           animate={{
+             scale: [1, 1.2, 1],
+             opacity: [0.1, 0.2, 0.1],
+           }}
+           transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+           className="absolute top-1/4 -right-20 w-[400px] h-[400px] bg-blue-500/20 blur-[100px] rounded-full"
+        />
+        <motion.div
+           animate={{
+             scale: [1.2, 1, 1.2],
+             opacity: [0.05, 0.15, 0.05],
+           }}
+           transition={{ duration: 12, repeat: Infinity, ease: "linear" }}
+           className="absolute -bottom-1/4 -left-20 w-[400px] h-[400px] bg-purple-500/10 blur-[80px] rounded-full"
+        />
+
+        {/* Content Centering Wrapper */}
+        <div className="relative h-full z-30 flex flex-col items-center justify-center p-12 text-center">
+            {/* Logo Mark */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, type: "spring" }}
+              className="w-20 h-20 bg-gradient-to-br from-blue-400 to-indigo-600 rounded-3xl shadow-[0_20px_50px_rgba(35,76,106,0.5)] flex items-center justify-center mb-10 group"
             >
-              Habit Tracker
-            </h1>
-            <p className="text-xl leading-relaxed opacity-90">
-              Build better habits, one day at a time. Track your progress and
-              achieve your goals with consistency.
-            </p>
-            <div className="mt-8 flex justify-center gap-4">
-              <div className="w-2 h-2 rounded-full bg-white/60 animate-pulse"></div>
-              <div className="w-2 h-2 rounded-full bg-white/60 animate-pulse delay-75"></div>
-              <div className="w-2 h-2 rounded-full bg-white/60 animate-pulse delay-150"></div>
-            </div>
-          </div>
-        </div>
+              <CheckCircle className="w-10 h-10 text-white group-hover:rotate-12 transition-transform duration-500" strokeWidth={2.5} />
+            </motion.div>
 
-        <div className="absolute bottom-0 left-0 right-0 h-32 opacity-20 flex items-end justify-around px-8 pb-4">
-          <CheckCircle className="w-12 h-12 animate-pulse" />
-          <CheckCircle className="w-16 h-16 animate-pulse delay-100" />
-          <CheckCircle className="w-10 h-10 animate-pulse delay-200" />
-          <CheckCircle className="w-14 h-14 animate-pulse delay-300" />
-          <CheckCircle className="w-12 h-12 animate-pulse delay-75" />
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="max-w-md"
+            >
+              <h1 className="text-4xl lg:text-5xl font-black text-white mb-6 leading-[1.1] tracking-tighter">
+                Master Your <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-300 to-indigo-400">Daily Habits</span>
+              </h1>
+              <p className="text-lg text-white/50 font-medium leading-relaxed mb-12">
+                Join thousands of users building better routines and tracking their progress every single day.
+              </p>
+
+              {/* Floating Performance Indicator */}
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+                className="inline-flex items-center gap-6 p-1 pr-6 bg-white/5 backdrop-blur-xl rounded-full border border-white/10"
+              >
+                <div className="flex -space-x-3 ml-1">
+                   {[1,2,3].map(i => (
+                     <div key={i} className="w-10 h-10 rounded-full border-2 border-[#0a0f18] bg-gray-600 overflow-hidden ring-2 ring-blue-500/20">
+                        <img src={`https://i.pravatar.cc/100?img=${i+10}`} alt="user" className="w-full h-full object-cover" />
+                     </div>
+                   ))}
+                </div>
+                <div className="text-left">
+                  <p className="text-xs font-black text-white tracking-widest uppercase">Success Rate</p>
+                  <p className="text-[10px] text-white/40 font-bold">98% Habit Consistency</p>
+                </div>
+              </motion.div>
+            </motion.div>
+
+            {/* Bottom Branding */}
+            <div className="absolute bottom-12 left-12 flex items-center gap-2">
+               <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></div>
+               <span className="text-[10px] font-black text-white/20 uppercase tracking-[0.4em]">Advanced Habit Engine v2.0</span>
+            </div>
         </div>
       </div>
 
-      {/* Right Panel - Login Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center bg-gradient-to-br from-gray-50 to-white p-8">
-        <div className="w-full max-w-md">
+      {/* Right Panel - Premium Login Form */}
+      <div className="w-full min-h-screen flex flex-col justify-center bg-[var(--color-bg-primary)] p-6 sm:p-12 lg:p-24 relative overflow-y-auto">
+        {/* Subtle Decorative Gradient */}
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-500/5 blur-[120px] rounded-full pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-purple-500/5 blur-[120px] rounded-full pointer-events-none"></div>
+
+        <motion.div 
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="w-full max-w-sm mx-auto relative z-10"
+        >
           {/* Header */}
-          <div className="text-center mb-8">
-            <div className="inline-flex items-center gap-2 mb-4">
-              <CheckCircle className="w-8 h-8 text-[#1B3C53]" />
-              <div className="w-16 h-0.5 border-t-2 border-dotted border-[#1B3C53]"></div>
-            </div>
-            <h1 className="text-5xl font-bold bg-gradient-to-r from-[#A3B18A] to-[#588157] bg-clip-text text-transparent mb-2">
-              Welcome Back
+          <div className="mb-12">
+            <h1 className="text-5xl font-black text-[var(--color-text-primary)] tracking-tight mb-4">
+              Sign In
             </h1>
-            <p className="text-gray-500 text-sm">Login to continue your journey</p>
+            <p className="text-[var(--color-text-secondary)] font-medium text-base leading-relaxed opacity-70">
+              Welcome back! Please enter your credentials.
+            </p>
           </div>
 
           {/* Login Form */}
-          <form onSubmit={handleLogin} className="space-y-5">
-            {/* Email Input */}
-            <div>
-              <label className="block text-xs font-semibold text-[#1B3C53] mb-2 uppercase tracking-wider">
-                Email Address
-              </label>
-              <div className="relative">
-                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
-                  <Mail className="w-5 h-5" />
-                </div>
-                <input
-                  value={email}
-                  onChange={handleEmailChange}
-                  onBlur={() => validateEmail(email)}
-                  type="email"
-                  className={`w-full pl-12 pr-4 py-3 rounded-lg border-2 transition-all ${
-                    emailError
-                      ? "border-red-400 focus:border-red-500"
-                      : email && !emailError
-                      ? "border-green-400 focus:border-green-500"
-                      : "border-gray-200 focus:border-[#1B3C53]"
-                  } focus:outline-none`}
-                  placeholder="john@example.com"
-                  required
-                />
-                {email && !emailError && (
-                  <div className="absolute right-4 top-1/2 -translate-y-1/2 text-green-500">
-                    <CheckCircle className="w-5 h-5" />
+          <form onSubmit={handleLogin} className="space-y-10">
+            <div className="grid grid-cols-1 gap-8">
+              {/* Email Input */}
+              <div className="group">
+                <label className="block text-[12px] font-bold text-[var(--color-text-tertiary)] mb-3 uppercase tracking-widest group-focus-within:text-[var(--color-primary-medium)] transition-colors">
+                  Email Address
+                </label>
+                <div className="relative">
+                  <div className="absolute left-0 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[var(--color-primary-medium)] transition-colors">
+                    <Mail className="w-5 h-5" />
                   </div>
+                  <input
+                    value={email}
+                    onChange={handleEmailChange}
+                    onBlur={() => validateEmail(email)}
+                    type="email"
+                    className={`w-full bg-transparent border-b-2 py-4 pl-9 transition-all duration-500 outline-none ${
+                      emailError
+                        ? "border-red-500/50"
+                        : email && !emailError
+                        ? "border-green-500/50"
+                        : "border-[var(--color-border)] focus:border-[var(--color-primary-medium)]"
+                    } text-[var(--color-text-primary)] font-semibold text-xl placeholder:text-[var(--color-text-tertiary)]/40`}
+                    placeholder="e.g. name@example.com"
+                    required
+                  />
+                  {email && !emailError && (
+                    <CheckCircle className="absolute right-0 top-1/2 -translate-y-1/2 w-5 h-5 text-green-500/50" />
+                  )}
+                </div>
+                {emailError && (
+                  <motion.p 
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="text-red-500 text-[10px] font-black mt-3 flex items-center gap-1.5 uppercase tracking-wider"
+                  >
+                    <AlertCircle className="w-3.5 h-3.5" />
+                    {emailError}
+                  </motion.p>
                 )}
               </div>
-              {emailError && (
-                <p className="text-red-500 text-xs mt-1 flex items-center gap-1">
-                  <AlertCircle className="w-3 h-3" />
-                  {emailError}
-                </p>
-              )}
-            </div>
 
-            {/* Password Input */}
-            <div>
-              <label className="block text-xs font-semibold text-[#1B3C53] mb-2 uppercase tracking-wider">
-                Password
-              </label>
-              <div className="relative">
-                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
-                  <Lock className="w-5 h-5" />
+              {/* Password Input */}
+              <div className="group">
+                <div className="flex items-center justify-between mb-3">
+                    <label className="text-[12px] font-bold text-[var(--color-text-tertiary)] uppercase tracking-widest group-focus-within:text-[var(--color-primary-medium)] transition-colors">
+                      Password
+                    </label>
+                    <button
+                        type="button"
+                        onClick={handleForgetPass}
+                        className="text-[11px] font-bold text-[var(--color-primary-medium)] hover:text-[var(--color-primary-dark)] transition-colors"
+                    >
+                        Forgot password?
+                    </button>
                 </div>
-                <input
-                  value={password}
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                    setError("");
-                  }}
-                  type={showPassword ? "text" : "password"}
-                  className="w-full pl-12 pr-12 py-3 rounded-lg border-2 border-gray-200 focus:border-[#1B3C53] focus:outline-none transition-all"
-                  placeholder="Enter your password"
-                  required
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors"
-                >
-                  {showPassword ? (
-                    <Eye className="w-5 h-5" />
-                  ) : (
-                    <EyeOff className="w-5 h-5" />
-                  )}
-                </button>
+                <div className="relative">
+                  <div className="absolute left-0 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[var(--color-primary-medium)] transition-colors">
+                    <Lock className="w-5 h-5" />
+                  </div>
+                  <input
+                    value={password}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                      setError("");
+                    }}
+                    type={showPassword ? "text" : "password"}
+                    className={`w-full bg-transparent border-b-2 py-4 pl-9 transition-all duration-500 outline-none ${
+                        password && password.length >= 6
+                          ? "border-green-500/50"
+                          : password && password.length < 6
+                          ? "border-red-500/50"
+                          : "border-[var(--color-border)] focus:border-[var(--color-primary-medium)]"
+                      } text-[var(--color-text-primary)] font-semibold text-xl placeholder:text-[var(--color-text-tertiary)]/40`}
+                    placeholder="••••••••"
+                    required
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-0 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[var(--color-primary-medium)] transition-colors"
+                  >
+                    {showPassword ? <Eye className="w-5 h-5" /> : <EyeOff className="w-5 h-5" />}
+                  </button>
+                </div>
               </div>
             </div>
 
-            {/* Forgot Password */}
-            <div className="text-right">
-              <button
-                type="button"
-                onClick={handleForgetPass}
-                className="text-sm text-[#588157] hover:text-[#A3B18A] transition-colors font-medium hover:underline"
-              >
-                Forgot your password?
-              </button>
-            </div>
-
-            {/* Error Message */}
             {error && (
-              <div className="bg-red-50 border-l-4 border-red-500 text-red-700 px-4 py-3 rounded-lg text-sm flex items-start gap-2 animate-shake">
-                <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" />
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="bg-red-500/5 border border-red-500/10 text-red-500 p-4 rounded-xl text-[11px] font-black uppercase tracking-widest flex items-center gap-3"
+              >
+                <div className="p-1 rounded-full bg-red-500/20">
+                    <AlertCircle className="w-4 h-4" />
+                </div>
                 <span>{error}</span>
-              </div>
+              </motion.div>
             )}
 
             {/* Login Button */}
-            <button
+            <motion.button
+              whileHover={{ scale: 1.01, y: -2 }}
+              whileTap={{ scale: 0.99 }}
               type="submit"
               disabled={loading || !!emailError}
-              className="w-full bg-gradient-to-r from-[#234C6A] to-[#1B3C53] text-white font-semibold py-3.5 rounded-lg transition-all shadow-md hover:shadow-xl hover:from-[#1B3C53] hover:to-[#234C6A] transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
+              className="w-full bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-500 hover:to-indigo-600 text-white font-black py-5 rounded-2xl transition-all shadow-[0_20px_50px_rgba(37,99,235,0.25)] hover:shadow-[0_25px_60px_rgba(37,99,235,0.35)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3 tracking-[0.1em] text-sm"
             >
               {loading ? (
                 <>
-                  <svg
-                    className="animate-spin h-5 w-5 text-white"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle
-                      className="opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      strokeWidth="4"
-                    ></circle>
-                    <path
-                      className="opacity-75"
-                      fill="currentColor"
-                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                    ></path>
-                  </svg>
-                  <span>LOGGING IN...</span>
+                  <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  <span className="text-white/90">Authorizing...</span>
                 </>
               ) : (
-                "LOGIN"
+                <>
+                  <span className="text-white">Sign In</span>
+                  <CheckCircle className="w-4 h-4 text-white/50" />
+                </>
               )}
-            </button>
+            </motion.button>
           </form>
 
-          {/* Divider */}
-          <div className="relative py-6">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-300"></div>
-            </div>
-            <div className="relative flex justify-center">
-              <span className="bg-gradient-to-br from-gray-50 to-white px-4 text-sm text-gray-500 font-medium">
-                OR CONTINUE WITH
+          {/* Alternative Methods */}
+          <div className="mt-16">
+            <div className="relative mb-10 text-center">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-[var(--color-border)] opacity-30"></div>
+              </div>
+              <span className="relative px-6 bg-[var(--color-bg-primary)] text-[10px] font-black text-[var(--color-text-tertiary)] uppercase tracking-[0.4em]">
+                Or continue with
               </span>
             </div>
-          </div>
 
-          {/* Social Login Buttons */}
-          <div className="space-y-3">
-            <SocialLoginButton
-              provider="google"
-              onClick={() => handleSocialLogin("google", handleGoogleSignIn)}
-              loading={socialLoading.google}
-              disabled={loading || socialLoading.google}
-            />
-          </div>
-
-          {/* Demo User Button */}
-          <div className="mt-6">
-            <button
-              type="button"
-              onClick={handleDemoLogin}
-              disabled={loading}
-              className="w-full flex items-center justify-center gap-3 bg-gradient-to-r from-[#A3B18A] to-[#588157] text-white border-2 border-transparent rounded-lg py-3 transition-all hover:shadow-lg font-semibold transform hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
-            >
-              {loading ? (
-                <>
-                  <svg
-                    className="animate-spin h-5 w-5 text-white"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <circle
-                      className="opacity-25"
-                      cx="12"
-                      cy="12"
-                      r="10"
-                      stroke="currentColor"
-                      strokeWidth="4"
-                    ></circle>
-                    <path
-                      className="opacity-75"
-                      fill="currentColor"
-                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                    ></path>
-                  </svg>
-                  <span>Logging in...</span>
-                </>
-              ) : (
-                <>
-                  <CheckCircle className="w-5 h-5" />
-                  <span>Try Demo Account</span>
-                </>
-              )}
-            </button>
-            <p className="text-xs text-center text-gray-500 mt-2">
-              Quick access with pre-filled credentials
-            </p>
+            <div className="grid grid-cols-2 gap-4">
+                <SocialLoginButton
+                provider="google"
+                onClick={() => handleSocialLogin("google", handleGoogleSignIn)}
+                loading={socialLoading.google}
+                disabled={loading || socialLoading.google}
+                />
+                <button
+                type="button"
+                onClick={handleDemoLogin}
+                disabled={loading}
+                className="w-full flex items-center justify-center gap-2.5 bg-[var(--color-bg-secondary)] text-[var(--color-primary-medium)] border-2 border-[var(--color-border)] rounded-2xl py-3.5 transition-all hover:bg-[var(--color-bg-tertiary)] hover:border-[var(--color-primary-medium)]/30 font-bold text-xs shadow-sm hover:shadow-xl group"
+                >
+                <div className="p-1 rounded-lg bg-green-500/10 group-hover:bg-green-500/20 transition-colors">
+                    <CheckCircle className="w-3.5 h-3.5 text-green-500" />
+                </div>
+                <span>Demo Account</span>
+                </button>
+            </div>
           </div>
 
           {/* Register Link */}
-          <div className="text-center mt-8">
-            <p className="text-gray-600">
+          <div className="text-center mt-12 pt-8 border-t border-[var(--color-border)]">
+            <p className="text-[var(--color-text-secondary)] font-bold text-sm leading-loose">
               Don't have an account?{" "}
               <Link
                 to="/auth/register"
-                className="text-[#1B3C53] hover:text-[#588157] font-semibold hover:underline transition-colors"
+                className="text-[var(--color-text-primary)] hover:text-[var(--color-primary-medium)] font-black ml-1 transition-colors border-b-2 border-current"
               >
-                Register Now
+                Sign Up
               </Link>
             </p>
           </div>
-
-          {/* Mobile Decorative Icons */}
-          <div className="lg:hidden mt-8 flex justify-center gap-4 opacity-10">
-            <CheckCircle className="w-8 h-8 text-[#1B3C53]" />
-            <CheckCircle className="w-10 h-10 text-[#1B3C53]" />
-            <CheckCircle className="w-8 h-8 text-[#1B3C53]" />
-          </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
