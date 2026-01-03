@@ -24,7 +24,7 @@ const cardVariants = {
 
 const WhyBuild = () => {
   return (
-    <section className="w-11/12 mx-auto w-full px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 bg-[#E3E3E3] hover:bg-white dark:bg-gray-900 dark:hover:bg-gray-800 transition-color duration-1000">
+    <section className="w-11/12 mx-auto w-full px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 bg-[var(--color-bg-tertiary)] hover:bg-[var(--color-bg-primary)] transition-colors duration-1000">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -38,7 +38,7 @@ const WhyBuild = () => {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-3xl pb-6 sm:text-4xl lg:text-5xl font-bold text-[#1B3C53] dark:text-white"
+            className="text-3xl pb-6 sm:text-4xl lg:text-5xl font-bold text-[var(--color-primary-dark)]"
           >
             Why Build Habits?
           </motion.h2>
@@ -48,7 +48,7 @@ const WhyBuild = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="text-base sm:text-lg lg:text-xl max-w-3xl mx-auto text-[#234C6A] dark:text-gray-300"
+            className="text-base sm:text-lg lg:text-xl max-w-3xl mx-auto text-[var(--color-primary-medium)]"
           >
             Habits are the foundation of success. Developing powerful habits can
             enhance focus, save time, and accelerate your personal growth.
@@ -102,7 +102,7 @@ const WhyBuild = () => {
               whileInView="visible"
               viewport={{ once: true, amount: 0.2 }}
               whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 bg-white dark:bg-[#1B3C53] border border-gray-200 dark:border-[#234C6A]"
+              className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 bg-[var(--color-bg-primary)] border border-[var(--color-border)]"
             >
               <div className="flex flex-col sm:flex-row h-full items-stretch">
                 <div className="relative w-full sm:w-2/5 self-stretch overflow-hidden">
@@ -130,11 +130,11 @@ const WhyBuild = () => {
                       {card.icon}
                     </motion.div>
 
-                    <h3 className="text-xl sm:text-2xl font-bold mb-3 text-gray-900 dark:text-white">
+                    <h3 className="text-xl sm:text-2xl font-bold mb-3 text-[var(--color-text-primary)]">
                       {card.title}
                     </h3>
 
-                    <p className="text-sm sm:text-base leading-relaxed mb-4 text-gray-600 dark:text-[#E3E3E3]">
+                    <p className="text-sm sm:text-base leading-relaxed mb-4 text-[var(--color-text-secondary)]">
                       {card.desc}
                     </p>
                   </div>

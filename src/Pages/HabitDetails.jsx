@@ -125,14 +125,14 @@ const HabitDetails = () => {
 
   return (
     <div>
-      <main className="bg-gradient-to-br from-slate-50 via-white to-slate-100">
+      <main className="bg-[var(--color-bg-secondary)] transition-colors duration-300">
         <div className="w-11/12 mx-auto flex justify-center items-center  py-8 px-4 sm:py-12">
           <div className="max-w-6xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-200/50"
+              className="bg-[var(--color-bg-primary)] rounded-3xl shadow-xl overflow-hidden border border-[var(--color-border)] transition-colors duration-300"
             >
               <div className="relative h-72 sm:h-80 overflow-hidden">
                 <motion.img
@@ -152,7 +152,7 @@ const HabitDetails = () => {
                   className="absolute top-4 left-4 sm:top-6 sm:left-6"
                 >
                   <span
-                    className={`inline-flex items-center gap-2 px-4 py-2 text-xs sm:text-sm font-bold rounded-full border backdrop-blur-md bg-white/95 shadow-lg ${
+                    className={`inline-flex items-center gap-2 px-4 py-2 text-xs sm:text-sm font-bold rounded-full border backdrop-blur-md bg-[var(--color-bg-primary)]/95 shadow-lg ${
                       categoryColors[normalizeCategory(habit.category)]
                     }`}
                   >
@@ -183,7 +183,7 @@ const HabitDetails = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5 }}
                     whileHover={{ y: -3, transition: { duration: 0.2 } }}
-                    className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-all"
+                    className="bg-[var(--color-bg-primary)] rounded-2xl p-6 border border-[var(--color-border)] shadow-sm hover:shadow-md transition-all"
                   >
                     <div className="flex items-center gap-3 mb-6">
                       <div
@@ -194,23 +194,23 @@ const HabitDetails = () => {
                       >
                         <Calendar size={18} className="text-white" />
                       </div>
-                      <h3 className="text-sm font-semibold text-slate-600 uppercase tracking-wide">
+                      <h3 className="text-sm font-semibold text-[var(--color-text-secondary)] uppercase tracking-wide">
                         30-Day Progress
                       </h3>
                     </div>
 
                     <div className="flex items-end justify-between mb-6">
                       <div>
-                        <div className="text-4xl font-bold text-slate-800 mb-1">
+                        <div className="text-4xl font-bold text-[var(--color-text-primary)] mb-1">
                           {progressPercentage}%
                         </div>
-                        <div className="text-sm text-slate-500">
+                        <div className="text-sm text-[var(--color-text-tertiary)]">
                           {last30Days.length} of 30 days completed
                         </div>
                       </div>
                     </div>
 
-                    <div className="relative h-2 bg-slate-100 rounded-full overflow-hidden">
+                    <div className="relative h-2 bg-[var(--color-bg-tertiary)] rounded-full overflow-hidden">
                       <motion.div
                         initial={{ width: 0 }}
                         animate={{ width: `${progressPercentage}%` }}
@@ -232,13 +232,13 @@ const HabitDetails = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.6 }}
                     whileHover={{ y: -3, transition: { duration: 0.2 } }}
-                    className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-all"
+                    className="bg-[var(--color-bg-primary)] rounded-2xl p-6 border border-[var(--color-border)] shadow-sm hover:shadow-md transition-all"
                   >
                     <div className="flex items-center gap-3 mb-6">
                       <div className="p-2 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg">
                         <Flame size={18} className="text-white" />
                       </div>
-                      <h3 className="text-sm font-semibold text-slate-600 uppercase tracking-wide">
+                      <h3 className="text-sm font-semibold text-[var(--color-text-secondary)] uppercase tracking-wide">
                         Current Streak
                       </h3>
                     </div>
@@ -253,20 +253,20 @@ const HabitDetails = () => {
                             type: "spring",
                             stiffness: 200,
                           }}
-                          className="text-4xl font-bold text-slate-800 mb-1"
+                          className="text-4xl font-bold text-[var(--color-text-primary)] mb-1"
                         >
                           {habit.currentStreak || 0} days
                         </motion.div>
-                        <div className="text-sm text-slate-500">
+                        <div className="text-sm text-[var(--color-text-tertiary)]">
                           Consecutive completions
                         </div>
                       </div>
 
-                      <div className="text-right border-l border-slate-200 pl-6">
-                        <div className="text-2xl font-bold text-slate-800 mb-1">
+                      <div className="text-right border-l border-[var(--color-border)] pl-6">
+                        <div className="text-2xl font-bold text-[var(--color-text-primary)] mb-1">
                           {habit.completionHistory?.length || 0}
                         </div>
-                        <div className="text-xs text-slate-500">Total days</div>
+                        <div className="text-xs text-[var(--color-text-tertiary)]">Total days</div>
                       </div>
                     </div>
                   </motion.div>
@@ -276,13 +276,13 @@ const HabitDetails = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.8 }}
-                  className="bg-slate-50 rounded-2xl p-6 mb-6 border border-slate-200/50"
+                  className="bg-[var(--color-bg-secondary)] rounded-2xl p-6 mb-6 border border-[var(--color-border)]"
                 >
-                  <h2 className="text-lg font-bold text-slate-800 mb-3 flex items-center gap-2">
+                  <h2 className="text-lg font-bold text-[var(--color-text-primary)] mb-3 flex items-center gap-2">
                     <div className="w-1 h-6 bg-gradient-to-b from-emerald-500 to-teal-500 rounded-full"></div>
                     About This Habit
                   </h2>
-                  <p className="text-slate-700 leading-relaxed">
+                  <p className="text-[var(--color-text-primary)] leading-relaxed">
                     {habit.description}
                   </p>
                 </motion.div>
@@ -291,20 +291,20 @@ const HabitDetails = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.9 }}
-                  className="bg-gradient-to-r from-slate-50 to-slate-100 p-5 rounded-2xl border border-slate-200/70 mb-6"
+                  className="bg-[var(--color-bg-secondary)] p-5 rounded-2xl border border-[var(--color-border)] mb-6"
                 >
                   <div className="flex items-center gap-4">
                     <div className="p-3 bg-gradient-to-br from-slate-600 to-slate-700 rounded-xl shadow-md">
                       <User size={22} className="text-white" />
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">
+                      <h3 className="text-xs font-semibold text-[var(--color-text-tertiary)] uppercase tracking-wide mb-1">
                         Created By
                       </h3>
-                      <p className="font-bold text-slate-800 text-lg">
+                      <p className="font-bold text-[var(--color-text-primary)] text-lg">
                         {habit.name}
                       </p>
-                      <p className="text-sm text-slate-600">{habit.email}</p>
+                      <p className="text-sm text-[var(--color-text-secondary)]">{habit.email}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -321,7 +321,7 @@ const HabitDetails = () => {
                   onClick={handleMarkComplete}
                   className={`w-full py-5 rounded-2xl text-lg font-bold flex justify-center items-center gap-3 transition-all shadow-lg ${
                     alreadyCompletedToday
-                      ? "bg-slate-300 text-slate-600 cursor-not-allowed"
+                      ? "bg-[var(--color-bg-tertiary)] text-[var(--color-text-secondary)] cursor-not-allowed"
                       : `bg-gradient-to-r ${
                           categoryGradients[habit.category] ||
                           categoryGradients.Default
@@ -339,7 +339,7 @@ const HabitDetails = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ delay: 1.2 }}
-                    className="text-center text-sm text-slate-500 mt-4 font-medium"
+                    className="text-center text-sm text-[var(--color-text-tertiary)] mt-4 font-medium"
                   >
                     💡 Complete your habit today to keep your streak alive!
                   </motion.p>
