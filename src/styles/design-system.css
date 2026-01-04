@@ -86,10 +86,10 @@
   --text-4xl: 2.25rem;      /* 36px */
   --text-5xl: 3rem;         /* 48px */
   
-  /* Transitions */
-  --transition-fast: 150ms ease-in-out;
-  --transition-base: 250ms ease-in-out;
-  --transition-slow: 350ms ease-in-out;
+  /* Transitions - Optimized for performance */
+  --transition-fast: 100ms ease-out;
+  --transition-base: 150ms ease-out;
+  --transition-slow: 200ms ease-out;
   
   /* Z-Index Scale */
   --z-dropdown: 1000;

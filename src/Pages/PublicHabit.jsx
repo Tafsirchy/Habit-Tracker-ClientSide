@@ -42,8 +42,8 @@ const PublicHabit = () => {
       `https://habittracker-weld.vercel.app/public-habits?category=${category}&search=${search}`
     )
       .then((res) => res.json())
-      .then((habit) => {
-        setHabits(habit);
+      .then((data) => {
+        setHabits(Array.isArray(data) ? data : data.habits || []);
         setLoading(false);
 
         setCategoryLoading(false);
@@ -51,10 +51,12 @@ const PublicHabit = () => {
       })
       .catch((err) => {
         console.log(err);
+        setHabits([]);
         setLoading(false);
         setCategoryLoading(false);
       });
   }, [category, search]);
+
 
   const getCategoryIcon = (category) => {
     const c = category?.toLowerCase();

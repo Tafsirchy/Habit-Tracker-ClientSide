@@ -12,7 +12,7 @@ const CookiePolicy = () => {
 
           <div className="space-y-8 text-[var(--color-text-secondary)]">
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+              <h2 className="text-2xl font-semibold text-[var(--color-text-primary)] mb-4">
                 1. What Are Cookies?
               </h2>
               <p className="mb-4">
@@ -25,7 +25,7 @@ const CookiePolicy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+              <h2 className="text-2xl font-semibold text-[var(--color-text-primary)] mb-4">
                 2. How We Use Cookies
               </h2>
               <p className="mb-4">
@@ -56,7 +56,7 @@ const CookiePolicy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+              <h2 className="text-2xl font-semibold text-[var(--color-text-primary)] mb-4">
                 3. Types of Cookies We Use
               </h2>
               <div className="space-y-4">
@@ -88,7 +88,7 @@ const CookiePolicy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+              <h2 className="text-2xl font-semibold text-[var(--color-text-primary)] mb-4">
                 4. How Long Do Cookies Last?
               </h2>
               <p className="mb-4">
@@ -111,7 +111,7 @@ const CookiePolicy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+              <h2 className="text-2xl font-semibold text-[var(--color-text-primary)] mb-4">
                 5. Cookie Consent and Control
               </h2>
               <p className="mb-4">
@@ -126,7 +126,7 @@ const CookiePolicy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+              <h2 className="text-2xl font-semibold text-[var(--color-text-primary)] mb-4">
                 6. Managing Cookies in Your Browser
               </h2>
               <p className="mb-4">
@@ -146,7 +146,7 @@ const CookiePolicy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+              <h2 className="text-2xl font-semibold text-[var(--color-text-primary)] mb-4">
                 7. Impact of Disabling Cookies
               </h2>
               <p className="mb-4">
@@ -162,7 +162,7 @@ const CookiePolicy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+              <h2 className="text-2xl font-semibold text-[var(--color-text-primary)] mb-4">
                 8. Third-Party Analytics
               </h2>
               <p className="mb-4">
@@ -175,7 +175,7 @@ const CookiePolicy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+              <h2 className="text-2xl font-semibold text-[var(--color-text-primary)] mb-4">
                 9. Do Not Track Signals
               </h2>
               <p className="mb-4">
@@ -187,7 +187,7 @@ const CookiePolicy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+              <h2 className="text-2xl font-semibold text-[var(--color-text-primary)] mb-4">
                 10. Updates to This Policy
               </h2>
               <p className="mb-4">
@@ -199,7 +199,7 @@ const CookiePolicy = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+              <h2 className="text-2xl font-semibold text-[var(--color-text-primary)] mb-4">
                 11. Contact Us
               </h2>
               <p className="mb-4">
@@ -220,8 +220,8 @@ const CookiePolicy = () => {
               </ul>
             </section>
 
-            <div className="mt-8 p-4 bg-blue-50 dark:bg-blue-900 rounded-lg">
-              <p className="text-sm text-gray-600 dark:text-gray-300">
+            <div className="mt-8 p-4 bg-[var(--color-bg-tertiary)]/30 rounded-lg">
+              <p className="text-sm text-[var(--color-text-secondary)]">
                 Last updated: January 2, 2026
               </p>
             </div>

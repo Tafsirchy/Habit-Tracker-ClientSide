@@ -171,7 +171,7 @@ const Habits = () => {
                     y: -8,
                     transition: { duration: 0.3 },
                   }}
-                  className="bg-[var(--color-bg-primary)] dark:bg-[var(--color-bg-secondary)] rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group border border-[var(--color-border)] dark:border-transparent"
+                  className="bg-[var(--color-bg-primary)] dark:bg-[var(--color-bg-secondary)] rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden group border border-[var(--color-border)] dark:border-transparent"
                 >
                   {/* Image Section - Fixed Height */}
                   <div className="relative h-48 overflow-hidden">

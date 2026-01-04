@@ -116,7 +116,7 @@ const Help = () => {
   return (
     <div className="min-h-screen bg-[var(--color-bg-primary)] transition-colors duration-500">
       {/* High-Fidelity Hero Section */}
-      <section className="relative pt-32 pb-20 overflow-hidden bg-[var(--color-primary-dark)]">
+      <section className="relative pt-24 pb-12 overflow-hidden bg-[var(--color-primary-dark)]">
         {/* Animated Background Graphics */}
         <div className="absolute inset-0 opacity-[0.05] pointer-events-none">
           <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[var(--color-secondary)] blur-[150px] rounded-full animate-pulse" />
@@ -138,7 +138,7 @@ const Help = () => {
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-5xl md:text-7xl font-black text-white mb-8 tracking-tighter leading-none"
+              className="text-4xl md:text-6xl font-black text-white mb-6 tracking-tighter leading-none"
             >
               How Can We <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-secondary)] to-emerald-400">Support You?</span>

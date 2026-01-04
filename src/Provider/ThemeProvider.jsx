@@ -18,18 +18,38 @@ const ThemeProvider = ({ children }) => {
   });
 
   useEffect(() => {
-    // Apply theme to document
-    document.documentElement.setAttribute("data-theme", theme);
-    
-    // Add/remove 'dark' class for Tailwind dark mode
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
+    const updateTheme = () => {
+      // 1. Temporarily disable all transitions to force an "instant" style update
+      document.documentElement.classList.add("no-transitions");
+      
+      // 2. Apply theme attributes/classes
+      document.documentElement.setAttribute("data-theme", theme);
+      if (theme === "dark") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+      
+      // 3. Save to localStorage
+      localStorage.setItem("habit-tracker-theme", theme);
+
+      // 4. Force a style recalculation (reflow) to apply the new theme instantly
+      // without leaving time for CSS transitions to kick in
+      void document.documentElement.offsetHeight;
+
+      // 5. Re-enable transitions after a tiny delay to ensure the browser
+      // has processed the theme change as a single "atomic" update
+      setTimeout(() => {
+        document.documentElement.classList.remove("no-transitions");
+      }, 50);
+    };
+
+    // Use View Transitions API for ultra-smooth theme changes (if supported)
+    if (document.startViewTransition) {
+      document.startViewTransition(() => updateTheme());
     } else {
-      document.documentElement.classList.remove("dark");
+      updateTheme();
     }
-    
-    // Save to localStorage
-    localStorage.setItem("habit-tracker-theme", theme);
   }, [theme]);
 
   const toggleTheme = () => {

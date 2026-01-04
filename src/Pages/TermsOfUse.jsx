@@ -12,7 +12,7 @@ const TermsOfUse = () => {
 
           <div className="space-y-8 text-[var(--color-text-secondary)]">
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+              <h2 className="text-2xl font-semibold text-[var(--color-text-primary)] mb-4">
                 1. Agreement to Terms
               </h2>
               <p className="mb-4">
@@ -24,7 +24,7 @@ const TermsOfUse = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+              <h2 className="text-2xl font-semibold text-[var(--color-text-primary)] mb-4">
                 2. Use License
               </h2>
               <p className="mb-4">
@@ -56,7 +56,7 @@ const TermsOfUse = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+              <h2 className="text-2xl font-semibold text-[var(--color-text-primary)] mb-4">
                 3. Disclaimer
               </h2>
               <p className="mb-4">
@@ -71,7 +71,7 @@ const TermsOfUse = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+              <h2 className="text-2xl font-semibold text-[var(--color-text-primary)] mb-4">
                 4. Limitations
               </h2>
               <p className="mb-4">
@@ -85,7 +85,7 @@ const TermsOfUse = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+              <h2 className="text-2xl font-semibold text-[var(--color-text-primary)] mb-4">
                 5. Accuracy of Materials
               </h2>
               <p className="mb-4">
@@ -99,7 +99,7 @@ const TermsOfUse = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+              <h2 className="text-2xl font-semibold text-[var(--color-text-primary)] mb-4">
                 6. Links
               </h2>
               <p className="mb-4">
@@ -112,7 +112,7 @@ const TermsOfUse = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+              <h2 className="text-2xl font-semibold text-[var(--color-text-primary)] mb-4">
                 7. Modifications
               </h2>
               <p className="mb-4">
@@ -124,7 +124,7 @@ const TermsOfUse = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+              <h2 className="text-2xl font-semibold text-[var(--color-text-primary)] mb-4">
                 8. Governing Law
               </h2>
               <p className="mb-4">
@@ -136,7 +136,7 @@ const TermsOfUse = () => {
             </section>
 
             <section>
-              <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">
+              <h2 className="text-2xl font-semibold text-[var(--color-text-primary)] mb-4">
                 9. Contact Information
               </h2>
               <p className="mb-4">
@@ -157,8 +157,8 @@ const TermsOfUse = () => {
               </ul>
             </section>
 
-            <div className="mt-8 p-4 bg-blue-50 dark:bg-blue-900 rounded-lg">
-              <p className="text-sm text-gray-600 dark:text-gray-300">
+            <div className="mt-8 p-4 bg-[var(--color-bg-tertiary)]/30 rounded-lg">
+              <p className="text-sm text-[var(--color-text-secondary)]">
                 Last updated: January 2, 2026
               </p>
             </div>

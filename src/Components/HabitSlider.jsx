@@ -96,15 +96,49 @@ const HabitSlider = () => {
         className="w-full shadow-2xl"
       >
         {/* SLIDE 1 - Premium Gradient Hero */}
-        <SwiperSlide className="bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 overflow-hidden relative">
-          {/* Decorative elements */}
-          <div className="absolute inset-0 opacity-10">
+        <SwiperSlide className="relative overflow-hidden">
+          {/* Multi-layer premium dark gradient background */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#0f172a] via-[#1e1b4b] to-[#312e81]"></div>
+          
+          {/* Animated gradient mesh overlay */}
+          <div className="absolute inset-0 opacity-40">
+            <motion.div
+              className="absolute -top-40 -left-40 w-96 h-96 bg-gradient-to-br from-indigo-600 to-purple-700 rounded-full mix-blend-soft-light filter blur-3xl"
+              animate={{
+                x: [0, 100, 0],
+                y: [0, 50, 0],
+                scale: [1, 1.2, 1],
+              }}
+              transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.div
+              className="absolute top-40 -right-40 w-96 h-96 bg-gradient-to-br from-violet-600 to-fuchsia-700 rounded-full mix-blend-soft-light filter blur-3xl"
+              animate={{
+                x: [0, -80, 0],
+                y: [0, 60, 0],
+                scale: [1, 1.15, 1],
+              }}
+              transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+            />
+            <motion.div
+              className="absolute bottom-20 left-1/2 w-96 h-96 bg-gradient-to-br from-blue-700 to-indigo-800 rounded-full mix-blend-soft-light filter blur-3xl"
+              animate={{
+                x: [0, -50, 0],
+                y: [0, -40, 0],
+                scale: [1, 1.1, 1],
+              }}
+              transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </div>
+
+          {/* Subtle dot pattern overlay */}
+          <div className="absolute inset-0 opacity-[0.05]">
             <div
               className="absolute inset-0"
               style={{
                 backgroundImage:
-                  "radial-gradient(circle at 2px 2px, white 1px, transparent 0)",
-                backgroundSize: "40px 40px",
+                  "radial-gradient(circle at 2px 2px, white 1.5px, transparent 0)",
+                backgroundSize: "32px 32px",
               }}
             />
           </div>

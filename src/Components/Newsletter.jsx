@@ -19,7 +19,7 @@ const Newsletter = () => {
   };
 
   return (
-    <section className="relative w-full py-20 overflow-hidden bg-[var(--color-bg-primary)] dark:bg-[var(--color-bg-primary)] transition-colors duration-500">
+    <section className="newsletter-section relative w-full py-20 overflow-hidden bg-[var(--color-bg-primary)] dark:bg-[var(--color-bg-primary)] transition-colors duration-500">
       {/* Premium Background Graphics - Enhanced */}
       <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.07] pointer-events-none">
         <div 
@@ -135,7 +135,7 @@ const Newsletter = () => {
                 </form>
 
                 {/* Social Proof with Avatars */}
-                <div className="mt-16 pt-10 border-t border-[var(--color-border)] flex items-center gap-6">
+                <div className="mt-16 pt-10 border-t border-[var(--color-border)] flex flex-col sm:flex-row items-center sm:items-center gap-6">
                   <div className="flex -space-x-4">
                     {[1, 5, 12, 18, 22].map(i => (
                       <div key={i} className="w-12 h-12 rounded-full border-4 border-[var(--color-bg-secondary)] bg-gray-200 overflow-hidden shadow-xl hover:z-10 hover:scale-110 transition-transform cursor-pointer">
@@ -146,7 +146,7 @@ const Newsletter = () => {
                       +50K
                     </div>
                   </div>
-                  <p className="text-sm font-black text-[var(--color-text-tertiary)] uppercase tracking-widest leading-none">
+                  <p className="text-sm font-black text-[var(--color-text-tertiary)] uppercase tracking-widest leading-none text-center sm:text-left">
                     Verified Global Agents <br />
                     <span className="text-[var(--color-success)] text-[10px]">99.8% Protocol Saturation</span>
                   </p>
@@ -162,19 +162,19 @@ const Newsletter = () => {
                 icon: Gift,
                 title: "Exclusive Content",
                 desc: "Access premium templates and guides",
-                bgGradient: "from-purple-50 to-pink-50 dark:from-purple-900/20 dark:to-pink-900/20",
+                accentColor: "purple",
               },
               {
                 icon: Bell,
                 title: "Weekly Updates",
                 desc: "Fresh tips delivered every Monday",
-                bgGradient: "from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20",
+                accentColor: "blue",
               },
               {
                 icon: Sparkles,
                 title: "Early Access",
                 desc: "Be first to try new features",
-                bgGradient: "from-orange-50 to-yellow-50 dark:from-orange-900/20 dark:to-yellow-900/20",
+                accentColor: "orange",
               },
             ].map((benefit, index) => {
               const Icon = benefit.icon;
@@ -186,18 +186,21 @@ const Newsletter = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
                   whileHover={{ scale: 1.05, x: 10 }}
-                  className={`group relative p-6 rounded-[2rem] bg-gradient-to-br ${benefit.bgGradient} border-2 border-[var(--color-border)] shadow-xl transition-all duration-500 overflow-hidden`}
+                  className="group relative p-6 rounded-[2rem] bg-[var(--color-bg-secondary)] dark:bg-[var(--color-bg-tertiary)] border-2 border-[var(--color-border)] shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden"
                 >
-                  {/* Glass Card Background Overlay */}
-                  <div className="absolute inset-0 bg-white/5 dark:bg-black/5 backdrop-blur-md opacity-20 group-hover:opacity-40 transition-opacity"></div>
+                  {/* Enhanced Glass Card Background Overlay with Subtle Gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-primary-medium)]/5 via-transparent to-[var(--color-secondary)]/5 dark:from-[var(--color-primary-medium)]/10 dark:via-transparent dark:to-[var(--color-secondary)]/10 opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  
+                  {/* Animated Glow Effect on Hover */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[var(--color-primary-medium)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 blur-xl"></div>
                   
                   <div className="relative z-10 flex items-center gap-6">
-                    <div className="w-14 h-14 bg-white dark:bg-[var(--color-bg-tertiary)] rounded-2xl flex items-center justify-center shadow-2xl group-hover:rotate-6 transition-transform group-hover:scale-110 shrink-0">
-                      <Icon className="w-7 h-7 text-[var(--color-primary-medium)]" />
+                    <div className="w-14 h-14 bg-gradient-to-br from-[var(--color-bg-primary)] to-[var(--color-bg-secondary)] dark:from-[var(--color-bg-secondary)] dark:to-[var(--color-bg-primary)] border border-[var(--color-border)] rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl group-hover:rotate-6 transition-all duration-500 group-hover:scale-110 shrink-0">
+                      <Icon className="w-7 h-7 text-[var(--color-primary-medium)] group-hover:text-[var(--color-primary-dark)] transition-colors" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-black text-[var(--color-text-primary)] mb-1 tracking-tighter leading-none">{benefit.title}</h3>
-                      <p className="text-sm text-[var(--color-text-secondary)] font-medium leading-tight">{benefit.desc}</p>
+                      <h3 className="text-xl font-black text-[var(--color-text-primary)] mb-1 tracking-tighter leading-none group-hover:text-[var(--color-primary-medium)] transition-colors">{benefit.title}</h3>
+                      <p className="text-sm text-[var(--color-text-secondary)] font-medium leading-tight group-hover:text-[var(--color-text-primary)] transition-colors">{benefit.desc}</p>
                     </div>
                   </div>
                 </motion.div>
