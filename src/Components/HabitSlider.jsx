@@ -342,22 +342,23 @@ const HabitSlider = () => {
           </div>
         </SwiperSlide>
 
-        {/* SLIDE 2 - Clean Modern */}
-        <SwiperSlide className="bg-white dark:bg-gray-900 overflow-hidden relative">
+        {/* SLIDE 2 - Clean Modern (Dark Transformation) */}
+        <SwiperSlide className="bg-gradient-to-br from-slate-950 via-indigo-950 to-slate-950 overflow-hidden relative">
           {/* Subtle pattern */}
-          <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05]">
+          <div className="absolute inset-0 opacity-10">
             <div
               className="absolute inset-0"
               style={{
                 backgroundImage:
-                  "repeating-linear-gradient(45deg, #000 0, #000 1px, transparent 0, transparent 50%)",
-                backgroundSize: "10px 10px",
+                  "repeating-linear-gradient(45deg, #4f46e5 0, #4f46e5 1px, transparent 0, transparent 50%)",
+                backgroundSize: "20px 20px",
               }}
             />
           </div>
 
           <div className="min-h-[600px] md:min-h-[420px] lg:min-h-[480px] h-[600px] md:h-[420px] lg:h-[480px] relative z-10">
             <div className="w-11/12 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-6 h-full">
+              {/* Left Images (md:col-span-2) */}
               <div className="hidden md:flex md:col-span-2 h-full py-6">
                 <motion.div
                   className="grid grid-cols-2 grid-rows-1 auto-rows-fr gap-3 w-full h-full pt-1 pb-1"
@@ -370,7 +371,7 @@ const HabitSlider = () => {
                   {[p5, p6].map((img, i) => (
                     <motion.div
                       key={i}
-                      className="relative rounded-2xl overflow-hidden shadow-xl group h-full min-h-full"
+                      className="relative rounded-2xl overflow-hidden shadow-2xl group h-full min-h-full border border-white/10"
                       variants={{
                         hidden: { opacity: 0, scale: 0.9, y: 20 },
                         visible: { opacity: 1, scale: 1, y: 0 },
@@ -382,32 +383,33 @@ const HabitSlider = () => {
                         className="w-full h-full min-h-full object-cover"
                         alt={`Feature ${i + 1}`}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-indigo-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-indigo-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </motion.div>
                   ))}
                 </motion.div>
               </div>
 
+              {/* Right Content (Text) (md:col-span-3) */}
               <div className="md:col-span-3 py-2 md:py-2 lg:py-8 px-4 flex flex-col justify-center h-full">
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6 }}
                 >
-                  <div className="inline-flex items-center gap-2 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-300 px-4 py-2 rounded-full mb-3 border border-blue-100 dark:border-blue-800">
-                    <span className="text-xs font-semibold">
+                  <div className="inline-flex items-center gap-2 bg-indigo-500/20 text-indigo-300 px-4 py-2 rounded-full mb-3 border border-indigo-500/30 backdrop-blur-md shadow-lg shadow-indigo-500/10">
+                    <span className="text-xs font-bold uppercase tracking-widest text-indigo-200">
                       Featured by Apple
                     </span>
                   </div>
                 </motion.div>
 
                 <motion.h1
-                  className="text-xl sm:text-2xl lg:text-3xl font-bold mb-2 text-gray-900 dark:text-white"
+                  className="text-xl sm:text-2xl lg:text-3xl font-black mb-2 text-white"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2, duration: 0.6 }}
                 >
-                  <div className="min-h-[40px] sm:min-h-[50px]">
+                  <div className="min-h-[40px] sm:min-h-[50px] bg-gradient-to-r from-white via-indigo-200 to-blue-200 bg-clip-text text-transparent">
                     <Typewriter
                       words={[
                         "Smart Habit Coach",
@@ -421,7 +423,7 @@ const HabitSlider = () => {
                 </motion.h1>
 
                 <motion.p
-                  className="text-sm sm:text-base mb-5 text-gray-600 dark:text-gray-300"
+                  className="text-sm sm:text-base mb-5 text-gray-400 leading-relaxed max-w-xl"
                   custom={1}
                   initial="hidden"
                   animate="visible"
@@ -457,18 +459,19 @@ const HabitSlider = () => {
                   ].map((item, i) => (
                     <motion.div
                       key={i}
-                      className="flex items-start gap-3 p-2.5 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-800"
+                      className="flex items-start gap-3 p-2.5 rounded-xl bg-slate-900/60 backdrop-blur-xl border border-white/10 group transition-all duration-300"
                       whileHover={{
                         x: 5,
-                        backgroundColor: "rgba(59, 130, 246, 0.05)",
+                        backgroundColor: "rgba(15, 23, 42, 0.8)",
+                        borderColor: "rgba(255, 255, 255, 0.2)",
                       }}
                     >
-                      <span className="text-2xl">{item.icon}</span>
+                      <span className="text-2xl drop-shadow-xl">{item.icon}</span>
                       <div className="flex-1">
-                        <div className="font-semibold text-gray-900 dark:text-white">
+                        <div className="font-bold text-white text-base">
                           {item.title}
                         </div>
-                        <div className="text-xs text-gray-600 dark:text-gray-400">
+                        <div className="text-xs text-gray-400 font-medium">
                           {item.desc}
                         </div>
                       </div>
@@ -484,17 +487,18 @@ const HabitSlider = () => {
                   variants={fadeUpVariants}
                 >
                   <motion.button
-                    className="bg-gradient-to-r from-indigo-600 to-blue-600 text-white px-6 py-3 rounded-xl text-xs font-semibold shadow-lg shadow-indigo-500/30"
-                    whileHover={{ scale: 1.05 }}
+                    className="bg-gradient-to-r from-indigo-500 to-blue-600 text-white px-8 py-3.5 rounded-2xl text-xs font-black shadow-xl shadow-indigo-500/20 hover:shadow-indigo-500/40 uppercase tracking-widest transition-all"
+                    whileHover={{ scale: 1.05, y: -2 }}
                     whileTap={{ scale: 0.98 }}
                   >
                     Get Started
                   </motion.button>
                   <motion.button
-                    className="text-gray-900 dark:text-white bg-gray-100 dark:bg-gray-800 px-6 py-3 rounded-xl text-xs font-semibold border border-gray-200 dark:border-gray-700"
+                    className="text-white border-2 border-white/20 backdrop-blur-md bg-white/5 px-8 py-3.5 rounded-2xl text-xs font-black hover:bg-white/10 transition-all uppercase tracking-widest"
                     whileHover={{
                       scale: 1.05,
-                      backgroundColor: "rgba(59, 130, 246, 0.1)",
+                      y: -2,
+                      borderColor: "rgba(255, 255, 255, 0.4)",
                     }}
                     whileTap={{ scale: 0.98 }}
                   >

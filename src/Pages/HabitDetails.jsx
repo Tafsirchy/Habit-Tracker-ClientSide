@@ -149,14 +149,14 @@ const HabitDetails = () => {
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3, duration: 0.5 }}
-                  className="absolute top-4 left-4 sm:top-6 sm:left-6"
+                  className="absolute top-6 left-6"
                 >
                   <span
-                    className={`inline-flex items-center gap-2 px-4 py-2 text-xs sm:text-sm font-bold rounded-full border backdrop-blur-md bg-[var(--color-bg-primary)]/95 shadow-lg ${
+                    className={`inline-flex items-center gap-2 px-5 py-2.5 text-xs sm:text-sm font-black rounded-full glass-morphism shadow-xl transition-all hover:scale-105 ${
                       categoryColors[normalizeCategory(habit.category)]
                     }`}
                   >
-                    <Award size={16} />
+                    <Award size={18} className="text-[var(--color-primary-medium)]" />
                     {normalizeCategory(habit.category)}
                   </span>
                 </motion.div>
